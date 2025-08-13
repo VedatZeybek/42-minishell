@@ -1,63 +1,42 @@
-#include "./includes/minishell.h"
+#include "../includes/minishell.h"
 
-t_token	*tokenize(char *input)
+int is_whitespace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+			|| c == '\r' || c == '\v' || c == '\f');
+}
+
+t_token	*create_token(char *value, t_token_type type)
 {
 	t_token	*token;
-	int		i;
-	int		start;
 
-	i = 0;
-	if (!input || !*input)
-		return (NULL);
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	while (input[i])
+	token->value = ft_strdup(value);
+	if (!token->value)
 	{
-		while (is_whitespace(input[i]))
-			i++;
-		if (input[i] == '|')
-		{
-			add_token(&token, create_token("|", TOKEN_PIPE));
-			i++;
-			continue ;
-		}
-		if (input[i] == '<')
-		{
-			if (input[i + 1] == '<')
-			{
-				add_token(&token, create_token("<<", TOKEN_HEREDOC));
-				i += 2;
-				continue ;
-			}
-			else
-			{
-				add_token(&token, create_token("<", TOKEN_REDIRECT_IN));
-				i ++;
-				continue ;
-			}
-		}
-		if (input[i] == '>')
-		{
-			if (input[i + 1] == '>')
-			{
-				add_token(&token, create_token(">>", TOKEN_APPEND));
-				i += 2;
-				continue ;
-			}
-			else
-			{
-				add_token(&token, create_token(">", TOKEN_REDIRECT_OUT));
-				i++;
-				continue ;
-			}
-		}
-		start = i;
-		while (input[i] && !is_whitespace(input[i]) && input[i] != '|' &&
-				input[i] != '<' && input[i] != '>')
-			i++;
-		if (i > start)
-			add_token(&token, create_token(input + start, TOKEN_WORD));
+		free(token);
+		return (NULL);
 	}
+	token->type = type;
+	token->next = NULL;
 	return (token);
+}
+
+void	add_token(t_token **head, t_token *new_token)
+{
+	t_token	*current;
+
+	if (!head || !new_token)
+		return ;
+	if (!*head)
+	{
+		*head = new_token;
+		return ;
+	}
+	current = *head;
+	while (current->next)
+		current = current->next;
+	current->next = new_token;
 }

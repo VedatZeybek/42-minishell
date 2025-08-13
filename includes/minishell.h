@@ -6,13 +6,14 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 21:54:38 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/13 22:45:47 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "ft_printf.h"
 # include "libft.h"
 # include <errno.h>
 # include <readline/history.h>

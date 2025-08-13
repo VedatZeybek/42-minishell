@@ -18,11 +18,11 @@ $(LIBS):
 	@echo "$(GREEN)Libs Compiled Successfeully.$(SET_DEF)"
 
 clean:
-	@rm -f $(NAME)
 	@make -C libft/ clean
 	@echo "$(GREEN)Project Cleaned Successfeully.$(SET_DEF)"
 
 fclean: clean
+	@rm -f $(NAME)
 	@make -C libft/ fclean
 
 re: fclean all

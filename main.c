@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 18:23:04 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/13 19:14:49 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 //bunu yazdım ve çalışıyor.
 // bu kodu yazdım ve çalışıyor.
 
-int	main(int ac, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	t_shell	shell;
 	char	*line;
 
+	(void)argc;
+	(void)argv;
 	shell.running = 1;
 	while (shell.running)
 	{

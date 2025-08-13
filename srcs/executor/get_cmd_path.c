@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:50 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 18:22:50 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/13 19:11:39 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 static char	**get_path_dir(char **envp)
 {

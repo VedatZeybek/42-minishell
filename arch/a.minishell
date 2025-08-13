@@ -1,0 +1,26 @@
+         ┌───────────────┐
+         │     main.c    │
+         └───────┬───────┘
+                 │
+        ┌────────▼────────┐
+        │  read_line.c    │  ← readline() ile input al
+        └────────┬────────┘
+                 │
+        ┌────────▼────────┐
+        │     lexer.c     │  ← input'u token'lara ayir
+        └────────┬────────┘
+                 │
+        ┌────────▼────────┐
+        │    parser.c     │  ← token listesinden komut yapisi oluştur
+        └────────┬────────┘
+                 │
+        ┌────────▼────────┐
+        │   expander.c    │  ← $VAR ve ~ gibi açilimlar
+        └────────┬────────┘
+                 │
+        ┌────────▼────────┐
+        │  executor.c     │  ← builtins veya diş komut çaliştir
+        ├────────┬────────┤
+        │ builtins/*.c    │  ← cd, echo, exit vb.
+        │ pipex/mantiği   │  ← pipe ve exec
+        └─────────────────┘

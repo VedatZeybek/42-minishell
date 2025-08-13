@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	execute_command(char *line, char **envp)
 {

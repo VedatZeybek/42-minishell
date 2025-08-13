@@ -16,6 +16,17 @@
 //bunu yazdım ve çalışıyor.
 // bu kodu yazdım ve çalışıyor.
 
+
+void print_tokens(t_token *tokens)
+{
+    t_token *tmp = tokens;
+    while (tmp)
+    {
+        printf("Token: '%s', Type: %d\n", tmp->value, tmp->type);
+        tmp = tmp->next;
+    }
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_shell	shell;
@@ -30,6 +41,9 @@ int	main(int argc, char **argv, char **env)
 		if (!line)
 			break ;
 		execute_command(line, env);
+		char *input = line;
+		t_token *tokens = tokenize(input);
+		print_tokens(tokens);
 		free(line);
 	}
 	return (0);

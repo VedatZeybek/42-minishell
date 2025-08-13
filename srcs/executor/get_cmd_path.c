@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/minishell.h"
+#include "../../includes/minishell.h"
 
 static char	**get_path_dir(char **envp)
 {

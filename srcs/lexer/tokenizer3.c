@@ -1,4 +1,4 @@
-#include "./includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	token_redidrect(char *input, t_token **token, int *i)
 {
@@ -30,9 +30,9 @@ void	token_redidrect(char *input, t_token **token, int *i)
 	}
 }
 
-void token_single_quote(char *input, t_token **token, int *i)
+void	token_single_quote(char *input, t_token **token, int *i)
 {
-	int start;
+	int	start;
 
 	start = ++(*i);
 	while (input[*i] && input[*i] != '\'')
@@ -50,9 +50,9 @@ void token_single_quote(char *input, t_token **token, int *i)
 	}
 }
 
-void token_double_quote(char *input, t_token **token, int *i)
+void	token_double_quote(char *input, t_token **token, int *i)
 {
-	int start;
+	int	start;
 
 	start = ++(*i);
 	while (input[*i] && input[*i] != '"')
@@ -67,5 +67,18 @@ void token_double_quote(char *input, t_token **token, int *i)
 		perror("minishell: unclosed double quote\n");
 		free(*token);
 		*token = NULL;
+	}
+}
+
+void free_tokens(t_token *token)
+{
+	t_token *tmp;
+
+	while (token)
+	{
+		tmp = token;
+		token = token->next;
+		free(tmp->value);
+		free(tmp);
 	}
 }

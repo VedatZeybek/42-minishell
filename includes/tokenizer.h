@@ -32,7 +32,7 @@ void	token_double_quote(char *input, t_token **token, int *i);
 t_token	*tokenize(char *input);
 t_token	*create_token(char *value, t_token_type type);
 void	add_token(t_token **head, t_token *new_token);
-int     is_whitespace(char c);
+int		is_whitespace(char c);
 void	free_tokens(t_token *token);
 
 #endif

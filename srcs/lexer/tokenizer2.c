@@ -41,9 +41,9 @@ int	is_whitespace(char c)
 			|| c == '\r' || c == '\v' || c == '\f');
 }
 
-void free_tokens(t_token *token)
+void	free_tokens(t_token *token)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	while (token)
 	{

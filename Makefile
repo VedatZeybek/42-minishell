@@ -30,8 +30,11 @@ fclean: clean
 	@make -C ft_printf/ fclean
 
 # T E S T S
-test1: srcs/builtin/*
+test1: srcs/builtin/*.c srcs/executor/*.c $(LIBS)
 	rm -rf test1
-	cc -Wall -Wextra -Werror srcs/builtin/*.c srcs/executor/* libft/libft.a ft_printf/libftprintf.a -Iincludes -Ilibft -Ift_printf -o test1
+	cc -Wall -Wextra -Werror srcs/builtin/*.c srcs/executor/*.c $(LIBS) -Iincludes -Ilibft -Ift_printf -o test1
+	make fclean
 
 re: fclean all
+
+.PHONY: all fclean clean re test1

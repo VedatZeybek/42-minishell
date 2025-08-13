@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 // static int	get_next_input(size_t limiter_len, char *limiter, int fd[])
 // {

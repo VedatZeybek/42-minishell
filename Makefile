@@ -1,5 +1,5 @@
 NAME	=	minishell
-LIBS = libft/libft.a
+LIBS	=	libft/libft.a
 
 SRC		=	*.c \
 			*/*.c \

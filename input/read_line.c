@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-static void	sigint_handler(void)
+static void	sigint_handler()
 {
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();

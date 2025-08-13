@@ -25,4 +25,13 @@ typedef struct s_token
 	struct s_token	*next;
 } t_token;
 
+
+void	token_redidrect(char *input, t_token **token, int *i);
+void	token_single_quote(char *input, t_token **token, int *i);
+void	token_double_quote(char *input, t_token **token, int *i);
+t_token	*tokenize(char *input);
+t_token	*create_token(char *value, t_token_type type);
+void	add_token(t_token **head, t_token *new_token);
+int     is_whitespace(char c);
+
 #endif

@@ -3,6 +3,7 @@ LIBS	=	libft/libft.a
 
 SRC		=	*.c \
 			*/*.c \
+			*/*/*.c \
 
 GREEN=\033[0;32m
 SET_DEF=\033[0m
@@ -10,7 +11,7 @@ SET_DEF=\033[0m
 all: $(NAME)
 
 $(NAME): $(SRC) $(LIBS)
-	@cc $(SRC) $(LIBS) -o $(NAME) -lreadline -Ilibft -Iincludes
+	@cc -Wall -Wextra -Werror $(SRC) $(LIBS) -o $(NAME) -lreadline -Ilibft -Iincludes
 	@echo "$(GREEN)Project Compiled Successfeully.$(SET_DEF)"
 
 $(LIBS):

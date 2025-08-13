@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:46 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 18:24:17 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/13 19:11:35 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 void	execute_command(char *line, char **envp)
 {

@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:52 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 18:22:53 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/13 19:11:45 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 // static int	get_next_input(size_t limiter_len, char *limiter, int fd[])
 // {

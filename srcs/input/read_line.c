@@ -6,14 +6,15 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:02 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 18:58:16 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/13 19:12:25 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
-static void	sigint_handler(void)
+static void	sigint_handler(int signal)
 {
+	(void)signal;
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);

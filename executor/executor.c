@@ -1,4 +1,16 @@
-#include "../inc/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/13 18:22:46 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/13 18:24:17 by epakdama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 
 void	execute_command(char *line, char **envp)
 {
@@ -8,11 +20,10 @@ void	execute_command(char *line, char **envp)
 	int		status;
 
 	if (!line || !*line)
-		return;
-
+		return ;
 	argv = ft_split(line, ' ');
 	if (!argv || !argv[0])
-		return;
+		return ;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -32,7 +43,5 @@ void	execute_command(char *line, char **envp)
 	}
 	else
 		perror("fork");
-
 	free_splitted(argv);
 }
-

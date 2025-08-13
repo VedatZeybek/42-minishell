@@ -1,6 +1,18 @@
-#include "../inc/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/13 18:23:02 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/13 18:23:02 by epakdama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static void	sigint_handler()
+#include "minishell.h"
+
+static void	sigint_handler(void)
 {
 	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
@@ -14,7 +26,6 @@ char	*read_line(void)
 
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
-
 	line = readline(PROMPT);
 	if (!line)
 	{

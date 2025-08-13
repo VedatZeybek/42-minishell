@@ -1,38 +1,28 @@
 NAME	=	minishell
+LIBS = libft/libft.a
 
-CC		=	cc
-CFLAGS	=	#-Wall -Wextra -Werror
+SRC		=	*.c \
+			*/*.c \
 
-SRC		=	main.c ./input/read_line.c \
-			executor/get_cmd_path.c executor/error.c \
-			executor/executor.c 
-
-OBJ		= $(SRC:.c=.o)
-
-LIBFT		= ./inc/libft/libft.a
-LIBFT_DIR	= ./inc/libft
-
-
-READLINE_LIB = -lreadline
+GREEN=\033[0;32m
+SET_DEF=\033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(READLINE_LIB) -o $(NAME)
+$(NAME): $(SRC) $(LIBS)
+	@cc $(SRC) $(LIBS) -o $(NAME) -lreadline -Ilibft -Iincludes
+	@echo "$(GREEN)Project Compiled Successfeully.$(SET_DEF)"
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(READLINE_LIB) -c $< -o $@
-
-$(LIBFT):
-	@echo "Libft files compiling..."
-	@$(MAKE) -s -C $(LIBFT_DIR) all
+$(LIBS):
+	@make -C libft/ all
+	@echo "$(GREEN)Libs Compiled Successfeully.$(SET_DEF)"
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(NAME)
+	@make -C libft/ clean
+	@echo "$(GREEN)Project Cleaned Successfeully.$(SET_DEF)"
 
 fclean: clean
-	rm -f $(NAME)
+	@make -C libft/ fclean
 
 re: fclean all
-
-.PHONY: all clean fclean re

@@ -1,8 +1,20 @@
-#include "./inc/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/13 18:23:04 by epakdama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 
 int	main(int ac, char **argv, char **env)
 {
-	t_shell shell;
+	t_shell	shell;
 	char	*line;
 
 	shell.running = 1;

@@ -12,6 +12,10 @@
 
 #include "./includes/minishell.h"
 
+//ben vedat nasıl yazdım bunu bilmiyorum ama
+//bunu yazdım ve çalışıyor.
+// bu kodu yazdım ve çalışıyor.
+
 int	main(int ac, char **argv, char **env)
 {
 	t_shell	shell;

@@ -1,0 +1,28 @@
+#ifndef TOKENIZER_H
+# define TOKENIZER_H
+
+# include "minishell.h"
+
+typedef enum e_token_type
+{
+	TOKEN_WORD,			// Regular command or argument
+	TOKEN_PIPE,			// |
+	TOKEN_REDIRECT_IN,	// <
+	TOKEN_REDIRECT_OUT,	// >
+	TOKEN_APPEND,		// >>
+	TOKEN_HEREDOC,		// <<
+	TOKEN_ENV_VAR,		// $ for environment variables
+	TOKEN_QUOTE,		// ' for single-quoted strings
+	TOKEN_DQUOTE,		// " for double-quoted strings
+	TOKEN_WHITESPACE,	// Spaces, tabs, etc.
+	TOKEN_INVALID		// Invalid token, e.g., unrecognized characters
+}	t_token_type;
+
+typedef struct s_token
+{
+	char			*value;
+	t_token_type	type;
+	struct s_token	*next;
+} t_token;
+
+#endif

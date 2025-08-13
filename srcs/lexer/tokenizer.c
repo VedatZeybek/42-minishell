@@ -27,17 +27,10 @@ int	is_whitespace(char c)
 		|| c == '\f');
 }
 
-// cat out | grep "hello"
-// com file.name pipe com literal
-
-t_token	*tokenize(char *input)
+t_token	*create_token(char *value, t_token_type type)
 {
 	t_token	*token;
-	int		i;
 
-	i = 0;
-	if (!input || !*input)
-		return (NULL);
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);

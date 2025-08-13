@@ -2,29 +2,29 @@
 
 typedef enum e_token_type
 {
-	TOKEN_WORD,			// Regular command or argument
-	TOKEN_PIPE,			// |
-	TOKEN_REDIRECT_IN,	// <
-	TOKEN_REDIRECT_OUT,	// >
-	TOKEN_APPEND,		// >>
-	TOKEN_HEREDOC,		// << for here documents
-	TOKEN_ENV_VAR,		// $ for environment variables
-	TOKEN_QUOTE,		// ' for single-quoted strings
-	TOKEN_DQUOTE,		// " for double-quoted strings
-	TOKEN_WHITESPACE,	// Spaces, tabs, etc.
-	TOKEN_INVALID		// Invalid token, e.g., unrecognized characters
-}	t_token_type;
+	TOKEN_WORD,         // Regular command or argument
+	TOKEN_PIPE,         // |
+	TOKEN_REDIRECT_IN,  // <
+	TOKEN_REDIRECT_OUT, // >
+	TOKEN_APPEND,       // >>
+	TOKEN_HEREDOC,      // << for here documents
+	TOKEN_ENV_VAR,      // $ for environment variables
+	TOKEN_QUOTE,        // ' for single-quoted strings
+	TOKEN_DQUOTE,       // " for double-quoted strings
+	TOKEN_WHITESPACE,   // Spaces, tabs, etc.
+	TOKEN_INVALID       // Invalid token, e.g., unrecognized characters
+}			t_token_type;
 
 typedef struct s_token
 {
 	char	*value;
 	int		type;
-}	t_token;
+}			t_token;
 
-int is_whitespace(char c)
+int	is_whitespace(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n'
-			|| c == '\r' || c == '\v' || c == '\f');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\v'
+		|| c == '\f');
 }
 
 // cat out | grep "hello"
@@ -74,13 +74,14 @@ t_token	*tokenize(char *input)
 			i++;
 			continue ;
 		}
-	token->value = ft_strdup(input);
-	if (!token->value)
-	{
-		free(token);
-		return (NULL);
+		token->value = ft_strdup(input);
+		if (!token->value)
+		{
+			free(token);
+			return (NULL);
+		}
+		token->type = TOKEN_WORD;
+		return (token);
 	}
-	token->type = TOKEN_WORD;
-	return (token);
-	}
+	return (NULL);
 }

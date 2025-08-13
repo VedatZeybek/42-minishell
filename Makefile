@@ -3,6 +3,7 @@ LIBS	=	libft/libft.a
 
 SRC		=	*.c \
 			*/*.c \
+			*/*/*.c 
 
 GREEN=\033[0;32m
 SET_DEF=\033[0m

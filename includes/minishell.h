@@ -23,6 +23,7 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include "tokenizer.h"
 
 # define PROMPT "minishell$ "
 

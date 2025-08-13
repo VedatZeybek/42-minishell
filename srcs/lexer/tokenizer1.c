@@ -18,7 +18,7 @@ static int	handle_special_chars(char *input, t_token **token, int *i)
 	{
 		start = *i;
 		(*i)++;
-		while (isalnum(input[*i]) || input[*i] == '_')
+		while (ft_isalnum(input[*i]) || input[*i] == '_')
 			(*i)++;
 		add_token(token, create_token(strndup(input + start, *i - start),
 				TOKEN_ENV_VAR));

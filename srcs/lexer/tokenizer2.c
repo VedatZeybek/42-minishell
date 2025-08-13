@@ -1,11 +1,5 @@
 #include "../../includes/minishell.h"
 
-int	is_whitespace(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n'
-			|| c == '\r' || c == '\v' || c == '\f');
-}
-
 t_token	*create_token(char *value, t_token_type type)
 {
 	t_token	*token;
@@ -39,4 +33,23 @@ void	add_token(t_token **head, t_token *new_token)
 	while (current->next)
 		current = current->next;
 	current->next = new_token;
+}
+
+int	is_whitespace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+			|| c == '\r' || c == '\v' || c == '\f');
+}
+
+void free_tokens(t_token *token)
+{
+	t_token *tmp;
+
+	while (token)
+	{
+		tmp = token;
+		token = token->next;
+		free(tmp->value);
+		free(tmp);
+	}
 }

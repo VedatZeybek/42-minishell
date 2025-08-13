@@ -12,11 +12,6 @@
 
 #include "./includes/minishell.h"
 
-//ben vedat nasıl yazdım bunu bilmiyorum ama
-//bunu yazdım ve çalışıyor.
-// bu kodu yazdım ve çalışıyor.
-
-
 void print_tokens(t_token *tokens)
 {
     t_token *tmp = tokens;

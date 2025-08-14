@@ -36,7 +36,6 @@ int add_to_argv(char ***argv, char *value)
 	return (1);
 }
 
-
 int	add_to_redirections(t_redir **list, t_token_type type, char *filename)
 {
 	t_redir	*new_node;
@@ -88,6 +87,7 @@ t_command	*parse_command(t_token **tokens)
 		return (NULL);
 	tmp = *tokens;
 	argv = NULL;
+	redirs = NULL;
 	while (tmp && tmp->type != TOKEN_PIPE)
 	{
 		parse_token_chunk(&tmp, &argv, &redirs);

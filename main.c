@@ -6,7 +6,7 @@
 /*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/14 10:13:52 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/08/14 14:36:38 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,32 @@ void print_tokens(t_token *tokens)
         tmp = tmp->next;
     }
 }
+void print_commands(t_command *command)
+{
+	t_command *tmp = command;
+
+	while (tmp)
+	{
+		printf("command args: ");
+		int i = 0;
+		while (tmp->argv[i])
+		{
+			printf("%s ", tmp->argv[i]);
+			i++;
+		}
+
+		t_redir *redir = tmp->redirections;
+		while (redir)
+        {
+			printf("[redirection type: %d] ", redir->type);
+			redir = redir->next;
+		}
+
+        printf("\n");
+        tmp = tmp->next;
+    }
+}
+
 
 int	main(int argc, char **argv, char **env)
 {
@@ -38,8 +64,9 @@ int	main(int argc, char **argv, char **env)
 		execute_command(line, env);
 		char *input = line;
 		t_token *tokens = tokenize(input);
-		print_tokens(tokens);
-		free(line);
+		//print_tokens(tokens);
+		t_command *command = parse_command(&tokens);
+		print_commands(command);
 	}
 	return (0);
 }

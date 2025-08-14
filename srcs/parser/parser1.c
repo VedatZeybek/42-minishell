@@ -70,16 +70,15 @@ static void	parse_token_chunk(t_token **tmp, char ***argv, t_redir **redirs)
 
 t_command	*parse_command(t_token **tokens)
 {
-	t_token		*tmp;
 	t_command	*cmd;
-	char		**argv;
+	t_token		*tmp;
 	t_redir		*redirs;
+	char		**argv;
 
 	if (!tokens || !*tokens)
 		return (NULL);
 	tmp = *tokens;
 	argv = NULL;
-	redirs = NULL;
 	while (tmp && tmp->type != TOKEN_PIPE)
 	{
 		parse_token_chunk(&tmp, &argv, &redirs);

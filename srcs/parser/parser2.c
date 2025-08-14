@@ -1,6 +1,6 @@
 #include "../../includes/parser.h"
 
-t_command *create_command(char **argv, char **redirections)
+t_command *create_command(char **argv, t_redir *redirections)
 {
 	t_command *cmd;
 
@@ -35,6 +35,6 @@ void	free_command(t_command *cmd)
 	if (!cmd)
 		return ;
 	free_splitted(cmd->argv);
-	free_splitted(cmd->redirections);
+	// redirection freelenecek
 	free(cmd);
 }

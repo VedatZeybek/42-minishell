@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 19:14:49 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/14 10:13:52 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void print_tokens(t_token *tokens)
 {
-    t_token *tmp = tokens;
-    while (tmp)
+	t_token *tmp = tokens;
+	while (tmp)
     {
         printf("Token: '%s', Type: %d\n", tmp->value, tmp->type);
         tmp = tmp->next;

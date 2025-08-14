@@ -1,9 +1,10 @@
 #include "../../includes/parser.h"
 
-int	add_to_argv(char ***argv, char *value)
+int add_to_argv(char ***argv, char *value)
 {
-	char	**new_argv;
-	int		i;
+	char **new_argv;
+	int i;
+	int	j;
 
 	if (!argv || !value)
 		return (0);
@@ -19,14 +20,22 @@ int	add_to_argv(char ***argv, char *value)
 	i = 0;
 	while ((*argv)[i])
 		i++;
-	new_argv = realloc(*argv, (i + 2) * sizeof(char *));
+	new_argv = malloc((i + 2) * sizeof(char *));
 	if (!new_argv)
 		return (0);
+	j = 0;
+	while (j < i)
+	{
+		new_argv[j] = (*argv)[j];
+		j++;
+	}
+	new_argv[i] = ft_strdup(value);
+	new_argv[i + 1] = NULL;
+	free(*argv);
 	*argv = new_argv;
-	(*argv)[i] = ft_strdup(value);
-	(*argv)[i + 1] = NULL;
 	return (1);
 }
+
 
 int	add_to_redirections(t_redir **list, t_token_type type, char *filename)
 {

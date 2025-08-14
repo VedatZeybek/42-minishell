@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/14 20:46:55 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/14 12:16:34 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 # include "tokenizer.h"
+# include "parser.h"
 
 # define PROMPT "minishell$ "
 

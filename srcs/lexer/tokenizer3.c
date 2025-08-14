@@ -69,16 +69,3 @@ void	token_double_quote(char *input, t_token **token, int *i)
 		*token = NULL;
 	}
 }
-
-void free_tokens(t_token *token)
-{
-	t_token *tmp;
-
-	while (token)
-	{
-		tmp = token;
-		token = token->next;
-		free(tmp->value);
-		free(tmp);
-	}
-}

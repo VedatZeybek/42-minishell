@@ -1,0 +1,17 @@
+Komut:
+
+echo $HOME | grep user > out.txt
+
+
+Linked List Structure:
+
+[COMMAND]
+ argv: ["echo", "$HOME"]
+ redirections: NULL
+ next: -->
+
+[COMMAND]
+ argv: ["grep", "user"]
+ redirections: [REDIRECT_OUT -> "out.txt"]
+ next: NULL
+ 

@@ -6,13 +6,14 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/13 22:54:28 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:46:55 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "builtin.h"
 # include "ft_printf.h"
 # include "libft.h"
 # include <errno.h>
@@ -47,6 +48,5 @@ void	free_splitted(char **str);
 //void	here_doc(char *limiter);
 char	*get_cmd_path(char *cmd, char **envp);
 void	execute_command(char *line, char **envp);
-int		ft_cd(char **args);
 
 #endif

@@ -38,3 +38,12 @@ void	free_command(t_command *cmd)
 	// redirection freelenecek
 	free(cmd);
 }
+
+
+//tokenizer -> echo "selam" | wc -l > output.txt 
+	       //  W      DQ    P  W   R_OUT  W
+
+		   // "$home " "selam lm ls "
+
+// parser ->  command[echo "selam" ] | echo [wc -l > output.txt ]
+		      // linked_list node      linked_list node

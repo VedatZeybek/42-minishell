@@ -6,7 +6,7 @@
 /*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/14 14:36:38 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/08/14 15:24:14 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void print_commands(t_command *command)
 
 		t_redir *redir = tmp->redirections;
 		while (redir)
-        {
-			printf("[redirection type: %d] ", redir->type);
+		{
+			printf("[redirection type: %d], file name: %s",
+				redir->type, redir->filename);
 			redir = redir->next;
 		}
-
         printf("\n");
         tmp = tmp->next;
     }

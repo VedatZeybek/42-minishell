@@ -1,9 +1,9 @@
 #include "../../includes/parser.h"
 
-int add_to_argv(char ***argv, char *value)
+int	add_to_argv(char ***argv, char *value)
 {
-	char **new_argv;
-	int i;
+	char	**new_argv;
+	int	i;
 	int	j;
 
 	if (!argv || !value)

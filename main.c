@@ -16,11 +16,12 @@ void print_tokens(t_token *tokens)
 {
 	t_token *tmp = tokens;
 	while (tmp)
-    {
-        printf("Token: '%s', Type: %d\n", tmp->value, tmp->type);
-        tmp = tmp->next;
-    }
+	{
+		printf("Token: '%s', Type: %d\n", tmp->value, tmp->type);
+		tmp = tmp->next;
+	}
 }
+
 void print_commands(t_command *command)
 {
 	t_command *tmp = command;

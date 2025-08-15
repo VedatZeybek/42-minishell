@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 14:22:17 by epakdama          #+#    #+#             */
-/*   Updated: 2025/06/23 08:01:29 by epakdama         ###   ########.fr       */
+/*   Created: 2025/08/15 11:18:32 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/15 11:58:03 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "minishell.h"
 
-void	ft_putnbr_base(unsigned long nbr, char *base, int *len)
+int	ft_env(char **argv, char **envp)
 {
-	int		i;
-	char	buffer[65];
+	int	i;
 
-	if (nbr == 0)
-	{
-		ft_putchar(base[0], len);
-		return ;
-	}
+	if (arg_count(argv) != 1)
+		return (printf("env: ‘%s’: No such file or directory", argv[1]), 1);
 	i = 0;
-	while (nbr > 0)
-	{
-		buffer[i++] = base[nbr % 16];
-		nbr /= 16;
-	}
-	while (i-- > 0)
-		ft_putchar(buffer[i], len);
+	while (envp[i])
+		printf("%s\n", envp[i++]);
+	return (0);
 }

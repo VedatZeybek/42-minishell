@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunsigned.c                                   :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 13:15:58 by epakdama          #+#    #+#             */
-/*   Updated: 2025/06/23 08:01:38 by epakdama         ###   ########.fr       */
+/*   Created: 2025/08/15 10:12:01 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/15 21:04:47 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "minishell.h"
 
-void	ft_putunsigned(unsigned int nb, int *len)
+int	ft_pwd(char **args)
 {
-	char	out;
+	char	cwd[PATH_MAX];
 
-	if (nb >= 10)
-	{
-		ft_putunsigned(nb / 10, len);
-	}
-	out = nb % 10 + '0';
-	ft_putchar(out, len);
+	if (arg_count(args) != 1)
+		return (printf("pwd: too many arguments\n"), 1);
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+		printf("%s\n", cwd);
+	else
+		perror("getcwd hatası");
+	return (0);
 }

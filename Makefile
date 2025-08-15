@@ -1,5 +1,5 @@
 NAME	=	minishell
-LIBS	=	libft/libft.a ft_printf/libftprintf.a
+LIBS	=	libft/libft.a
 
 SRC		=	*.c \
 			*/*.c \
@@ -16,18 +16,15 @@ $(NAME): $(SRC) $(LIBS)
 
 $(LIBS):
 	@make -C libft/ all
-	@make -C ft_printf/ all
 	@echo "$(GREEN)Libs Compiled Successfeully.$(SET_DEF)"
 
 clean:
 	@make -C libft/ clean
-	@make -C ft_printf/ clean
 	@echo "$(GREEN)Project Cleaned Successfeully.$(SET_DEF)"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C libft/ fclean
-	@make -C ft_printf/ fclean
 
 # T E S T S
 test1: srcs/builtin/*.c srcs/executor/*.c $(LIBS)

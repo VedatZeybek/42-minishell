@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   arg_count.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 13:08:26 by epakdama          #+#    #+#             */
-/*   Updated: 2025/06/16 15:31:55 by epakdama         ###   ########.fr       */
+/*   Created: 2025/08/15 10:13:11 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/15 10:13:25 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "minishell.h"
 
-void	ft_putchar(char c, int *len)
+int	arg_count(char **args)
 {
-	write(1, &c, 1);
-	*len += 1;
+	int	i;
+
+	i = 0;
+	while (args[i])
+		i++;
+	return (i);
 }

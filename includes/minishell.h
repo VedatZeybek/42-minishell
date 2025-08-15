@@ -13,6 +13,8 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "builtin.h"
+# include "ft_printf.h"
 # include "libft.h"
 # include <errno.h>
 # include <readline/history.h>

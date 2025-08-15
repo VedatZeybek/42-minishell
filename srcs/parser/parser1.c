@@ -61,7 +61,10 @@ int	add_to_redirections(t_redir **list, t_token_type type, char *filename)
 
 static void	parse_token_chunk(t_token **tmp, char ***argv, t_redir **redirs)
 {
-	if ((*tmp)->type == TOKEN_WORD)
+	if ((*tmp)->type == TOKEN_WORD
+		|| (*tmp)->type == TOKEN_QUOTE
+		|| (*tmp)->type == TOKEN_DQUOTE
+		|| (*tmp)->type == TOKEN_ENV_VAR)
 		add_to_argv(argv, (*tmp)->value);
 	else if ((*tmp)->type == TOKEN_REDIRECT_IN
 		|| (*tmp)->type == TOKEN_REDIRECT_OUT

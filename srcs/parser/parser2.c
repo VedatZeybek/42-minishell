@@ -1,8 +1,8 @@
 #include "../../includes/parser.h"
 
-t_command *create_command(char **argv, t_redir *redirections)
+t_command	*create_command(char **argv, t_redir *redirections)
 {
-	t_command *cmd;
+	t_command	*cmd;
 
 	cmd = malloc(sizeof(t_command));
 	if (!cmd)
@@ -13,9 +13,9 @@ t_command *create_command(char **argv, t_redir *redirections)
 	return (cmd);
 }
 
-void add_command(t_command **head, t_command *new_cmd)
+void	add_command(t_command **head, t_command *new_cmd)
 {
-	t_command *current;
+	t_command	*current;
 
 	if (!head || !new_cmd)
 		return ;

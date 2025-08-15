@@ -30,52 +30,15 @@ void	token_redidrect(char *input, t_token **token, int *i)
 	}
 }
 
-// tokenizerda tırnakları kaldırıyordum. artık kaldirmicam
-
-//void	token_single_quote(char *input, t_token **token, int *i)
-//{
-//	while (input[*i] && input[*i] != '\'')
-//		(*i)++;
-//	if (input[*i] == '\'')
-//	{
-//		add_token(token, create_token(ft_strdup(input), TOKEN_QUOTE));
-//		(*i)++;
-//	}
-//	else
-//	{
-//		perror("minishell: unclosed single quote\n");
-//		free(*token);
-//		*token = NULL;
-//	}
-//}
-
-//void	token_double_quote(char *input, t_token **token, int *i)
-//{
-//	while (input[*i] && input[*i] != '"')
-//		(*i)++;
-//	if (input[*i] == '"')
-//	{
-//		add_token(token, create_token(ft_strdup(input), TOKEN_DQUOTE));
-//		(*i)++;
-//	}
-//	else
-//	{
-//		perror("minishell: unclosed double quote\n");
-//		free(*token);
-//		*token = NULL;
-//	}
-//}
+ tokenizerda tırnakları kaldırıyordum. artık kaldirmicam
 
 void	token_single_quote(char *input, t_token **token, int *i)
 {
-	int	start;
-
-	start = ++(*i);
 	while (input[*i] && input[*i] != '\'')
 		(*i)++;
 	if (input[*i] == '\'')
 	{
-		add_token(token, create_token(strndup(input + start, *i - start), TOKEN_QUOTE));
+		add_token(token, create_token(ft_strdup(input), TOKEN_QUOTE));
 		(*i)++;
 	}
 	else
@@ -88,14 +51,11 @@ void	token_single_quote(char *input, t_token **token, int *i)
 
 void	token_double_quote(char *input, t_token **token, int *i)
 {
-	int	start;
-
-	start = ++(*i);
 	while (input[*i] && input[*i] != '"')
 		(*i)++;
 	if (input[*i] == '"')
 	{
-		add_token(token, create_token(strndup(input + start, *i - start), TOKEN_DQUOTE));
+		add_token(token, create_token(ft_strdup(input), TOKEN_DQUOTE));
 		(*i)++;
 	}
 	else
@@ -105,3 +65,43 @@ void	token_double_quote(char *input, t_token **token, int *i)
 		*token = NULL;
 	}
 }
+
+//void	token_single_quote(char *input, t_token **token, int *i)
+//{
+//	int	start;
+
+//	start = ++(*i);
+//	while (input[*i] && input[*i] != '\'')
+//		(*i)++;
+//	if (input[*i] == '\'')
+//	{
+//		add_token(token, create_token(strndup(input + start, *i - start), TOKEN_QUOTE));
+//		(*i)++;
+//	}
+//	else
+//	{
+//		perror("minishell: unclosed single quote\n");
+//		free(*token);
+//		*token = NULL;
+//	}
+//}
+
+//void	token_double_quote(char *input, t_token **token, int *i)
+//{
+//	int	start;
+
+//	start = ++(*i);
+//	while (input[*i] && input[*i] != '"')
+//		(*i)++;
+//	if (input[*i] == '"')
+//	{
+//		add_token(token, create_token(strndup(input + start, *i - start), TOKEN_DQUOTE));
+//		(*i)++;
+//	}
+//	else
+//	{
+//		perror("minishell: unclosed double quote\n");
+//		free(*token);
+//		*token = NULL;
+//	}
+//}

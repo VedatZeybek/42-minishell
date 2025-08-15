@@ -22,12 +22,7 @@ void print_tokens(t_token *tokens)
 	}
 }
 
-<<<<<<< HEAD
-void print_commands(t_command *command)
-=======
-
 void print_command(t_command *cmd)
->>>>>>> main
 {
     int i;
     while (cmd)
@@ -46,8 +41,6 @@ void print_command(t_command *cmd)
             printf("---- PIPE ----\n");
     }
 }
-
-
 
 int	main(int argc, char **argv, char **env)
 {

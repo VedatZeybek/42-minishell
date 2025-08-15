@@ -15,15 +15,28 @@
 // }
 
 // PWD
-int	main(int argc, char **argv)
+// int	main(int argc, char **argv)
+// {
+// 	int	res;
+
+// 	(void)argc;
+// 	if (ft_strncmp(argv[1], "pwd", 4) != 0)
+// 		return (1);
+// 	res = ft_pwd(argv + 1);
+// 	ft_cd(ft_split("cd srcs", ' '));
+// 	res = ft_pwd(argv + 1);
+// 	printf("%d\n", res);
+// }
+
+// ECHO
+int	main(int argc, char *argv[])
 {
 	int	res;
 
 	(void)argc;
-	if (ft_strncmp(argv[1], "pwd", 4) != 0)
+	if (ft_strncmp(argv[1], "echo", 4) != 0)
 		return (1);
-	res = ft_pwd(argv + 1);
-	ft_cd(ft_split("cd srcs", ' '));
-	res = ft_pwd(argv + 1);
+	res = ft_echo(argv + 1);
 	printf("%d\n", res);
+	return (0);
 }

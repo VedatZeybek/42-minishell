@@ -11,10 +11,11 @@ typedef struct s_redir {
 
 typedef struct s_command
 {
-	char				**argv;	// Command arguments
-	t_redir				*redirections; // For input/output redirection
-	struct s_command	*next; 	// Pointer to the next command in the pipeline
-}	t_command;
+	char			**argv;
+	t_token_type	*argv_type; // TOKEN_WORD, TOKEN_QUOTE, TOKEN_DQUOTE
+	t_redir			*redirections;
+	struct s_command *next;
+} t_command;
 
 void		free_command(t_command *cmd);
 t_command	*create_command(char **argv, t_redir *redirections);

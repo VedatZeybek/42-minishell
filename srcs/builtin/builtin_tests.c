@@ -29,14 +29,23 @@
 // }
 
 // ECHO
-int	main(int argc, char *argv[])
-{
-	int	res;
+// int	main(int argc, char *argv[])
+// {
+// 	int	res;
 
+// 	(void)argc;
+// 	if (ft_strncmp(argv[1], "echo", 4) != 0)
+// 		return (1);
+// 	res = ft_echo(argv + 1);
+// 	printf("%d\n", res);
+// 	return (0);
+// }
+
+int	main(int argc, char *argv[], char **envp)
+{
 	(void)argc;
-	if (ft_strncmp(argv[1], "echo", 4) != 0)
+	if (ft_strncmp(argv[1], "env", 4) != 0)
 		return (1);
-	res = ft_echo(argv + 1);
-	printf("%d\n", res);
+	ft_env(argv + 1, envp);
 	return (0);
 }

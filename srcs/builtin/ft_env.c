@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 20:46:11 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/15 11:58:31 by epakdama         ###   ########.fr       */
+/*   Created: 2025/08/15 11:18:32 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/15 11:58:03 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "minishell.h"
 
-# include "minishell.h"
+int	ft_env(char **argv, char **envp)
+{
+	int	i;
 
-int	arg_count(char **args);
-int	ft_cd(char **args);
-int	ft_pwd(char **args);
-int	ft_echo(char **args);
-int	ft_env(char **argv, char **envp);
-
-#endif
+	if (arg_count(argv) != 1)
+		return (printf("env: ‘%s’: No such file or directory", argv[1]), 1);
+	i = 0;
+	while (envp[i])
+		printf("%s\n", envp[i++]);
+	return (0);
+}

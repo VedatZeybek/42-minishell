@@ -21,31 +21,28 @@ void print_tokens(t_token *tokens)
         tmp = tmp->next;
     }
 }
-void print_commands(t_command *command)
+
+
+void print_command(t_command *cmd)
 {
-	t_command *tmp = command;
-
-	while (tmp)
-	{
-		printf("command args: ");
-		int i = 0;
-		while (tmp->argv[i])
-		{
-			printf("%s ", tmp->argv[i]);
-			i++;
-		}
-
-		t_redir *redir = tmp->redirections;
-		while (redir)
-		{
-			printf("[redirection type: %d], file name: %s",
-				redir->type, redir->filename);
-			redir = redir->next;
-		}
-        printf("\n");
-        tmp = tmp->next;
+    int i;
+    while (cmd)
+    {
+        printf("Command:\n");
+        for (i = 0; cmd->argv && cmd->argv[i]; i++)
+            printf("  argv[%d] = %s\n", i, cmd->argv[i]);
+        t_redir *r = cmd->redirections;
+        while (r)
+        {
+            printf("  redir type=%d target=%s\n", r->type, r->filename);
+            r = r->next;
+        }
+        cmd = cmd->next;
+        if (cmd)
+            printf("---- PIPE ----\n");
     }
 }
+
 
 
 int	main(int argc, char **argv, char **env)
@@ -64,9 +61,9 @@ int	main(int argc, char **argv, char **env)
 		execute_command(line, env);
 		char *input = line;
 		t_token *tokens = tokenize(input);
-		//print_tokens(tokens);
+		print_tokens(tokens);
 		t_command *command = parse_command(&tokens);
-		print_commands(command);
+		print_command(command);
 	}
 	return (0);
 }

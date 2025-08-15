@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:01:08 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/15 10:20:40 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/15 21:05:09 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int	ft_cd(char **args)
 		return (cd_to(home));
 	}
 	if (n > 2)
-	{
-		printf("minishell: cd: too many arguments\n");
-		return (1);
-	}
+		return (printf("minishell: cd: too many arguments\n"), 1);
 	return (cd_to(args[1]));
 }

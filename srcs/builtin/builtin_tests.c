@@ -41,11 +41,12 @@
 // 	return (0);
 // }
 
-int	main(int argc, char *argv[], char **envp)
-{
-	(void)argc;
-	if (ft_strncmp(argv[1], "env", 4) != 0)
-		return (1);
-	ft_env(argv + 1, envp);
-	return (0);
-}
+// ENV
+// int	main(int argc, char *argv[], char **envp)
+// {
+// 	(void)argc;
+// 	if (ft_strncmp(argv[1], "env", 4) != 0)
+// 		return (1);
+// 	ft_env(argv + 1, envp);
+// 	return (0);
+// }

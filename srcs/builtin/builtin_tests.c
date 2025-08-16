@@ -50,3 +50,20 @@
 // 	ft_env(argv + 1, envp);
 // 	return (0);
 // }
+
+// void	f(char *content)
+// {
+// 	printf("%s\n", content);
+// }
+
+// int	main(int argc, char const *argv[], char **envp)
+// {
+// 	t_list	*env;
+
+// 	(void)argc;
+// 	(void)argv;
+// 	env = init_env(envp);
+// 	ft_lstiter(env, (void *)f);
+// 	ft_lstclear(&env, free);
+// 	return (0);
+// }

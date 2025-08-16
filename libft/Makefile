@@ -14,10 +14,13 @@ BONUS_OBJS = $(BONUS:.c=.o)
 
 NAME			= libft.a
 
-all:			$(NAME) bonus
+all: $(NAME) bonus
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
+
+bonus: $(OBJS) $(BONUS_OBJS)
+	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 %.o: %.c
 	@cc -Wall -Wextra -Werror -c $< -o $@
@@ -26,9 +29,7 @@ clean:
 	@rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean:
+	@rm -f $(OBJS) $(BONUS_OBJS)
 	@rm -f $(NAME)
 
 re: fclean all
-
-bonus: $(OBJS) $(BONUS_OBJS)
-	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)

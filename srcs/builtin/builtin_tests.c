@@ -44,10 +44,14 @@
 // ENV
 // int	main(int argc, char *argv[], char **envp)
 // {
+// 	t_list	*env;
+
 // 	(void)argc;
+// 	env = init_env(envp);
 // 	if (ft_strncmp(argv[1], "env", 4) != 0)
 // 		return (1);
-// 	ft_env(argv + 1, envp);
+// 	ft_env(argv + 1, env);
+// 	ft_lstclear(&env, free);
 // 	return (0);
 // }
 

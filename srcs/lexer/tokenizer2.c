@@ -37,8 +37,8 @@ void	add_token(t_token **head, t_token *new_token)
 
 int	is_whitespace(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n'
-			|| c == '\r' || c == '\v' || c == '\f');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\v'
+		|| c == '\f');
 }
 
 void	free_tokens(t_token *token)

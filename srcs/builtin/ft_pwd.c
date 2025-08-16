@@ -6,15 +6,16 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 10:12:01 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/15 21:04:47 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/08/16 11:16:06 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+//	cwd 4096 because it is the max path len
 int	ft_pwd(char **args)
 {
-	char	cwd[PATH_MAX];
+	char	cwd[4096];
 
 	if (arg_count(args) != 1)
 		return (printf("pwd: too many arguments\n"), 1);

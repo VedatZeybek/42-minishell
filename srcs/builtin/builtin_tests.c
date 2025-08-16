@@ -68,8 +68,9 @@
 // 	(void)argc;
 // 	(void)argv;
 // 	env = init_env(envp);
+// 	ft_export(&env, (char *)argv[1]);
+// 	//ft_export(&env, (char *)argv[2]);
 // 	ft_lstiter(env, (void *)f);
-// 	ft_export(&env, "mail=ertu.pakdamar@gmail.com");
 // 	ft_lstclear(&env, free);
 // 	return (0);
 // }

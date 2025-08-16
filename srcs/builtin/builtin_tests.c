@@ -51,6 +51,7 @@
 // 	return (0);
 // }
 
+// EXPORT VE UNSERT
 // void	f(char *content)
 // {
 // 	printf("%s\n", content);
@@ -64,6 +65,7 @@
 // 	(void)argv;
 // 	env = init_env(envp);
 // 	ft_lstiter(env, (void *)f);
+// 	ft_export(&env, "mail=ertu.pakdamar@gmail.com");
 // 	ft_lstclear(&env, free);
 // 	return (0);
 // }

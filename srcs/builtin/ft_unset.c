@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 20:46:11 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/16 10:59:50 by epakdama         ###   ########.fr       */
+/*   Created: 2025/08/16 10:51:51 by epakdama          #+#    #+#             */
+/*   Updated: 2025/08/16 11:07:11 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "minishell.h"
 
-# include "minishell.h"
-
-int		arg_count(char **args);
-int		ft_cd(char **args);
-int		ft_pwd(char **args);
-int		ft_echo(char **args);
-int		ft_env(char **argv, char **envp);
-int		ft_unset(t_list **env, char *content);
-int		ft_export(t_list **env, char *content);
-t_list	*init_env(char **envp);
-
-#endif
+int	ft_unset(t_list **env, char *content)
+{
+	while (*env)
+	{
+		if (ft_strncmp((*env)->content, content, ft_strlen(content)) == 0)
+		{
+			free((*env)->content);
+			*env = (*env)->next;
+		}
+		else
+			env = &(*env)->next;
+	}
+	return (0);
+}

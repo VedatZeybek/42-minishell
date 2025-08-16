@@ -6,7 +6,7 @@
 /*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/14 15:24:14 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/08/16 09:03:36 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,32 @@ void print_tokens(t_token *tokens)
 	}
 }
 
-void print_command(t_command *cmd)
+void	print_command(t_command *cmd)
 {
-    int i;
-    while (cmd)
-    {
-        printf("Command:\n");
-        for (i = 0; cmd->argv && cmd->argv[i]; i++)
-            printf("  argv[%d] = %s\n", i, cmd->argv[i]);
-        t_redir *r = cmd->redirections;
-        while (r)
-        {
-            printf("  redir type=%d target=%s\n", r->type, r->filename);
-            r = r->next;
-        }
-        cmd = cmd->next;
-        if (cmd)
-            printf("---- PIPE ----\n");
-    }
+	int	i;
+	t_redir	*redir;
+
+	while (cmd)
+	{
+		printf("=== COMMAND ===\n");
+		i = 0;
+		while (cmd->args && cmd->args[i].value)
+		{
+			printf("  argv[%d] = \"%s\" (type = %d)\n",
+				i, cmd->args[i].value, cmd->args[i].type);
+			i++;
+		}
+		redir = cmd->redirections;
+		while (redir)
+		{
+			printf("  redir: type = %d, filename = \"%s\"\n",
+				redir->type, redir->filename);
+			redir = redir->next;
+		}
+		if (cmd->next)
+			printf("  |\n  v\n");
+		cmd = cmd->next;
+	}
 }
 
 int	main(int argc, char **argv, char **env)

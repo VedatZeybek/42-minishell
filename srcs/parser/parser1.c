@@ -1,38 +1,35 @@
 #include "../../includes/parser.h"
 
-int	add_to_argv(char ***argv, char *value)
+int add_arg(t_arg **args, char *value, t_token_type type)
 {
-	char	**new_argv;
-	int	i;
-	int	j;
+	t_arg	*new_args;
+	int		i;
+	int		j;
 
-	if (!argv || !value)
+	if (!value || !args)
 		return (0);
-	if (!*argv)
-	{
-		*argv = malloc(2 * sizeof(char *));
-		if (!*argv)
-			return (0);
-		(*argv)[0] = ft_strdup(value);
-		(*argv)[1] = NULL;
-		return (1);
-	}
 	i = 0;
-	while ((*argv)[i])
-		i++;
-	new_argv = malloc((i + 2) * sizeof(char *));
-	if (!new_argv)
-		return (0);
 	j = 0;
-	while (j < i)
+	if (*args)
+		while ((*args)[i].value)
+		i++;
+	new_args = malloc((i + 2) * sizeof(t_arg));
+	if (!new_args)
+		return (0);
+	if (*args)
 	{
-		new_argv[j] = (*argv)[j];
-		j++;
+		while (j < i)
+		{
+			new_args[j] = (*args)[j];
+			j++;
+		}
+		free(*args);
 	}
-	new_argv[i] = ft_strdup(value);
-	new_argv[i + 1] = NULL;
-	free(*argv);
-	*argv = new_argv;
+	new_args[i].value = ft_strdup(value);
+	new_args[i].type = type;
+	new_args[i + 1].value = NULL;
+	new_args[i + 1].type = 0;
+	*args = new_args;
 	return (1);
 }
 
@@ -59,13 +56,13 @@ int	add_to_redirections(t_redir **list, t_token_type type, char *filename)
 	return (1);
 }
 
-static void	parse_token_chunk(t_token **tmp, char ***argv, t_redir **redirs)
+static void	parse_token_chunk(t_token **tmp, t_arg **args, t_redir **redirs)
 {
 	if ((*tmp)->type == TOKEN_WORD
 		|| (*tmp)->type == TOKEN_QUOTE
 		|| (*tmp)->type == TOKEN_DQUOTE
 		|| (*tmp)->type == TOKEN_ENV_VAR)
-		add_to_argv(argv, (*tmp)->value);
+		add_arg(args, (*tmp)->value, (*tmp)->type);
 	else if ((*tmp)->type == TOKEN_REDIRECT_IN
 		|| (*tmp)->type == TOKEN_REDIRECT_OUT
 		|| (*tmp)->type == TOKEN_APPEND
@@ -84,19 +81,19 @@ t_command	*parse_command(t_token **tokens)
 	t_command	*cmd;
 	t_token		*tmp;
 	t_redir		*redirs;
-	char		**argv;
+	t_arg		*args;
 
 	if (!tokens || !*tokens)
 		return (NULL);
 	tmp = *tokens;
-	argv = NULL;
+	args = NULL;
 	redirs = NULL;
 	while (tmp && tmp->type != TOKEN_PIPE)
 	{
-		parse_token_chunk(&tmp, &argv, &redirs);
+		parse_token_chunk(&tmp, &args, &redirs);
 		tmp = tmp->next;
 	}
-	cmd = create_command(argv, redirs);
+	cmd = create_command(args, redirs);
 	if (tmp && tmp->type == TOKEN_PIPE && tmp->next)
 		cmd->next = parse_command(&tmp->next);
 	else

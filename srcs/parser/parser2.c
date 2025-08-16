@@ -1,13 +1,13 @@
 #include "../../includes/parser.h"
 
-t_command	*create_command(char **argv, t_redir *redirections)
+t_command	*create_command(t_arg *args, t_redir *redirections)
 {
 	t_command	*cmd;
 
 	cmd = malloc(sizeof(t_command));
 	if (!cmd)
 		return (NULL);
-	cmd->argv = argv;
+	cmd->args = args;
 	cmd->redirections = redirections;
 	cmd->next = NULL;
 	return (cmd);
@@ -34,7 +34,7 @@ void	free_command(t_command *cmd)
 {
 	if (!cmd)
 		return ;
-	free_splitted(cmd->argv);
+	// args freelenecek
 	// redirection freelenecek
 	free(cmd);
 }

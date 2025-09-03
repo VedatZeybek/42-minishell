@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/14 15:24:14 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/09/03 15:07:04 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/minishell.h"
+#include "./includes/ft_executor.h"
 
 void print_tokens(t_token *tokens)
 {
@@ -55,12 +56,18 @@ int	main(int argc, char **argv, char **env)
 		line = read_line();
 		if (!line)
 			break ;
-		execute_command(line, env);
 		char *input = line;
 		t_token *tokens = tokenize(input);
 		print_tokens(tokens);
 		t_command *command = parse_command(&tokens);
 		print_command(command);
+		if (command)
+		{
+			ft_run_commands(command, env);
+			free_command(command);
+		}
+		free_tokens(tokens);
+		free(line);
 	}
 	return (0);
 }

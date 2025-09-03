@@ -7,7 +7,7 @@ t_command	*create_command(t_arg *args, t_redir *redirections)
 	cmd = malloc(sizeof(t_command));
 	if (!cmd)
 		return (NULL);
-	cmd->args = args;
+	cmd->argv = args;
 	cmd->redirections = redirections;
 	cmd->next = NULL;
 	return (cmd);

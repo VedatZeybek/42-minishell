@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/16 09:03:36 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/09/03 15:07:04 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/minishell.h"
+#include "./includes/ft_executor.h"
 
 void print_tokens(t_token *tokens)
 {
@@ -31,10 +32,10 @@ void	print_command(t_command *cmd)
 	{
 		printf("=== COMMAND ===\n");
 		i = 0;
-		while (cmd->args && cmd->args[i].value)
+		while (cmd->argv && cmd->argv[i].value)
 		{
 			printf("  argv[%d] = \"%s\" (type = %d)\n",
-				i, cmd->args[i].value, cmd->args[i].type);
+				i, cmd->argv[i].value, cmd->argv[i].type);
 			i++;
 		}
 		redir = cmd->redirections;
@@ -57,18 +58,25 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	(void)env;
 	shell.running = 1;
 	while (shell.running)
 	{
 		line = read_line();
 		if (!line)
 			break ;
-		execute_command(line, env);
 		char *input = line;
 		t_token *tokens = tokenize(input);
 		print_tokens(tokens);
 		t_command *command = parse_command(&tokens);
 		print_command(command);
+		if (command)
+		{
+			ft_run_commands(command, env);
+			free_command(command);
+		}
+		free_tokens(tokens);
+		free(line);
 	}
 	return (0);
 }

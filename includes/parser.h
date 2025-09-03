@@ -18,7 +18,7 @@ typedef struct s_redir
 
 typedef struct s_command
 {
-	t_arg			*args;
+	t_arg			*argv;
 	t_redir			*redirections;
 	struct s_command *next;
 } t_command;

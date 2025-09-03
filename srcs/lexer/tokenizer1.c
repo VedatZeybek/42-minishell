@@ -1,32 +1,5 @@
 #include "../../includes/minishell.h"
 
-static int	handle_special_chars(char *input, t_token **token, int *i)
-{
-	int	start;
-
-	if (input[*i] == '\'')
-	{
-		token_single_quote(input, token, i);
-		return (1);
-	}
-	if (input[*i] == '"')
-	{
-		token_double_quote(input, token, i);
-		return (1);
-	}
-	if (input[*i] == '$')
-	{
-		start = *i;
-		(*i)++;
-		while (ft_isalnum(input[*i]) || input[*i] == '_')
-			(*i)++;
-		add_token(token, create_token(strndup(input + start, *i - start),
-				TOKEN_ENV_VAR));
-		return (1);
-	}
-	return (0);
-}
-
 static int	handle_operators(char *input, t_token **token, int *i)
 {
 	if (input[*i] == '|')
@@ -43,28 +16,84 @@ static int	handle_operators(char *input, t_token **token, int *i)
 	return (0);
 }
 
-static int	handle_word(char *input, t_token **token, int *i)
+static char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*joined;
+
+	joined = ft_strjoin(s1, s2);
+	free(s1);
+	return (joined);
+}
+
+static void	append_single_quote(char **buffer, char *input, int *i)
 {
 	int	start;
 
+	(*i)++;
 	start = *i;
-	while (input[*i] && !is_whitespace(input[*i]) && input[*i] != '|'
-		&& input[*i] != '<' && input[*i] != '>' && input[*i] != '\''
-		&& input[*i] != '"' && input[*i] != '$')
+	while (input[*i] && input[*i] != '\'')
 		(*i)++;
-	if (*i > start)
+	*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+	if (input[*i] == '\'')
+		(*i)++;
+}
+
+static void	append_double_quote(char **buffer, char *input, int *i)
+{
+	int	start;
+
+	(*i)++;
+	start = *i;
+	while (input[*i] && input[*i] != '"')
+		(*i)++;
+	*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+	if (input[*i] == '"')
+		(*i)++;
+}
+
+static void	append_env_var(char **buffer, char *input, int *i)
+{
+	int	start;
+
+	start = (*i)++;
+	while (ft_isalnum(input[*i]) || input[*i] == '_')
+		(*i)++;
+	*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+}
+
+static int	handle_word(char *input, t_token **token, int *i)
+{
+	char	*buffer;
+
+	buffer = ft_strdup("");
+	while (input[*i] && !is_whitespace(input[*i])
+		&& input[*i] != '|' && input[*i] != '<' && input[*i] != '>')
 	{
-		add_token(token, create_token(strndup(input + start, *i - start),
-				TOKEN_WORD));
+		if (input[*i] == '\'')
+			append_single_quote(&buffer, input, i);
+		else if (input[*i] == '"')
+			append_double_quote(&buffer, input, i);
+		else if (input[*i] == '$')
+			append_env_var(&buffer, input, i);
+		else
+		{
+			char temp[2] = {input[*i], '\0'};
+			buffer = ft_strjoin_free(buffer, temp);
+			(*i)++;
+		}
+	}
+	if (ft_strlen(buffer) > 0)
+	{
+		add_token(token, create_token(buffer, TOKEN_WORD));
 		return (1);
 	}
+	free(buffer);
 	return (0);
 }
 
+
 static int	process_token(char *input, t_token **token, int *i)
 {
-	if (handle_special_chars(input, token, i))
-		return (1);
 	if (handle_operators(input, token, i))
 		return (1);
 	if (handle_word(input, token, i))

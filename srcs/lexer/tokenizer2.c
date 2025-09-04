@@ -7,6 +7,8 @@ t_token	*create_token(char *value, t_token_type type)
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
+	if (!value)
+        value = ft_strdup("");
 	token->value = ft_strdup(value);
 	if (!token->value)
 	{

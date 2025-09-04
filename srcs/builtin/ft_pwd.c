@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int	ft_pwd(char **args)
 {
-	char	cwd[PATH_MAX];
+	char	cwd[4096];
 
 	if (arg_count(args) != 1)
 		return (printf("pwd: too many arguments\n"), 1);

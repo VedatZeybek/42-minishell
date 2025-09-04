@@ -45,6 +45,8 @@ typedef struct s_shell
 	int	running;
 }		t_shell;
 
+extern int g_exit_status;
+
 void	error(char *msg);
 char	*read_line(void);
 void	free_splitted(char **str);

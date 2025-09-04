@@ -34,7 +34,7 @@ char **copy_argv_to_string_array(t_command *cmd, size_t argv_len)
 
     for (size_t i = 0; i < argv_len; i++)
     {
-        arr[i] = strdup(cmd->argv[i].value);
+        arr[i] = ft_strdup(cmd->argv[i].value);
         if (!arr[i])
         {
             // malloc hatası, temizle

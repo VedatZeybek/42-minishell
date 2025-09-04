@@ -1,0 +1,9 @@
+arch
+includes
+libft
+main.c
+Makefile
+minishell
+out
+srcs
+txt

@@ -1,5 +1,8 @@
 #include "../../includes/minishell.h"
 
+static void append_env_var(char **buffer, char *input, int *i);
+
+
 static int	handle_operators(char *input, t_token **token, int *i)
 {
 	if (input[*i] == '|')
@@ -38,28 +41,69 @@ static void	append_single_quote(char **buffer, char *input, int *i)
 		(*i)++;
 }
 
-static void	append_double_quote(char **buffer, char *input, int *i)
+static void append_double_quote(char **buffer, char *input, int *i)
 {
-	int	start;
+    int start;
 
-	(*i)++;
-	start = *i;
-	while (input[*i] && input[*i] != '"')
-		(*i)++;
-	*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
-	if (input[*i] == '"')
-		(*i)++;
+    (*i)++;
+    start = *i;
+    while (input[*i] && input[*i] != '"')
+    {
+        if (input[*i] == '$')
+        {
+            // önce $'a kadar olan kısmı ekle
+            if (*i > start)
+                *buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+            // env var expansion
+            append_env_var(buffer, input, i);
+            // env var sonrası yeni start
+            start = *i;
+        }
+        else
+            (*i)++;
+    }
+    // kalan parçayı ekle
+    if (*i > start)
+        *buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+    if (input[*i] == '"')
+        (*i)++; // kapanış " geç
 }
 
-static void	append_env_var(char **buffer, char *input, int *i)
-{
-	int	start;
 
-	start = (*i)++;
-	while (ft_isalnum(input[*i]) || input[*i] == '_')
-		(*i)++;
-	*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+static void append_env_var(char **buffer, char *input, int *i)
+{
+    char    *var_name;
+    char    *value;
+    int     start;
+
+    (*i)++; // '$' atla
+
+    // özel case: $?
+    if (input[*i] == '?')
+    {
+        value = ft_itoa(g_exit_status);
+        *buffer = ft_strjoin_free(*buffer, value);
+        free(value);
+        (*i)++; // '?' karakterini de atla
+        return ;
+    }
+
+    // normal case: $VAR_NAME
+    start = *i;
+    while (ft_isalnum(input[*i]) || input[*i] == '_')
+        (*i)++;
+    if (*i == start) // hiç valid karakter yoksa → sadece '$'
+    {
+        *buffer = ft_strjoin_free(*buffer, "$");
+        return ;
+    }
+    var_name = ft_substr(input, start, *i - start);
+    value = getenv(var_name); // sen vars->envp’den lookup yapıyorsun
+    if (value)
+        *buffer = ft_strjoin_free(*buffer, value);
+    free(var_name);
 }
+
 
 static int	handle_word(char *input, t_token **token, int *i)
 {
@@ -98,6 +142,11 @@ static int	process_token(char *input, t_token **token, int *i)
 		return (1);
 	if (handle_word(input, token, i))
 		return (1);
+	if (input[*i] == '\0' || input[*i])
+	{
+		add_token(token, create_token("", TOKEN_WORD));
+		return (1);
+	}
 	printf("minishell: unexpected character '%c'\n", input[*i]);
 	free_tokens(*token);
 	return (0);

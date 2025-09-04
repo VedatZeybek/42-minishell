@@ -104,30 +104,30 @@
 ////	return (res);
 ////}
 
-////char	*expand_env_var(char *str, char **envp)
-////{
-////	char	*var;
-////	int		i;
+//char	*expand_env_var(char *str, char **envp)
+//{
+//	char	*var;
+//	int		i;
 
-////	i = 0;
-////	if (str[0] != '$')
-////		return (ft_strdup(str));
-////	var = str + 1;
+//	i = 0;
+//	if (str[0] != '$')
+//		return (ft_strdup(str));
+//	var = str + 1;
 
-////	//GLOBAL DEĞİŞKENDE EXIT STATUS TUTULACAK
+//	GLOBAL DEĞİŞKENDE EXIT STATUS TUTULACAK
 
-////	//if (str[1] == '?')
-////	//	return (ft_itoa(g_exit_status)));,
+//	if (str[1] == '?')
+//		return (ft_itoa(g_exit_status)));,
 
-////	while (envp[i])
-////	{
-////		if (ft_strncmp(envp[i], var, ft_strlen(var)) == 0
-////			&& envp[i][ft_strlen(var)] == '=')
-////			return (ft_strdup(envp[i] + strlen(var) + 1));
-////		i++;
-////	}
-////	return (ft_strdup(""));
-////}
+//	while (envp[i])
+//	{
+//		if (ft_strncmp(envp[i], var, ft_strlen(var)) == 0
+//			&& envp[i][ft_strlen(var)] == '=')
+//			return (ft_strdup(envp[i] + strlen(var) + 1));
+//		i++;
+//	}
+//	return (ft_strdup(""));
+//}
 
 //////// $VAR'ı çevirmek için
 //////char *expand_env_var(const char *str, char **envp)

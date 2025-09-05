@@ -1,59 +1,104 @@
-//#include "../../includes/ft_executor.h"
+#include "../../includes/ft_executor.h"
 
-//char *ft_get_env(t_vars *vars, char *key)
-//{
-//	int i = 0;
-//	while (vars->envp[i])
-//	{
-//		if (ft_strncmp(vars->envp[i], key, ft_strlen(key)) == 0
-//			&& vars->envp[i][ft_strlen(key)] == '=')
-//			return vars->envp[i] + ft_strlen(key) + 1;
-//		i++;
-//	}
-//	return NULL;
-//}
+char *ft_strjoin3(char *s1, char *s2, char *s3)
+{
+	if (!s1 || !s2 || !s3)
+		return NULL;
+	size_t len1 = ft_strlen(s1);
+	size_t len2 = ft_strlen(s2);
+	size_t len3 = ft_strlen(s3);
+	char *res = malloc(len1 + len2 + len3 + 1);
+	if (!res)
+		return NULL;
+	ft_memcpy(res, s1, len1);
+	ft_memcpy(res + len1, s2, len2);
+	ft_memcpy(res + len1 + len2, s3, len3);
+	res[len1 + len2 + len3] = '\0';
+	return res;
+}
 
-//void ft_set_env(t_vars *vars, char *key, char *value)
-//{
-//	// Eğer varsa güncelle
-//	int i = 0;
-//	size_t len = ft_strlen(key);
-//	while (vars->envp[i])
-//	{
-//		if (ft_strncmp(vars->envp[i], key, len) == 0 && vars->envp[i][len] == '=')
-//		{
-//			free(vars->envp[i]);
-//			vars->envp[i] = ft_strjoin(key, "="); // + value
-//			vars->envp[i] = ft_strjoin(vars->envp[i], value);
-//			return;
-//		}
-//		i++;
-//	}
-//	// Yoksa ekle (dinamik realloc veya fixed size)
-//	vars->envp = ft_realloc_add(vars->envp, ft_strjoin3(key, "=", value));
-//}
+char **ft_realloc_add(char **arr, char *new_str)
+{
+	int i = 0;
+	while (arr && arr[i])
+		i++;
 
-//int ft_export(t_vars *vars, char **args)
-//{
-//	int i = 1;
-//	while (args[i])
-//	{
-//		char *eq = strchr(args[i], '=');
+	char **new_arr = malloc(sizeof(char *) * (i + 2)); // +1 yeni string, +1 NULL
+	if (!new_arr)
+		return NULL;
 
-//		if (eq) // VAR=value formatı
-//		{
-//			*eq = '\0';
-//			ft_set_env(vars, args[i], eq + 1); // kendi fonksiyonunla ekle/güncelle
-//		}
-//		else // sadece VAR
-//		{
-//			char *val = ft_get_env(vars, args[i]); // kendi env dizinle bul
-//			if (val)
-//				printf("declare -x %s=\"%s\"\n", args[i], val);
-//			else
-//				printf("declare -x %s\n", args[i]);
-//		}
-//		i++;
-//	}
-//	return 0;
-//}
+	for (int j = 0; j < i; j++)
+		new_arr[j] = arr[j]; // pointerları taşı
+
+	new_arr[i] = new_str;  // yeni string ekle
+	new_arr[i + 1] = NULL; // sonlandırıcı
+
+	free(arr); // eski dizi serbest bırak (içindekiler hala geçerli)
+	return new_arr;
+}
+
+char *ft_get_env(t_vars *vars, char *key)
+{
+	if (!vars || !key)
+		return NULL;
+
+	size_t klen = ft_strlen(key);
+	for (int i = 0; vars->envp && vars->envp[i]; i++)
+	{
+		size_t elen = ft_strlen(vars->envp[i]);
+		if (elen > klen && ft_strncmp(vars->envp[i], key, klen) == 0
+			&& vars->envp[i][klen] == '=')
+		{
+			return vars->envp[i] + klen + 1;
+		}
+	}
+	return NULL;
+}
+
+void ft_set_env(t_vars *vars, char *key, char *value)
+{
+	if (!vars || !key || !value)
+		return;
+
+	size_t klen = ft_strlen(key);
+	for (int i = 0; vars->envp && vars->envp[i]; i++)
+	{
+		size_t elen = ft_strlen(vars->envp[i]);
+		if (elen > klen && ft_strncmp(vars->envp[i], key, klen) == 0
+			&& vars->envp[i][klen] == '=')
+		{
+			char *tmp = ft_strjoin3(key, "=", value);
+			if (!tmp)
+				return;
+			free(vars->envp[i]);
+			vars->envp[i] = tmp;
+			return;
+		}
+	}
+	// Yoksa ekle
+	char *new_env = ft_strjoin3(key, "=", value);
+	if (!new_env)
+		return;
+	vars->envp = ft_realloc_add(vars->envp, new_env);
+}
+
+int ft_export(t_vars *vars, char **args)
+{
+	if (!vars || !args)
+		return 1;
+
+	printf("first len: %d\n", 	ft_env_len(vars->envp));
+
+	for (int i = 1; args[i]; i++)
+	{
+		char *eq = strchr(args[i], '=');
+
+		if (eq) // VAR=value formatı
+		{
+			*eq = '\0';
+			ft_set_env(vars, args[i], eq + 1);
+		}
+	}
+	printf("second len: %d\n", 	ft_env_len(vars->envp));
+	return 0;
+}

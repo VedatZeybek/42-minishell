@@ -16,7 +16,7 @@ SRC		=	srcs/builtin/arg_count.c \
 			srcs/executor/ft_exec_utils.c \
 			srcs/executor/ft_executor.c \
 			srcs/executor/ft_redirections.c \
-			srcs/executor/ft_utils.c \
+			srcs/executor/ft_heredoc.c \
 			srcs/input/free_utils.c \
 			srcs/input/read_line.c \
 			srcs/lexer/tokenizer1.c \

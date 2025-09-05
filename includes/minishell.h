@@ -28,7 +28,6 @@
 # include "libft.h"
 # include "tokenizer.h"
 # include "parser.h"
-//# include "ft_executor.h"
 
 # define PROMPT "minishell$ "
 
@@ -48,8 +47,9 @@ typedef struct s_shell
 
 extern int g_exit_status;
 
-void	error(char *msg);
 char	*read_line(void);
 void	free_splitted(char **str);
+int		here_doc(char *limiter);
+
 
 #endif

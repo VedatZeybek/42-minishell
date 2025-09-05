@@ -55,11 +55,13 @@ int	main(int argc, char **argv, char **env)
 {
 	t_shell	shell;
 	char	*line;
+	t_vars	vars;
 
 	(void)argc;
 	(void)argv;
 	(void)env;
 	shell.running = 1;
+	ft_init_vars(&vars, env);
 	while (shell.running)
 	{
 		line = read_line();
@@ -72,7 +74,7 @@ int	main(int argc, char **argv, char **env)
 		//print_command(command);
 		if (command)
 		{
-			ft_run_commands(command, env);
+			ft_run_commands(command, &vars);
 			free_command(command);
 		}
 		free_tokens(tokens);

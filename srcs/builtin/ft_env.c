@@ -17,7 +17,7 @@ int	ft_env(char **argv, char **envp)
 	int	i;
 
 	if (arg_count(argv) != 1)
-		return (printf("env: ‘%s’: No such file or directory", argv[1]), 1);
+		return (printf("env: ‘%s’: No such file or directory\n", argv[1]), 1);
 	i = 0;
 	while (envp[i])
 		printf("%s\n", envp[i++]);

@@ -46,6 +46,10 @@ int	ft_process_redirection(t_redir *redir)
 		flags = O_WRONLY | O_CREAT | O_APPEND;
 		return (ft_open_output_file(redir->filename, flags));
 	}
+	else if (redir->type == TOKEN_HEREDOC)
+	{
+    	return (ft_open_heredoc(redir->filename));
+	}
 	return (0);
 }
 

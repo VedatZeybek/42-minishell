@@ -22,7 +22,7 @@ typedef struct s_vars
 	int		status;
 }			t_vars;
 
-int			ft_run_commands(t_command *cmd_list, char **envp);
+int	ft_run_commands(t_command *cmd_list, t_vars *vars);
 void		ft_exec_single(t_command *cmd, t_vars *vars);
 void		ft_exec_pipe(t_command *cmd_list, t_vars *vars);
 char		*ft_check_path(t_vars *vars, char *cmd);
@@ -37,8 +37,7 @@ int			ft_handle_redirections(t_command *cmd);
 int			ft_process_redirection(t_redir *redir);
 int			ft_open_input_file(char *filename, int flags);
 int			ft_open_output_file(char *filename, int flags);
-void		ft_wait_for_children(int *pids, int count);
-int		ft_is_builtin(char *cmd_name);
+int			ft_is_builtin(char *cmd_name);
 
 
 //my_additions
@@ -48,5 +47,7 @@ size_t argv_length(t_command *cmd);
 int ft_export(t_vars *vars, char **args);
 int ft_unset(t_vars *vars, char **args);
 
+int 	ft_open_heredoc(char *limiter);
+void	print_command(t_command *cmd);
 
 #endif

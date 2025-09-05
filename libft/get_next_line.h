@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/09/03 15:03:56 by epakdama         ###   ########.fr       */
+/*   Created: 2025/06/15 19:02:23 by vzeybek           #+#    #+#             */
+/*   Updated: 2025/06/16 20:26:34 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-void	ft_wait_for_children(int *pids, int count)
-{
-	int	i;
+# include <stdlib.h>
 
-	i = 0;
-	while (i < count)
-	{
-		waitpid(pids[i], NULL, 0);
-		i++;
-	}
-}
+char	*get_next_line(int fd);
+
+#endif

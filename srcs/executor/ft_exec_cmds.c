@@ -35,7 +35,6 @@ void	ft_exec_single(t_command *cmd, t_vars *vars)
 	}
 }
 
-
 //new exec_pipe
 void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 {

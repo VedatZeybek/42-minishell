@@ -94,9 +94,22 @@ int	ft_count_cmds(t_command *cmd_list)
 	return (0);
 }
 
+
+char **ft_env_dup(char **envp)
+{
+    int len = ft_env_len(envp);
+    char **dup = malloc(sizeof(char *) * (len + 1));
+    if (!dup)
+        return NULL;
+    for (int i = 0; i < len; i++)
+        dup[i] = ft_strdup(envp[i]);
+    dup[len] = NULL;
+    return dup;
+}
+
 void	ft_init_vars(t_vars *vars, char **envp)
 {
-	vars->envp = envp;
-	vars->status = 0;
+	vars->envp = ft_env_dup(envp);
 	vars->path = ft_init_env(envp);
+	vars->status = 0;
 }

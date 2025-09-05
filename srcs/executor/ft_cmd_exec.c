@@ -44,10 +44,10 @@ int	ft_call_builtin(t_command *cmd, t_vars *vars)
 		return (ft_env(str, vars->envp));
     else if (ft_check_builtin(cmd->argv[0].value, "exit"))
 		return (ft_exit_child(str));
-	//else if (ft_check_builtin(cmd->argv[0].value, "export"))
-	//    return (ft_export(vars, str));
-	//else if (ft_check_builtin(cmd->argv[0].value, "unset"))
-	//    return (ft_unset(vars, str));
+	else if (ft_check_builtin(cmd->argv[0].value, "export"))
+		return (ft_export(vars, str));
+	else if (ft_check_builtin(cmd->argv[0].value, "unset"))
+		return (ft_unset(vars, str));
 	return (0);
 }
 

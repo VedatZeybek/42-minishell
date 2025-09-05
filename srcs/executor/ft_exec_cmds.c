@@ -12,28 +12,29 @@
 
 #include "../../includes/ft_executor.h"
 
+int	ft_is_builtin(char *cmd_name);
+
 void	ft_exec_single(t_command *cmd, t_vars *vars)
 {
-	pid_t	pid;
-	int		s;
+	char	**str;
 
-	if (ft_handle_redirections(cmd) != 0)
-		return ;
-	if (ft_is_builtin(cmd->argv[0].value))
+	str = copy_argv_to_string_array(cmd, argv_length(cmd));
+	if (!ft_is_builtin(cmd->argv[0].value))
+		ft_exec_pipe(cmd, vars);
+	else
 	{
-		vars->status = ft_run_builtin(cmd, vars->envp);
-		return ;
+		if (ft_handle_redirections(cmd) != 0)
+			return ;
+		if (ft_is_builtin(cmd->argv[0].value))
+		{
+			if (ft_strncmp(cmd->argv[0].value, "exit", 4) == 0)
+				ft_exit(str);	
+			vars->status = ft_run_builtin(cmd, vars);
+			return ;
+		}
 	}
-	pid = fork();
-	if (pid == 0)
-	{
-		ft_run_external_cmd(cmd, vars);
-		exit(1);
-	}
-	else if (pid > 0)
-		waitpid(pid, &s, 0);
-	vars->status = s;
 }
+
 
 //new exec_pipe
 void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
@@ -60,6 +61,8 @@ void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 
 		if (pid == 0) // child process
 		{
+			//signal(SIGINT, SIG_DFL);
+    		//signal(SIGQUIT, SIG_DFL);
 			// stdin ayarla
 			if (prev_fd[0] != -1)
 			{
@@ -74,17 +77,14 @@ void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 				close(curr_fd[0]);
 				close(curr_fd[1]);
 			}
-			// builtin veya external çalıştır
 			if (ft_is_builtin(cmd->argv[0].value))
-				exit(ft_run_builtin(cmd, vars->envp));
+				exit(ft_run_builtin(cmd, vars));
 			else
 			{
 				if (!ft_handle_redirections(cmd))
-				{
 					ft_run_external_cmd(cmd, vars);
-				}
+				exit(127); // exec başarısızsa default
 			}
-			exit(1);
 		}
 		if (prev_fd[0] != -1)
 		{
@@ -100,8 +100,28 @@ void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 		i++;
 	}
 	// parent tüm çocukları beklesin
+	int status;
+
 	while (i-- > 0)
-		wait(NULL);
+	{
+		pid = wait(&status);
+		if (pid == -1)
+			perror("wait");
+		else
+		{
+			if (WIFEXITED(status))  // normal exit
+			{
+				int exit_code = WEXITSTATUS(status);
+				// burada exit_code, çocuğun return value’su
+				g_exit_status = exit_code;
+			}
+			else if (WIFSIGNALED(status)) // sinyalle öldüyse
+			{
+				int sig = WTERMSIG(status);
+				g_exit_status = 128 + sig; // bash uyumlu
+			}
+		}
+	}
 }
 
 	//void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)

@@ -22,6 +22,7 @@ static int	cd_to(const char *path)
 	if (chdir(path) == -1)
 	{
 		printf("minishell: cd: %s: %s\n", path, strerror(errno));
+		g_exit_status = 1;
 		return (1);
 	}
 	return (0);

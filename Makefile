@@ -1,9 +1,31 @@
 NAME	=	minishell
 LIBS	=	libft/libft.a
 
-SRC		=	*.c \
-			*/*.c \
-			*/*/*.c 
+SRC		=	srcs/builtin/arg_count.c \
+			srcs/builtin/builtin_tests.c \
+			srcs/builtin/ft_cd.c \
+			srcs/builtin/ft_echo.c \
+			srcs/builtin/ft_env.c \
+			srcs/builtin/ft_exit.c \
+			srcs/builtin/ft_export.c \
+			srcs/builtin/ft_pwd.c \
+			srcs/builtin/ft_unset.c \
+			srcs/executor/ft_builtin_utils.c \
+			srcs/executor/ft_cmd_exec.c \
+			srcs/executor/ft_exec_cmds.c \
+			srcs/executor/ft_exec_utils.c \
+			srcs/executor/ft_executor.c \
+			srcs/executor/ft_redirections.c \
+			srcs/executor/ft_utils.c \
+			srcs/input/free_utils.c \
+			srcs/input/read_line.c \
+			srcs/lexer/tokenizer1.c \
+			srcs/lexer/tokenizer2.c \
+			srcs/lexer/tokenizer3.c \
+			srcs/parser/parser1.c \
+			srcs/parser/parser2.c \
+			main.c
+
 
 GREEN=\033[0;32m
 SET_DEF=\033[0m

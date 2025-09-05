@@ -29,11 +29,33 @@ int	ft_is_builtin(char *cmd_name)
 	return (0);
 }
 
-int	ft_run_builtin(t_command *cmd, char **envp)
+int	ft_call_builtin(t_command *cmd, t_vars *vars)
+{
+	char	**str;
+
+	str = copy_argv_to_string_array(cmd, argv_length(cmd));
+	if (ft_check_builtin(cmd->argv[0].value, "echo"))
+		return (ft_echo(str));
+	else if (ft_check_builtin(cmd->argv[0].value, "cd"))
+		return (ft_cd(str));
+	else if (ft_check_builtin(cmd->argv[0].value, "pwd"))
+		return (ft_pwd(str));
+	else if (ft_check_builtin(cmd->argv[0].value, "env"))
+		return (ft_env(str, vars->envp));
+    else if (ft_check_builtin(cmd->argv[0].value, "exit"))
+		return (ft_exit_child(str));
+	//else if (ft_check_builtin(cmd->argv[0].value, "export"))
+	//    return (ft_export(vars, str));
+	//else if (ft_check_builtin(cmd->argv[0].value, "unset"))
+	//    return (ft_unset(vars, str));
+	return (0);
+}
+
+int	ft_run_builtin(t_command *cmd, t_vars *vars)
 {
 	if (!cmd || !cmd->argv || !cmd->argv)
 		return (1);
-	return (ft_call_builtin(cmd, envp));
+	return (ft_call_builtin(cmd, vars));
 }
 
 char	*ft_find_cmd_path(char *cmd_name, char **envp, t_vars *vars)
@@ -58,12 +80,12 @@ int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
 	cmd_path = ft_find_cmd_path(cmd->argv[0].value, vars->envp, vars);
 	if (!cmd_path)
 	{
-		printf("minishell: %s: command not found\n", cmd->argv->value);
+		printf("minishell: '%s': command not found\n", cmd->argv->value);
 		return (127);
 	}
 	if (execve(cmd_path, str, vars->envp) == -1)
 	{
-		perror("execve");
+		printf("minishell: '%s': command not found\n", cmd->argv->value);
 		free(cmd_path);
 		return (1);
 	}

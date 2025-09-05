@@ -29,11 +29,11 @@ int g_exit_status = 0;
 
 void sigint_handler(int signo)
 {
-    (void)signo;
-    g_exit_status = 130;  // $? için
-    write(1, "\n", 1);
-    rl_replace_line("", 0); // input temizlensin
-    rl_on_new_line();       // readline’a yeni satır de
+	(void)signo;
+	g_exit_status = 130;  // $? için
+	write(1, "\n", 1);
+	rl_replace_line("", 0); // input temizlensin
+	rl_on_new_line();       // readline’a yeni satır de
 	rl_redisplay(); 
 }
 

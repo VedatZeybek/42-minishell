@@ -15,15 +15,17 @@
 int	ft_run_commands(t_command *cmd_list, char **envp)
 {
 	t_vars	vars;
-//	int		n;
+	int		n;
 
 	if (!cmd_list || !envp)
 		return (1);
-//	n = ft_count_cmds(cmd_list);
+	n = ft_count_cmds(cmd_list);
 	ft_init_vars(&vars, envp);
-	//if (n == 1)
-	//	ft_exec_single(cmd_list, &vars);
-	//else
+	if (n == 1)
+		ft_exec_single(cmd_list, &vars);
+	else
+	{
 		ft_exec_pipe(cmd_list, &vars);
+	}
 	return (vars.status);
 }

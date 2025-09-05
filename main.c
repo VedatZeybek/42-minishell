@@ -67,9 +67,9 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		char *input = line;
 		t_token *tokens = tokenize(input);
-		print_tokens(tokens);
+		//print_tokens(tokens);
 		t_command *command = parse_command(&tokens);
-		print_command(command);
+		//print_command(command);
 		if (command)
 		{
 			ft_run_commands(command, env);

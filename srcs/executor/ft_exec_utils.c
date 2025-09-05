@@ -59,6 +59,13 @@ char	*ft_check_path(t_vars *vars, char *cmd)
 	char	*temp;
 	int		i;
 
+	if (cmd[0] == '/')
+	{
+		if (access(cmd, X_OK) == 0)
+			return (ft_strdup(cmd));
+		else
+			return (NULL);
+	}
 	i = -1;
 	while (vars->path && vars->path[++i])
 	{

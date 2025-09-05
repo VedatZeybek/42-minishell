@@ -69,18 +69,3 @@ int	ft_check_builtin(const char *c, const char *b)
 	return (0);
 }
 
-int	ft_call_builtin(t_command *cmd, char **envp)
-{
-	char	**str;
-
-	str = copy_argv_to_string_array(cmd, argv_length(cmd));
-	if (ft_check_builtin(cmd->argv[0].value, "echo"))
-		return (ft_echo(str));
-	else if (ft_check_builtin(cmd->argv[0].value, "cd"))
-		return (ft_cd(str));
-	else if (ft_check_builtin(cmd->argv[0].value, "pwd"))
-		return (ft_pwd(str));
-	else if (ft_check_builtin(cmd->argv[0].value, "env"))
-		return (ft_env(str, envp));
-	return (0);
-}

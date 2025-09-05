@@ -49,7 +49,6 @@ extern int g_exit_status;
 
 char	*read_line(void);
 void	free_splitted(char **str);
-int		here_doc(char *limiter);
 
 
 #endif

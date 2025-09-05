@@ -23,17 +23,17 @@ char **ft_realloc_add(char **arr, char *new_str)
 	while (arr && arr[i])
 		i++;
 
-	char **new_arr = malloc(sizeof(char *) * (i + 2)); // +1 yeni string, +1 NULL
+	char **new_arr = malloc(sizeof(char *) * (i + 2));
 	if (!new_arr)
 		return NULL;
 
 	for (int j = 0; j < i; j++)
-		new_arr[j] = arr[j]; // pointerları taşı
+		new_arr[j] = arr[j];
 
-	new_arr[i] = new_str;  // yeni string ekle
-	new_arr[i + 1] = NULL; // sonlandırıcı
+	new_arr[i] = new_str;
+	new_arr[i + 1] = NULL;
 
-	free(arr); // eski dizi serbest bırak (içindekiler hala geçerli)
+	free(arr);
 	return new_arr;
 }
 
@@ -75,7 +75,6 @@ void ft_set_env(t_vars *vars, char *key, char *value)
 			return;
 		}
 	}
-	// Yoksa ekle
 	char *new_env = ft_strjoin3(key, "=", value);
 	if (!new_env)
 		return;
@@ -93,7 +92,7 @@ int ft_export(t_vars *vars, char **args)
 	{
 		char *eq = strchr(args[i], '=');
 
-		if (eq) // VAR=value formatı
+		if (eq)
 		{
 			*eq = '\0';
 			ft_set_env(vars, args[i], eq + 1);

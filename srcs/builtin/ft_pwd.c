@@ -17,8 +17,6 @@ int	ft_pwd(char **args)
 	char	cwd[4096];
 
 	(void)args;
-	if (arg_count(args) != 1)
-		return (printf("pwd: too many arguments\n"), 1);
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 		printf("%s\n", cwd);
 	return (0);

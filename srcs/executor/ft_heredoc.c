@@ -28,11 +28,11 @@ int ft_open_heredoc(char *limiter)
             if (!line)
                 exit(0);
 
-            size_t len = strlen(line);
+            size_t len = ft_strlen(line);
             if (len > 0 && line[len - 1] == '\n')
                 line[len - 1] = '\0';
 
-            if (strcmp(line, limiter) == 0)
+            if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
             {
                 free(line);
                 exit(0);

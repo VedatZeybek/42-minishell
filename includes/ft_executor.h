@@ -22,7 +22,7 @@ typedef struct s_vars
 	int		status;
 }			t_vars;
 
-int	ft_run_commands(t_command *cmd_list, t_vars *vars);
+int			ft_run_commands(t_command *cmd_list, t_vars *vars);
 void		ft_exec_single(t_command *cmd, t_vars *vars);
 void		ft_exec_pipe(t_command *cmd_list, t_vars *vars);
 char		*ft_check_path(t_vars *vars, char *cmd);
@@ -41,13 +41,13 @@ int			ft_is_builtin(char *cmd_name);
 
 
 //my_additions
-char **copy_argv_to_string_array(t_command *cmd, size_t argv_len);
-void free_string_array(char **arr);
-size_t argv_length(t_command *cmd);
-int ft_export(t_vars *vars, char **args);
-int ft_unset(t_vars *vars, char **args);
+char 		**copy_argv_to_string_array(t_command *cmd, size_t argv_len);
+void 		free_string_array(char **arr);
+size_t 		argv_length(t_command *cmd);
+int 		ft_export(t_vars *vars, char **args);
+int 		ft_unset(t_vars *vars, char **args);
 
-int 	ft_open_heredoc(char *limiter);
-void	print_command(t_command *cmd);
+int 		ft_open_heredoc(char *limiter);
+void		print_command(t_command *cmd);
 
 #endif

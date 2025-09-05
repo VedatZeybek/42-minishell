@@ -28,7 +28,7 @@ char **copy_argv_to_string_array(t_command *cmd, size_t argv_len)
     if (!cmd || !cmd->argv || argv_len == 0)
         return NULL;
 
-    char **arr = malloc((argv_len + 1) * sizeof(char *)); // +1 NULL için
+    char **arr = malloc((argv_len + 1) * sizeof(char *));
     if (!arr)
         return NULL;
 
@@ -37,14 +37,13 @@ char **copy_argv_to_string_array(t_command *cmd, size_t argv_len)
         arr[i] = ft_strdup(cmd->argv[i].value);
         if (!arr[i])
         {
-            // malloc hatası, temizle
             for (size_t j = 0; j < i; j++)
                 free(arr[j]);
             free(arr);
             return NULL;
         }
     }
-    arr[argv_len] = NULL; // sonlandırıcı NULL
+    arr[argv_len] = NULL;
     return arr;
 }
 

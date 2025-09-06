@@ -86,8 +86,6 @@ int ft_export(t_vars *vars, char **args)
 	if (!vars || !args)
 		return 1;
 
-	printf("first len: %d\n", 	ft_env_len(vars->envp));
-
 	for (int i = 1; args[i]; i++)
 	{
 		char *eq = strchr(args[i], '=');
@@ -98,6 +96,5 @@ int ft_export(t_vars *vars, char **args)
 			ft_set_env(vars, args[i], eq + 1);
 		}
 	}
-	printf("second len: %d\n", 	ft_env_len(vars->envp));
 	return 0;
 }

@@ -11,8 +11,8 @@ typedef struct s_args
 
 typedef struct s_redir
 {
-	t_token_type	type;      // TOKEN_REDIRECT_OUT, TOKEN_APPEND, vb.
-	char			*filename; // tmp->next->value
+	t_token_type	type;
+	char			*filename;
 	struct s_redir	*next;
 }	t_redir;
 

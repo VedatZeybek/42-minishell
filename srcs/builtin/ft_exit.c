@@ -6,16 +6,14 @@ int	ft_exit_child(char **args)
 
 	if (args[1])
 	{
-		// Eğer parametre sayı değilse hata ver
-		exit_code = atoi(args[1]); // basit hali, daha güvenli atoi ile yapabilirsin
+		exit_code = ft_atoi(args[1]);
 		if (exit_code < 0)
 		{
 			printf("exit: numeric argument required\n");
 			exit_code = 255;
 		}
 	}
-	//printf("exit\n"); // Minishell’de genellikle exit yazdırılır
-	return(exit_code); // shell’i kapat
+	return(exit_code);
 }
 
 int	ft_exit(char **args)
@@ -24,14 +22,13 @@ int	ft_exit(char **args)
 
 	if (args[1])
 	{
-		// Eğer parametre sayı değilse hata ver
-		exit_code = atoi(args[1]); // basit hali, daha güvenli atoi ile yapabilirsin
+		exit_code = ft_atoi(args[1]);
 		if (exit_code < 0)
 		{
 			printf("exit: numeric argument required\n");
 			exit_code = 255;
 		}
 	}
-	printf("exit\n"); // Minishell’de genellikle exit yazdırılır
-	exit(exit_code); // shell’i kapat
+	printf("exit\n");
+	exit(exit_code);
 }

@@ -29,12 +29,16 @@ int	ft_echo(char **args)
 			is_new_line = 0;
 	}
 	i = 1;
-	if (is_new_line == 0)
+	if (!is_new_line)
 		i = 2;
-	while (args[i + 1])
-		printf("%s ", args[i++]);
-	printf("%s", args[i]);
-	if (is_new_line == 1)
+	while (args[i])
+	{
+		printf("%s", args[i]);
+		if (args[i + 1])
+			printf(" ");
+		i++;
+	}
+	if (is_new_line)
 		printf("\n");
 	return (0);
 }

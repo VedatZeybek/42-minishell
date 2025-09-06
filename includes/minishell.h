@@ -29,7 +29,8 @@
 # include "tokenizer.h"
 # include "parser.h"
 
-# define PROMPT "minishell$ "
+#define RED "\001\033[31m\002"
+#define RESET "\001\033[0m\002"
 
 # define ERR_INPUT "Invalid number of arguments."
 # define ERR_FILE "Invalid File."

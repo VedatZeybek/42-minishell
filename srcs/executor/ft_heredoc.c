@@ -7,12 +7,13 @@ int ft_open_heredoc(char *limiter)
     pid_t pid;
     int status;
 
+    signal(SIGINT, SIG_DFL);
+    signal(SIGQUIT, SIG_DFL);
     if (pipe(fd) == -1)
     {
         perror("pipe");
         return (1);
     }
-
     pid = fork();
     if (pid == -1)
         return (perror("fork"), 1);
@@ -26,7 +27,10 @@ int ft_open_heredoc(char *limiter)
             write(STDOUT_FILENO, "> ", 2);
             line = get_next_line(STDIN_FILENO);
             if (!line)
+            {
+                write(fd[1], "\n", 1);
                 exit(0);
+            }
 
             size_t len = ft_strlen(line);
             if (len > 0 && line[len - 1] == '\n')

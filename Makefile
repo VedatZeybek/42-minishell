@@ -2,7 +2,6 @@ NAME	=	minishell
 LIBS	=	libft/libft.a
 
 SRC		=	srcs/builtin/arg_count.c \
-			srcs/builtin/builtin_tests.c \
 			srcs/builtin/ft_cd.c \
 			srcs/builtin/ft_echo.c \
 			srcs/builtin/ft_env.c \

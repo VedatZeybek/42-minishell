@@ -58,9 +58,7 @@ void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 
 		if (pid == 0)
 		{
-			//signaller ayarlanacak
-			//signal(SIGINT, SIG_DFL);
-    		//signal(SIGQUIT, SIG_DFL);
+			signal(SIGINT, SIG_DFL);
 			if (prev_fd[0] != -1)
 			{
 				dup2(prev_fd[0], STDIN_FILENO);
@@ -112,6 +110,8 @@ void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 			else if (WIFSIGNALED(status))
 			{
 				int sig = WTERMSIG(status);
+				//if (sig == SIGQUIT)
+				//	write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
 				g_exit_status = 128 + sig;
 			}
 		}

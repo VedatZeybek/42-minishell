@@ -16,21 +16,28 @@ int g_exit_status = 0;
 
 void sigint_handler(int signo)
 {
-	(void)signo;
-	g_exit_status = 130;
-	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay(); 
+    (void)signo;
+    g_exit_status = 130;
+    if (isatty(STDIN_FILENO))
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
 
 char	*read_line(void)
 {
 	char	*line;
-	
+	char *PROMPT = RED "minishell$ " RESET;
+
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
-	line = readline(PROMPT);
+	if (g_exit_status != 130)
+		line = readline(PROMPT);
+	else
+		line = readline("");
 	if (!line)
 	{
 		write(STDOUT_FILENO, "exit\n", 5);

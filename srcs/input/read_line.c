@@ -37,7 +37,9 @@ char	*read_line(void)
 	if (g_exit_status != 130)
 		line = readline(PROMPT);
 	else
+	{
 		line = readline("");
+	}
 	if (!line)
 	{
 		write(STDOUT_FILENO, "exit\n", 5);

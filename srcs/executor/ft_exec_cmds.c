@@ -23,13 +23,17 @@ void	ft_exec_single(t_command *cmd, t_vars *vars)
 		ft_exec_pipe(cmd, vars);
 	else
 	{
+		int saved_in = dup(STDIN_FILENO);
+		int saved_out = dup(STDOUT_FILENO);
 		if (ft_handle_redirections(cmd) != 0)
 			return ;
 		if (ft_is_builtin(cmd->argv[0].value))
 		{
 			if (ft_strncmp(cmd->argv[0].value, "exit", 4) == 0)
-				ft_exit(str);	
-			vars->status = ft_run_builtin(cmd, vars);
+				ft_exit(str);
+			g_exit_status = ft_run_builtin(cmd, vars);
+			dup2(saved_in, STDIN_FILENO);
+			dup2(saved_out, STDOUT_FILENO);
 			return ;
 		}
 	}
@@ -58,7 +62,6 @@ void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 
 		if (pid == 0)
 		{
-			signal(SIGINT, SIG_DFL);
 			if (prev_fd[0] != -1)
 			{
 				dup2(prev_fd[0], STDIN_FILENO);
@@ -110,8 +113,6 @@ void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 			else if (WIFSIGNALED(status))
 			{
 				int sig = WTERMSIG(status);
-				//if (sig == SIGQUIT)
-				//	write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
 				g_exit_status = 128 + sig;
 			}
 		}

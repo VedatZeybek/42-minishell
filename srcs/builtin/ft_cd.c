@@ -16,7 +16,7 @@ static int	cd_to(const char *path)
 {
 	if (!path)
 	{
-		printf("minishell: cd: HOME not set\n");
+		perror("minishell: cd: HOME not set\n");
 		return (1);
 	}
 	if (chdir(path) == -1)
@@ -40,6 +40,6 @@ int	ft_cd(char **args)
 		return (cd_to(home));
 	}
 	if (n > 2)
-		return (printf("minishell: cd: too many arguments\n"), 1);
+		return (perror("minishell: cd: too many arguments\n"), 1);
 	return (cd_to(args[1]));
 }

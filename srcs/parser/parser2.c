@@ -30,14 +30,48 @@ void	add_command(t_command **head, t_command *new_cmd)
 	current->next = new_cmd;
 }
 
+
+static void	free_redirs(t_redir *redir)
+{
+	t_redir *tmp;
+
+	while (redir)
+	{
+		tmp = redir->next;
+		if (redir->filename)
+			free(redir->filename);
+		free(redir);
+		redir = tmp;
+	}
+}
+
 void	free_command(t_command *cmd)
 {
+	int i;
+
 	if (!cmd)
 		return ;
-	// args freelenecek
-	// redirection freelenecek
+
+	// argv dizisini free et
+	if (cmd->argv)
+	{
+		i = 0;
+		while (cmd->argv[i].value) // argv dizisinin sonu NULL değilse dikkat
+		{
+			if (cmd->argv[i].value)
+				free(cmd->argv[i].value);
+			i++;
+		}
+		free(cmd->argv);
+	}
+
+	// redirections linked list
+	if (cmd->redirections)
+		free_redirs(cmd->redirections);
+
 	free(cmd);
 }
+
 
 
 //tokenizer -> echo "selam" | wc -l > output.txt 

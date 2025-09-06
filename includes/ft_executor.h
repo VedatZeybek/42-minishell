@@ -49,5 +49,6 @@ int 		ft_unset(t_vars *vars, char **args);
 
 int 		ft_open_heredoc(char *limiter);
 void		print_command(t_command *cmd);
+void 		ft_free_vars(t_vars *vars);
 
 #endif

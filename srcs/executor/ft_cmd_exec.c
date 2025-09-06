@@ -48,6 +48,7 @@ int	ft_call_builtin(t_command *cmd, t_vars *vars)
 		return (ft_export(vars, str));
 	else if (ft_check_builtin(cmd->argv[0].value, "unset"))
 		return (ft_unset(vars, str));
+	free_splitted(str);
 	return (0);
 }
 

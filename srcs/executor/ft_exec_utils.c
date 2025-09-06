@@ -113,3 +113,34 @@ void	ft_init_vars(t_vars *vars, char **envp)
 	vars->path = ft_init_env(envp);
 	vars->status = 0;
 }
+
+void ft_free_vars(t_vars *vars)
+{
+	int i;
+
+	if (!vars)
+		return;
+	if (vars->envp)
+	{
+		i = 0;
+		while (vars->envp[i])
+		{
+			free(vars->envp[i]);
+			i++;
+		}
+		free(vars->envp);
+		vars->envp = NULL;
+	}
+	if (vars->path)
+	{
+		i = 0;
+		while (vars->path[i])
+		{
+			free(vars->path[i]);
+			i++;
+		}
+		free(vars->path);
+		vars->path = NULL;
+	}
+	vars->status = 0; 
+}

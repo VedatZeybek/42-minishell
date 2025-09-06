@@ -51,22 +51,18 @@ static void append_double_quote(char **buffer, char *input, int *i)
 	{
 		if (input[*i] == '$')
 		{
-			// önce $'a kadar olan kısmı ekle
 			if (*i > start)
 				*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
-			// env var expansion
 			append_env_var(buffer, input, i);
-			// env var sonrası yeni start
 			start = *i;
 		}
 		else
 			(*i)++;
 	}
-	// kalan parçayı ekle
 	if (*i > start)
 		*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
 	if (input[*i] == '"')
-		(*i)++; // kapanış " geç
+		(*i)++;
 }
 
 
@@ -76,28 +72,25 @@ static void append_env_var(char **buffer, char *input, int *i)
 	char    *value;
 	int     start;
 
-	(*i)++; // '$' atla
-	
-	// özel case: $?
+	(*i)++;
 	if (input[*i] == '?')
 	{
 		value = ft_itoa(g_exit_status);
 		*buffer = ft_strjoin_free(*buffer, value);
 		free(value);
-		(*i)++; // '?' karakterini de atla
+		(*i)++;
 		return ;
 	}
-	// normal case: $VAR_NAME
 	start = *i;
 	while (ft_isalnum(input[*i]) || input[*i] == '_')
 		(*i)++;
-	if (*i == start) // hiç valid karakter yoksa → sadece '$'
+	if (*i == start)
 	{
 		*buffer = ft_strjoin_free(*buffer, "$");
 		return ;
 	}
 	var_name = ft_substr(input, start, *i - start);
-	value = getenv(var_name); // sen vars->envp’den lookup yapıyorsun
+	value = getenv(var_name);
 	if (value)
 		*buffer = ft_strjoin_free(*buffer, value);
 	free(var_name);
@@ -128,6 +121,7 @@ static int	handle_word(char *input, t_token **token, int *i)
 	if (ft_strlen(buffer) > 0)
 	{
 		add_token(token, create_token(buffer, TOKEN_WORD));
+		free(buffer);
 		return (1);
 	}
 	free(buffer);

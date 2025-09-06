@@ -23,7 +23,7 @@ typedef struct s_command
 	struct s_command *next;
 } t_command;
 
-void		free_command(t_command *cmd);
+void	free_command(t_command *cmd);
 t_command	*create_command(t_arg *args, t_redir *redirections);
 void		add_command(t_command **head, t_command *new_cmd);
 t_command	*parse_command(t_token **tokens);

@@ -28,6 +28,7 @@ int ft_exit(char **args)
 		{
 			printf("exit\n");
 			perror("minishell: exit: numeric argument required\n");
+			free_splitted(args);
 			exit(255);
 		}
 		exit_code = ft_atoi(args[1]);
@@ -35,10 +36,11 @@ int ft_exit(char **args)
 		{
 			perror("minishell: exit: too many arguments\n");
 			g_exit_status = 1;
+			free_splitted(args);
 			return (1);
 		}
 	}
-
+	free_splitted(args);
 	printf("exit\n");
 	exit((unsigned char)exit_code);
 }

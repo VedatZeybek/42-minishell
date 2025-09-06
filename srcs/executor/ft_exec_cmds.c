@@ -18,11 +18,11 @@ void	ft_exec_single(t_command *cmd, t_vars *vars)
 {
 	char	**str;
 
-	str = copy_argv_to_string_array(cmd, argv_length(cmd));
 	if (!ft_is_builtin(cmd->argv[0].value))
 		ft_exec_pipe(cmd, vars);
 	else
 	{
+		str = copy_argv_to_string_array(cmd, argv_length(cmd));
 		int saved_in = dup(STDIN_FILENO);
 		int saved_out = dup(STDOUT_FILENO);
 		if (ft_handle_redirections(cmd) != 0)

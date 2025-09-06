@@ -74,11 +74,12 @@ int	main(int argc, char **argv, char **env)
 		//print_command(command);
 		if (command)
 		{
-			 ft_run_commands(command, &vars);
+			ft_run_commands(command, &vars);
 			free_command(command);
 		}
 		free_tokens(tokens);
 		free(line);
 	}
+	ft_free_vars(&vars);
 	return (0);
 }

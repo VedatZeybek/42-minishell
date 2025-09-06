@@ -16,9 +16,9 @@ int g_exit_status = 0;
 
 void sigint_handler(int signo)
 {
-    (void)signo;
-    g_exit_status = 130;
-    if (isatty(STDIN_FILENO))
+	(void)signo;
+	g_exit_status = 130;
+	if (isatty(STDIN_FILENO))
 	{
 		write(1, "\n", 1);
 		rl_replace_line("", 0);

@@ -52,11 +52,10 @@ void	free_command(t_command *cmd)
 	if (!cmd)
 		return ;
 
-	// argv dizisini free et
 	if (cmd->argv)
 	{
 		i = 0;
-		while (cmd->argv[i].value) // argv dizisinin sonu NULL değilse dikkat
+		while (cmd->argv[i].value)
 		{
 			if (cmd->argv[i].value)
 				free(cmd->argv[i].value);
@@ -64,20 +63,9 @@ void	free_command(t_command *cmd)
 		}
 		free(cmd->argv);
 	}
-
-	// redirections linked list
 	if (cmd->redirections)
 		free_redirs(cmd->redirections);
-
 	free(cmd);
 }
 
 
-
-//tokenizer -> echo "selam" | wc -l > output.txt 
-	       //  W      DQ    P  W   R_OUT  W
-
-		   // "$home " "selam lm ls "
-
-// parser ->  command[echo "selam" ] | echo [wc -l > output.txt ]
-		      // linked_list node      linked_list node

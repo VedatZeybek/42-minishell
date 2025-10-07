@@ -6,7 +6,7 @@
 /*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 07:25:45 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/07 13:56:23 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	ft_open_input_file(char *filename, int flags)
 	if (fd == -1)
 	{
 		perror(filename);
+		g_exit_status = 1;
 		return (1);
 	}
 	dup2(fd, STDIN_FILENO);

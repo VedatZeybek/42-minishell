@@ -91,8 +91,8 @@ static void append_env_var(char **buffer, char *input, int *i)
 	}
 	var_name = ft_substr(input, start, *i - start);
 	value = getenv(var_name);
-	if (value)
-		*buffer = ft_strjoin_free(*buffer, value);
+	if (value && value[0] != '\0')
+    	*buffer = ft_strjoin_free(*buffer, value);
 	free(var_name);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:26 by epakdama          #+#    #+#             */
-/*   Updated: 2025/09/03 15:04:07 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/07 12:10:51 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int ft_run_commands(t_command *cmd_list, t_vars *vars)
     else
         ft_exec_pipe(cmd_list, vars);
 
-    return vars->status;
+    return (g_exit_status);
 }
 

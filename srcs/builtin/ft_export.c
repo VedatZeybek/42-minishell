@@ -73,7 +73,6 @@ int ft_export(t_vars *vars, char **args)
 	int i = 0;
 	while (!ft_strchr(&args[1][i], '=') && args[1][i])
 	{
-		perror("1");
 		if (!ft_isalnum(args[1][i]) && args[1][i] != '=')
 			return (1);
 		i++;

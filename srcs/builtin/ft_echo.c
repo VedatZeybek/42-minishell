@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:04:09 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/15 11:15:01 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:12:32 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ int	ft_echo(char **args)
 	int	is_new_line;
 
 	is_new_line = 1;
-	if (arg_count(args) == 1)
-		return (printf("\n"), 1);
+	if (arg_count(args) == 0)
+	{
+		return (printf("\n"), 0);
+	}
 	i = 1;
-	if (ft_strncmp(args[1], "-n", 2) == 0)
+	if (args[i] && ft_strncmp(args[1], "-n", 2) == 0)
 	{
 		while (args[1][i] == 'n' && args[1][i])
 			i++;

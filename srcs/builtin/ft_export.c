@@ -37,24 +37,6 @@ char **ft_realloc_add(char **arr, char *new_str)
 	return new_arr;
 }
 
-char *ft_get_env(t_vars *vars, char *key)
-{
-	if (!vars || !key)
-		return NULL;
-
-	size_t klen = ft_strlen(key);
-	for (int i = 0; vars->envp && vars->envp[i]; i++)
-	{
-		size_t elen = ft_strlen(vars->envp[i]);
-		if (elen > klen && ft_strncmp(vars->envp[i], key, klen) == 0
-			&& vars->envp[i][klen] == '=')
-		{
-			return vars->envp[i] + klen + 1;
-		}
-	}
-	return NULL;
-}
-
 void ft_set_env(t_vars *vars, char *key, char *value)
 {
 	if (!vars || !key || !value)
@@ -86,15 +68,20 @@ int ft_export(t_vars *vars, char **args)
 	if (!vars || !args)
 		return 1;
 
-	for (int i = 1; args[i]; i++)
-	{
-		char *eq = strchr(args[i], '=');
+	char *eq = ft_strchr(args[1], '=');
 
-		if (eq)
-		{
-			*eq = '\0';
-			ft_set_env(vars, args[i], eq + 1);
-		}
+	int i = 0;
+	while (!ft_strchr(&args[1][i], '=') && args[1][i])
+	{
+		perror("1");
+		if (!ft_isalnum(args[1][i]) && args[1][i] != '=')
+			return (1);
+		i++;
 	}
-	return 0;
+	if (eq)
+	{
+		*eq = '\0';
+		ft_set_env(vars, args[0], eq + 1);
+	}
+	return (0);
 }

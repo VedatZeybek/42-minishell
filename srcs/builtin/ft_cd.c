@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:01:08 by epakdama          #+#    #+#             */
-/*   Updated: 2025/08/15 21:05:09 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/07 19:52:02 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static int	cd_to(const char *path)
 	}
 	if (chdir(path) == -1)
 	{
-		printf("minishell: cd: %s: %s\n", path, strerror(errno));
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd((char *)path, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(strerror(errno), 2);
 		g_exit_status = 1;
 		return (1);
 	}

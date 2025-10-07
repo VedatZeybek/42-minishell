@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/09/03 15:04:07 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/07 07:25:45 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	ft_open_input_file(char *filename, int flags)
 {
 	int	fd;
 
-	fd = open(filename, flags);
+	fd = open(filename, flags, 0644);
 	if (fd == -1)
 	{
-		perror("minishell");
+		perror(filename);
 		return (1);
 	}
 	dup2(fd, STDIN_FILENO);
@@ -75,7 +75,7 @@ int	ft_open_output_file(char *filename, int flags)
 	fd = open(filename, flags, 0644);
 	if (fd == -1)
 	{
-		perror("minishell");
+		perror(filename);
 		return (1);
 	}
 	dup2(fd, STDOUT_FILENO);

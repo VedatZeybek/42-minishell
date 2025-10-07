@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cmd_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/09/03 15:11:53 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/07 07:27:23 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
 	cmd_path = ft_find_cmd_path(cmd->argv[0].value, vars->envp, vars);
 	if (!cmd_path)
 	{
-		printf("minishell: '%s': command not found\n", cmd->argv->value);
+		//printf("minishell: '%s': command not found\n", cmd->argv->value);
 		return (127);
 	}
 	if (execve(cmd_path, str, vars->envp) == -1)
 	{
-		printf("minishell: '%s': command not found\n", cmd->argv->value);
+		//printf("minishell: '%s': command not found\n", cmd->argv->value);
 		free(cmd_path);
 		return (1);
 	}

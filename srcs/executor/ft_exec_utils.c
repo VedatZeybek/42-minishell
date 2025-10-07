@@ -6,7 +6,7 @@
 /*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:52:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 17:54:01 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/07 18:02:24 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,24 @@ int	ft_count_cmds(t_command *cmd_list)
 	if (i > 0)
 		return (i);
 	return (0);
+}
+
+void	wait_all_children(int count)
+{
+	pid_t	pid;
+	int		status;
+
+	while (count-- > 0)
+	{
+		pid = wait(&status);
+		if (pid == -1)
+			perror("wait");
+		else if (WIFEXITED(status))
+			g_exit_status = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+		{
+			if (WTERMSIG(status) != SIGPIPE)
+				g_exit_status = 128 + WTERMSIG(status);
+		}
+	}
 }

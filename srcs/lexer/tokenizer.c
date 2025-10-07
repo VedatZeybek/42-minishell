@@ -22,7 +22,6 @@ static int	process_token(char *input, t_token **token, int *i)
 		return (1);
 	if (handle_word(input, token, i))
 		return (1);
-	// Beklenmeyen karakter hatası - ama normalde buraya gelmemeli
 	if (input[*i] && !is_whitespace(input[*i]))
 	{
 		printf("minishell: unexpected character '%c'\n", input[*i]);

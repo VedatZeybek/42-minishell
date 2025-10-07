@@ -1,5 +1,6 @@
 #include "../../includes/ft_executor.h"
 
+
 static char	**ft_init_env(char **envp)
 {
 	char	**res;

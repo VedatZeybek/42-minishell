@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:00:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/09/03 15:07:04 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/07 18:02:34 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			ft_process_redirection(t_redir *redir);
 int			ft_open_input_file(char *filename, int flags);
 int			ft_open_output_file(char *filename, int flags);
 int			ft_is_builtin(char *cmd_name);
-
+void		wait_all_children(int count);
 
 //my_additions
 char 		**copy_argv_to_string_array(t_command *cmd, size_t argv_len);

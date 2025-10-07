@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
+/*   Updated: 2025/10/07 19:56:14 by epakdama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
-int is_numeric(const char *str);
+int	is_numeric(const char *str);
 
 int	ft_exit_child(char **args)
 {
-	int exit_code = 0;
+	int	exit_code;
 
+	exit_code = 0;
 	if (args[1])
 	{
 		exit_code = ft_atoi(args[1]);
@@ -15,13 +28,14 @@ int	ft_exit_child(char **args)
 			exit_code = 255;
 		}
 	}
-	return(exit_code);
+	return (exit_code);
 }
 
-int ft_exit(char **args)
+int	ft_exit(char **args)
 {
-	int exit_code = 0;
+	int	exit_code;
 
+	exit_code = 0;
 	if (args[1])
 	{
 		if (!is_numeric(args[1]))
@@ -45,21 +59,22 @@ int ft_exit(char **args)
 	exit((unsigned char)exit_code);
 }
 
-int is_numeric(const char *str)
+int	is_numeric(const char *str)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (!str || str[0] == '\0')
-		return 0;
+		return (0);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (!str[i])
-		return 0;
+		return (0);
 	while (str[i])
 	{
 		if (!ft_isdigit((unsigned char)str[i]))
-			return 0;
+			return (0);
 		i++;
 	}
-	return 1;
+	return (1);
 }

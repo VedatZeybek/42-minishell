@@ -1,21 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/07 20:04:03 by epakdama          #+#    #+#             */
+/*   Updated: 2025/10/07 20:04:04 by epakdama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/ft_executor.h"
 
-int ft_env_len(char **envp)
+int	ft_env_len(char **envp)
 {
-    int i = 0;
-    while (envp && envp[i])
-        i++;
-    return i;
+	int	i;
+
+	i = 0;
+	while (envp && envp[i])
+		i++;
+	return (i);
 }
 
-void ft_remove_env(t_vars *vars, char *key)
+void	ft_remove_env(t_vars *vars, char *key)
 {
-	int i = 0, j = 0;
-	size_t len = ft_strlen(key);
-	char **new_env = malloc(sizeof(char *) * (ft_env_len(vars->envp)));
+	int		i;
+	int		j;
+	size_t	len;
+	char	**new_env;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(key);
+	new_env = malloc(sizeof(char *) * (ft_env_len(vars->envp)));
 	while (vars->envp[i])
 	{
-		if (!(ft_strncmp(vars->envp[i], key, len) == 0 && vars->envp[i][len] == '='))
+		if (!(ft_strncmp(vars->envp[i], key, len) == 0
+				&& vars->envp[i][len] == '='))
 			new_env[j++] = vars->envp[i];
 		else
 			free(vars->envp[i]);
@@ -26,13 +47,15 @@ void ft_remove_env(t_vars *vars, char *key)
 	vars->envp = new_env;
 }
 
-int ft_unset(t_vars *vars, char **args)
+int	ft_unset(t_vars *vars, char **args)
 {
-	int i = 1;
+	int	i;
+
+	i = 1;
 	while (args[i])
 	{
 		ft_remove_env(vars, args[i]);
 		i++;
 	}
-	return 0;
+	return (0);
 }

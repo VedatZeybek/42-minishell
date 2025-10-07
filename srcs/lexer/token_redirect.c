@@ -1,4 +1,4 @@
-#include "../../includes/minishell.h"
+#include "../../includes/tokenizer.h"
 
 void	token_redidrect(char *input, t_token **token, int *i)
 {

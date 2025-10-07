@@ -1,6 +1,6 @@
 #include "../../includes/parser.h"
 
-int add_arg(t_arg **args, char *value, t_token_type type)
+static int	add_arg(t_arg **args, char *value, t_token_type type)
 {
 	t_arg	*new_args;
 	int		i;
@@ -33,7 +33,7 @@ int add_arg(t_arg **args, char *value, t_token_type type)
 	return (1);
 }
 
-int	add_to_redirections(t_redir **list, t_token_type type, char *filename)
+static int	add_to_redirections(t_redir **list, t_token_type type, char *filename)
 {
 	t_redir	*new_node;
 	t_redir	*tmp;

@@ -18,11 +18,14 @@ SRC		=	srcs/builtin/arg_count.c \
 			srcs/executor/ft_heredoc.c \
 			srcs/input/free_utils.c \
 			srcs/input/read_line.c \
-			srcs/lexer/tokenizer1.c \
-			srcs/lexer/tokenizer2.c \
-			srcs/lexer/tokenizer3.c \
-			srcs/parser/parser1.c \
-			srcs/parser/parser2.c \
+			srcs/lexer/create_and_add_token.c \
+			srcs/lexer/lexer_utils.c \
+			srcs/lexer/token_redirect.c \
+			srcs/lexer/tokenizer.c \
+			srcs/lexer/token_word_quote.c \
+			srcs/parser/command_parser.c \
+			srcs/parser/create_and_add_command.c \
+			srcs/parser/free_utils.c \
 			main.c
 
 

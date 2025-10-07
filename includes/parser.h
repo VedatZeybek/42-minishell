@@ -1,7 +1,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "minishell.h"
+# include "./minishell.h"
 
 typedef struct s_args
 {

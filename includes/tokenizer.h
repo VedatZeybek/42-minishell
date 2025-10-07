@@ -1,7 +1,8 @@
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-# include "minishell.h"
+# include "../libft/libft.h"
+# include "stdio.h"
 
 typedef enum e_token_type
 {
@@ -31,5 +32,8 @@ void	token_redidrect(char *input, t_token **token, int *i);
 void	add_token(t_token **head, t_token *new_token);
 int		is_whitespace(char c);
 void	free_tokens(t_token *token);
+char	*ft_strjoin_free(char *s1, char *s2);
+int		handle_word(char *input, t_token **token, int *i);
+
 
 #endif

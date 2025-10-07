@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:00:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 18:02:34 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/07 20:15:00 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ int			ft_open_output_file(char *filename, int flags);
 int			ft_is_builtin(char *cmd_name);
 void		wait_all_children(int count);
 
-//my_additions
-char 		**copy_argv_to_string_array(t_command *cmd, size_t argv_len);
-void 		free_string_array(char **arr);
-size_t 		argv_length(t_command *cmd);
-int 		ft_export(t_vars *vars, char **args);
-int 		ft_unset(t_vars *vars, char **args);
+// my_additions
+char		**copy_argv_to_string_array(t_command *cmd, size_t argv_len);
+void		free_string_array(char **arr);
+size_t		argv_length(t_command *cmd);
+int			ft_export(t_vars *vars, char **args);
+int			ft_unset(t_vars *vars, char **args);
 
-int 		ft_open_heredoc(char *limiter);
+int			ft_open_heredoc(char *limiter);
 void		print_command(t_command *cmd);
-void 		ft_free_vars(t_vars *vars);
+void		ft_free_vars(t_vars *vars);
 
 #endif

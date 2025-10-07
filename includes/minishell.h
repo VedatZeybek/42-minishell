@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/09/03 13:34:19 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/07 20:33:20 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # include "tokenizer.h"
 # include "parser.h"
 
-#define RED "\001\033[31m\002"
-#define RESET "\001\033[0m\002"
+# define RED "\001\033[31m\002"
+# define RESET "\001\033[0m\002"
 
 # define ERR_INPUT "Invalid number of arguments."
 # define ERR_FILE "Invalid File."
@@ -46,10 +46,9 @@ typedef struct s_shell
 	int	running;
 }		t_shell;
 
-extern int g_exit_status;
+extern int	g_exit_status;
 
 char	*read_line(void);
 void	free_splitted(char **str);
-
 
 #endif

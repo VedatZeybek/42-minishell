@@ -71,16 +71,22 @@ int ft_export(t_vars *vars, char **args)
 	char *eq = ft_strchr(args[1], '=');
 
 	int i = 0;
-	while (!ft_strchr(&args[1][i], '=') && args[1][i])
+	while (args[1][i])
 	{
 		if (!ft_isalnum(args[1][i]) && args[1][i] != '=')
 			return (1);
+		if (args[1][i] == '=')
+			break;
 		i++;
 	}
+	if (ft_strlen(args[1]) == 1 || ft_isdigit(args[1][0]))
+		return (1);
+	if (!ft_strchr(args[1], '='))
+		return (0);
 	if (eq)
 	{
 		*eq = '\0';
-		ft_set_env(vars, args[0], eq + 1);
+		ft_set_env(vars, args[1], eq + 1);
 	}
 	return (0);
 }

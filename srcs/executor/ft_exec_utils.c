@@ -6,30 +6,11 @@
 /*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:52:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 09:31:41 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:54:01 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_executor.h"
-
-static char	**ft_init_env(char **envp)
-{
-	char	**res;
-	int		i;
-
-	res = NULL;
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		if (ft_strncmp(envp[i], "PATH", 4) == 0)
-		{
-			res = ft_split(ft_strchr(envp[i], '=') + 1, ':');
-			break ;
-		}
-		i++;
-	}
-	return (res);
-}
 
 static char	*ft_strjoin_custom(char *s1, char *s2)
 {
@@ -92,55 +73,4 @@ int	ft_count_cmds(t_command *cmd_list)
 	if (i > 0)
 		return (i);
 	return (0);
-}
-
-
-char **ft_env_dup(char **envp)
-{
-    int len = ft_env_len(envp);
-    char **dup = malloc(sizeof(char *) * (len + 1));
-    if (!dup)
-        return NULL;
-    for (int i = 0; i < len; i++)
-        dup[i] = ft_strdup(envp[i]);
-    dup[len] = NULL;
-    return dup;
-}
-
-void	ft_init_vars(t_vars *vars, char **envp)
-{
-	vars->envp = ft_env_dup(envp);
-	vars->path = ft_init_env(envp);
-	vars->status = 0;
-}
-
-void ft_free_vars(t_vars *vars)
-{
-	int i;
-
-	if (!vars)
-		return;
-	if (vars->envp)
-	{
-		i = 0;
-		while (vars->envp[i])
-		{
-			free(vars->envp[i]);
-			i++;
-		}
-		free(vars->envp);
-		vars->envp = NULL;
-	}
-	if (vars->path)
-	{
-		i = 0;
-		while (vars->path[i])
-		{
-			free(vars->path[i]);
-			i++;
-		}
-		free(vars->path);
-		vars->path = NULL;
-	}
-	vars->status = 0; 
 }

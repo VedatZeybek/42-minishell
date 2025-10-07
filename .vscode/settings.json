@@ -3,6 +3,7 @@
 		"minishell.h": "c",
 		"limits.h": "c",
 		"ft_executor.h": "c",
-		"parser.h": "c"
+		"parser.h": "c",
+		"stat.h": "c"
 	}
 }

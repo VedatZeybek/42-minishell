@@ -90,7 +90,6 @@ int	handle_word(char *input, t_token **token, int *i)
 			(*i)++;
 		}
 	}
-	// SADECE buffer boş DEĞİLSE token ekle
 	if (ft_strlen(buffer) > 0)
 	{
 		add_token(token, create_token(buffer, TOKEN_WORD));
@@ -98,7 +97,6 @@ int	handle_word(char *input, t_token **token, int *i)
 		return (1);
 	}
 	free(buffer);
-	// Eğer bir şeyler işlendiyse ama boş kaldıysa (örn: $EMPTY) devam et
 	if (*i > start_i)
 		return (1);
 	return (0);

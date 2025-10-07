@@ -16,6 +16,7 @@ SRC		=	srcs/builtin/arg_count.c \
 			srcs/executor/ft_executor.c \
 			srcs/executor/ft_redirections.c \
 			srcs/executor/ft_heredoc.c \
+			srcs/executor/ft_run_external_command.c \
 			srcs/input/free_utils.c \
 			srcs/input/read_line.c \
 			srcs/lexer/create_and_add_token.c \
@@ -51,6 +52,10 @@ fclean: clean
 	@make -C libft/ fclean
 
 # T E S T S
+tester:
+	rm -rf minishell_tester
+	git clone https://github.com/LucasKuhn/minishell_tester.git
+
 test1: srcs/builtin/*.c srcs/executor/*.c $(LIBS)
 	rm -rf test1
 	cc -Wall -Wextra -Werror srcs/builtin/*.c srcs/executor/*.c $(LIBS) -Iincludes -Ilibft -Ift_printf -o test1

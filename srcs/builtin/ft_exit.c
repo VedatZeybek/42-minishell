@@ -6,75 +6,118 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 19:56:14 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:25:58 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <limits.h>
 
-int	is_numeric(const char *str);
+static int	is_valid_number(const char *str, long long *result);
+static void	print_error(const char *msg);
+static int	handle_exit_args(char **args, int *exit_code, int is_child);
 
 int	ft_exit_child(char **args)
 {
 	int	exit_code;
+	int	result;
 
 	exit_code = 0;
-	if (args[1])
-	{
-		exit_code = ft_atoi(args[1]);
-		if (exit_code < 0)
-		{
-			perror("exit: numeric argument required\n");
-			exit_code = 255;
-		}
-	}
-	return (exit_code);
+	result = handle_exit_args(args, &exit_code, 1);
+	
+	if (result == -1)
+		return (2);
+	else if (result == 1)
+		return (1);
+	
+	return ((unsigned char)exit_code);
 }
 
 int	ft_exit(char **args)
 {
 	int	exit_code;
+	int	result;
 
 	exit_code = 0;
-	if (args[1])
-	{
-		if (!is_numeric(args[1]))
-		{
-			printf("exit\n");
-			perror("minishell: exit: numeric argument required\n");
-			free_splitted(args);
-			exit(255);
-		}
-		exit_code = ft_atoi(args[1]);
-		if (args[2])
-		{
-			perror("minishell: exit: too many arguments\n");
-			g_exit_status = 1;
-			free_splitted(args);
-			return (1);
-		}
-	}
-	free_splitted(args);
+	result = handle_exit_args(args, &exit_code, 0);
+	
 	printf("exit\n");
+	free_splitted(args);
+	
+	if (result == -1)
+		exit(2);
+	else if (result == 1)
+		exit(1);
+	
 	exit((unsigned char)exit_code);
 }
 
-int	is_numeric(const char *str)
+static int	handle_exit_args(char **args, int *exit_code, int is_child)
 {
-	int	i;
+	long long	num;
 
-	i = 0;
-	if (!str || str[0] == '\0')
+	*exit_code = 0;
+	if (!args[1])
 		return (0);
+	
+	if (!is_valid_number(args[1], &num))
+	{
+		if (!is_child)
+			print_error("minishell: exit: numeric argument required");
+		return (-1);
+	}
+	
+	if (args[2])
+	{
+		if (!is_child)
+			print_error("minishell: exit: too many arguments");
+		return (1);
+	}
+	
+	*exit_code = (int)num;
+	return (0);
+}
+
+static int	is_valid_number(const char *str, long long *result)
+{
+	long long	num;
+	int			sign;
+	int			i;
+
+	if (!str || !*str)
+		return (0);
+	i = 0;
+	sign = 1;
+	num = 0;
+	
 	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
 		i++;
+	}
+	
 	if (!str[i])
 		return (0);
+	
 	while (str[i])
 	{
 		if (!ft_isdigit((unsigned char)str[i]))
 			return (0);
+		
+		if (num > (LLONG_MAX - (str[i] - '0')) / 10)
+			return (0);
+		
+		num = num * 10 + (str[i] - '0');
 		i++;
 	}
+	
+	*result = num * sign;
 	return (1);
+}
+
+static void	print_error(const char *msg)
+{
+	ft_putstr_fd((char *)msg, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
 }

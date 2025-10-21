@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/20 15:25:58 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:39:19 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ int	ft_exit_child(char **args)
 
 	exit_code = 0;
 	result = handle_exit_args(args, &exit_code, 1);
-	
 	if (result == -1)
 		return (2);
 	else if (result == 1)
 		return (1);
-	
 	return ((unsigned char)exit_code);
 }
 
@@ -40,15 +38,12 @@ int	ft_exit(char **args)
 
 	exit_code = 0;
 	result = handle_exit_args(args, &exit_code, 0);
-	
 	printf("exit\n");
 	free_splitted(args);
-	
 	if (result == -1)
 		exit(2);
 	else if (result == 1)
 		exit(1);
-	
 	exit((unsigned char)exit_code);
 }
 
@@ -59,21 +54,18 @@ static int	handle_exit_args(char **args, int *exit_code, int is_child)
 	*exit_code = 0;
 	if (!args[1])
 		return (0);
-	
 	if (!is_valid_number(args[1], &num))
 	{
 		if (!is_child)
 			print_error("minishell: exit: numeric argument required");
 		return (-1);
 	}
-	
 	if (args[2])
 	{
 		if (!is_child)
 			print_error("minishell: exit: too many arguments");
 		return (1);
 	}
-	
 	*exit_code = (int)num;
 	return (0);
 }
@@ -89,29 +81,23 @@ static int	is_valid_number(const char *str, long long *result)
 	i = 0;
 	sign = 1;
 	num = 0;
-	
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
 			sign = -1;
 		i++;
 	}
-	
 	if (!str[i])
 		return (0);
-	
 	while (str[i])
 	{
 		if (!ft_isdigit((unsigned char)str[i]))
 			return (0);
-		
 		if (num > (LLONG_MAX - (str[i] - '0')) / 10)
 			return (0);
-		
 		num = num * 10 + (str[i] - '0');
 		i++;
 	}
-	
 	*result = num * sign;
 	return (1);
 }

@@ -8,7 +8,7 @@ static int	check_limiter(char *line, char *limiter)
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
-	if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0 \
+	if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0
 		&& ft_strlen(line) == ft_strlen(limiter))
 		return (1);
 	return (0);
@@ -24,9 +24,7 @@ static void	heredoc_child(int write_fd, char *limiter)
 		write(STDOUT_FILENO, "> ", 2);
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
-		{
 			exit(0);
-		}
 		if (check_limiter(line, limiter))
 		{
 			free(line);
@@ -39,7 +37,7 @@ static void	heredoc_child(int write_fd, char *limiter)
 	}
 }
 
-static int	setup_pipe_and_fork(int fd[2], pid_t *pid)
+static int	setpipe_and_fork(int fd[2], pid_t *pid)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
@@ -63,7 +61,7 @@ int	ft_open_heredoc(char *limiter)
 	pid_t	pid;
 	int		status;
 
-	if (setup_pipe_and_fork(fd, &pid) != 0)
+	if (setpipe_and_fork(fd, &pid) != 0)
 		return (1);
 	if (pid == 0)
 		heredoc_child(fd[1], limiter);

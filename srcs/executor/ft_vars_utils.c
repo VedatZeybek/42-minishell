@@ -39,7 +39,7 @@ void	ft_init_vars(t_vars *vars, char **envp)
 	vars->status = 0;
 }
 
-void ft_free_vars(t_vars *vars)
+void	ft_free_vars(t_vars *vars)
 {
 	int i;
 

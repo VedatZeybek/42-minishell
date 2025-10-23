@@ -15,6 +15,7 @@
 
 # include "minishell.h"
 
+
 typedef struct s_vars
 {
 	char	**envp;

@@ -1,26 +1,41 @@
 #include "../../includes/ft_executor.h"
 
-
-char **copy_argv_to_string_array(t_command *cmd, size_t argv_len)
+static	int free_result(char **result, int i)
 {
+	int 	j;
+
+	j = 0;
+	if (!result[i])
+	{
+		while (j < i)
+		{
+			free(result[j]);
+			j++;
+		}
+		free(result);
+		return (1);
+	}
+	return (0);
+}
+
+char	**copy_argv_to_string_array(t_command *cmd, size_t argv_len)
+{
+	char	**result;
+	size_t	i;	
+
 	if (!cmd || !cmd->argv || argv_len == 0)
 		return NULL;
-
-	char **arr = malloc((argv_len + 1) * sizeof(char *));
-	if (!arr)
+	result = malloc((argv_len + 1) * sizeof(char *));
+	if (!result)
 		return NULL;
-
-	for (size_t i = 0; i < argv_len; i++)
+	i = 0;
+	while (i < argv_len)
 	{
-		arr[i] = ft_strdup(cmd->argv[i].value);
-		if (!arr[i])
-		{
-			for (size_t j = 0; j < i; j++)
-				free(arr[j]);
-			free(arr);
-			return NULL;
-		}
+		result[i] = ft_strdup(cmd->argv[i].value);
+		if (free_result(result, i) == 1)
+			return (NULL);
+		i++;
 	}
-	arr[argv_len] = NULL;
-	return arr;
+	result[argv_len] = NULL;
+	return result;
 }

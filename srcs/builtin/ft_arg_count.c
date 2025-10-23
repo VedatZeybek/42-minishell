@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-int	arg_count(char **args)
+int	ft_arg_count(char **args)
 {
 	int	i;
 

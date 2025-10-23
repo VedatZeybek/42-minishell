@@ -12,8 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-int g_exit_status = 0;
-
 void sigint_handler(int signo)
 {
 	(void)signo;
@@ -30,12 +28,13 @@ void sigint_handler(int signo)
 char	*read_line(void)
 {
 	char	*line;
-	char *PROMPT = RED "minishell$ " RESET;
+	char	*prompt; 
 
+	prompt =  RED "minishell$ " RESET;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 	if (g_exit_status != 130)
-		line = readline(PROMPT);
+		line = readline(prompt);
 	else
 	{
 		line = readline("");

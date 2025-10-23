@@ -13,53 +13,19 @@
 #include "includes/minishell.h"
 #include "./includes/ft_executor.h"
 
-void print_tokens(t_token *tokens)
-{
-	t_token *tmp = tokens;
-	while (tmp)
-	{
-		printf("Token: '%s', Type: %d\n", tmp->value, tmp->type);
-		tmp = tmp->next;
-	}
-}
-
-void	print_command(t_command *cmd)
-{
-	int	i;
-	t_redir	*redir;
-
-	while (cmd)
-	{
-		printf("=== COMMAND ===\n");
-		i = 0;
-		while (cmd->argv && cmd->argv[i].value)
-		{
-			printf("  argv[%d] = \"%s\" (type = %d)\n",
-				i, cmd->argv[i].value, cmd->argv[i].type);
-			i++;
-		}
-		redir = cmd->redirections;
-		while (redir)
-		{
-			printf("  redir: type = %d, filename = \"%s\"\n",
-				redir->type, redir->filename);
-			redir = redir->next;
-		}
-		if (cmd->next)
-			printf("  |\n  v\n");
-		cmd = cmd->next;
-	}
-}
+int	g_exit_status = 0;
 
 int	main(int argc, char **argv, char **env)
 {
-	t_shell	shell;
-	char	*line;
-	t_vars	vars;
+	t_shell		shell;
+	t_vars		vars;
+	t_token		*tokens;
+	t_command	*command;
+	char		*line;
+	char		*input;
 
-	(void)argc;
-	(void)argv;
-	(void)env;
+	(void)	argc;
+	(void)	argv;
 	shell.running = 1;
 	ft_init_vars(&vars, env);
 	while (shell.running)
@@ -67,11 +33,9 @@ int	main(int argc, char **argv, char **env)
 		line = read_line();
 		if (!line)
 			break ;
-		char *input = line;
-		t_token *tokens = tokenize(input);
-		//print_tokens(tokens);
-		t_command *command = parse_command(&tokens);
-		//print_command(command);
+		input = line;
+		tokens = tokenize(input);
+		command = parse_command(&tokens);
 		if (command)
 		{
 			ft_run_commands(command, &vars);

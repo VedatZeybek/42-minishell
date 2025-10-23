@@ -24,7 +24,7 @@
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include "builtin.h"
+# include "ft_builtin.h"
 # include "libft.h"
 # include "tokenizer.h"
 # include "parser.h"
@@ -41,12 +41,12 @@
 # define ERR_EXCVE "Execution Failed."
 # define ERR_CLS "Close File Failed."
 
+extern int	g_exit_status;
+
 typedef struct s_shell
 {
 	int	running;
 }		t_shell;
-
-extern int	g_exit_status;
 
 char	*read_line(void);
 void	free_splitted(char **str);

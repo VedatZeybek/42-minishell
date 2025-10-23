@@ -15,7 +15,7 @@
 
 # include "minishell.h"
 
-int	arg_count(char **args);
+int	ft_arg_count(char **args);
 int	ft_cd(char **args);
 int	ft_pwd(char **args);
 int	ft_echo(char **args);

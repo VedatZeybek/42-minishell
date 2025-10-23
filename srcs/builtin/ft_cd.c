@@ -36,7 +36,7 @@ int	ft_cd(char **args)
 	int			n;
 	const char	*home;
 
-	n = arg_count(args);
+	n = ft_arg_count(args);
 	if (n == 1)
 	{
 		home = getenv("HOME");

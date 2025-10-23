@@ -34,7 +34,7 @@ int	ft_echo(char **args)
 	int	is_new_line;
 
 	is_new_line = 1;
-	if (arg_count(args) == 0)
+	if (ft_arg_count(args) == 0)
 	{
 		return (printf("\n"), 0);
 	}

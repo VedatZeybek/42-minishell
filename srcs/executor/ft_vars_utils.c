@@ -1,6 +1,5 @@
 #include "../../includes/ft_executor.h"
 
-
 static char	**ft_init_env(char **envp)
 {
 	char	**res;
@@ -20,14 +19,22 @@ static char	**ft_init_env(char **envp)
 	return (res);
 }
 
-char **ft_env_dup(char **envp)
+char	**ft_env_dup(char **envp)
 {
-    int len = ft_env_len(envp);
-    char **dup = malloc(sizeof(char *) * (len + 1));
+    char	**dup;
+    int		len;
+	int		i;
+
+	i = 0;
+	len = ft_env_len(envp);
+	dup = malloc(sizeof(char *) * (len + 1));
     if (!dup)
         return NULL;
-    for (int i = 0; i < len; i++)
+    while (i < len)
+	{
         dup[i] = ft_strdup(envp[i]);
+		i++;
+	}
     dup[len] = NULL;
     return dup;
 }

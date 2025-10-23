@@ -37,7 +37,7 @@ static void	heredoc_child(int write_fd, char *limiter)
 	}
 }
 
-static int	setpipe_and_fork(int fd[2], pid_t *pid)
+static int	set_pipe_and_fork(int fd[2], pid_t *pid)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
@@ -61,7 +61,7 @@ int	ft_open_heredoc(char *limiter)
 	pid_t	pid;
 	int		status;
 
-	if (setpipe_and_fork(fd, &pid) != 0)
+	if (set_pipe_and_fork(fd, &pid) != 0)
 		return (1);
 	if (pid == 0)
 		heredoc_child(fd[1], limiter);

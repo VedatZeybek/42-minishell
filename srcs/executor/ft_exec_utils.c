@@ -80,7 +80,7 @@ void	wait_all_children(int count)
 	pid_t	pid;
 	int		status;
 
-	while (count-- > 0)
+	while (count > 0)
 	{
 		pid = wait(&status);
 		if (pid == -1)
@@ -92,5 +92,6 @@ void	wait_all_children(int count)
 			if (WTERMSIG(status) != SIGPIPE)
 				g_exit_status = 128 + WTERMSIG(status);
 		}
+		count--;
 	}
 }

@@ -17,15 +17,18 @@ int	ft_is_builtin(char *cmd_name);
 void	ft_exec_single(t_command *cmd, t_vars *vars)
 {
 	char	**str;
+	int		saved_in;
+	int		saved_out;
+	int		value;
 
 	if (!ft_is_builtin(cmd->argv[0].value))
 		ft_exec_pipe(cmd, vars);
 	else
 	{
 		str = copy_argv_to_string_array(cmd, argv_length(cmd));
-		int saved_in = dup(STDIN_FILENO);
-		int saved_out = dup(STDOUT_FILENO);
-		int value = ft_handle_redirections(cmd); 
+		saved_in = dup(STDIN_FILENO);
+		saved_out = dup(STDOUT_FILENO);
+		value = ft_handle_redirections(cmd); 
 		if (value != 0)
 		{
 			g_exit_status = (value);

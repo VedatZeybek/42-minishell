@@ -65,6 +65,5 @@ char	*ft_find_cmd_path(char *cmd_name, char **envp, t_vars *vars)
 		return (NULL);
 	if (vars->path)
 		return (ft_check_path(vars, cmd_name));
-	
 	return (NULL);
 }

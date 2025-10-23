@@ -19,6 +19,7 @@ SRC		=	srcs/builtin/arg_count.c \
 			srcs/executor/ft_run_external_command.c \
 			srcs/executor/ft_vars_utils.c \
 			srcs/executor/ft_exec_pipe.c \
+			srcs/executor/ft_copy_args.c \
 			srcs/input/free_utils.c \
 			srcs/input/read_line.c \
 			srcs/lexer/create_and_add_token.c \

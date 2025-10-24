@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:02 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 12:23:45 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/24 13:01:52 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void sigint_handler(int signo)
 		rl_redisplay();
 	}
 }
+
 char	*read_line(void)
 {
 	char			*line;

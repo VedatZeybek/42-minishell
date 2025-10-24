@@ -3,6 +3,7 @@
 static int	create_pipe_and_fork(t_command *cmd, int curr_fd[2]);
 static int	create_pipe_and_fork(t_command *cmd, int curr_fd[2]);
 static void	close_prev_pipes(int prev_fd[2]);
+static void	arrange_pipes(t_command *cmd, int prev_fd[2], int curr_fd[2]);
 
 void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 {

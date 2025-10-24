@@ -19,8 +19,7 @@ static void append_env_var(char **buffer, char *input, int *i)
 	char    *value;
 	int     start;
 
-	(*i)++;
-	if (input[*i] == '?')
+	if (input[++*i] == '?')
 	{
 		value = ft_itoa(g_exit_status);
 		*buffer = ft_strjoin_free(*buffer, value);

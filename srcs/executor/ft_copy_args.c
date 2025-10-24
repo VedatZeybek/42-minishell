@@ -1,8 +1,8 @@
 #include "../../includes/ft_executor.h"
 
-static	int free_result(char **result, int i)
+static	int	free_result(char **result, int i)
 {
-	int 	j;
+	int	j;
 
 	j = 0;
 	if (!result[i])
@@ -24,10 +24,10 @@ char	**copy_argv_to_string_array(t_command *cmd, size_t argv_len)
 	size_t	i;
 
 	if (!cmd || !cmd->argv || argv_len == 0)
-		return NULL;
+		return (NULL);
 	result = malloc((argv_len + 1) * sizeof(char *));
 	if (!result)
-		return NULL;
+		return (NULL);
 	i = 0;
 	while (i < argv_len)
 	{
@@ -37,5 +37,5 @@ char	**copy_argv_to_string_array(t_command *cmd, size_t argv_len)
 		i++;
 	}
 	result[argv_len] = NULL;
-	return result;
+	return (result);
 }

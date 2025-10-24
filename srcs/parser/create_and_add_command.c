@@ -29,4 +29,3 @@ void	add_command(t_command **head, t_command *new_cmd)
 		current = current->next;
 	current->next = new_cmd;
 }
-

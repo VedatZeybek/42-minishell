@@ -10,7 +10,7 @@ static int	handle_operators(char *input, t_token **token, int *i)
 	}
 	if (input[*i] == '>' || input[*i] == '<')
 	{
-		token_redidrect(input, token, i);
+		token_redirect(input, token, i);
 		return (1);
 	}
 	return (0);

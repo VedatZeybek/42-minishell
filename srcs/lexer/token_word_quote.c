@@ -13,7 +13,7 @@ static void	append_single_quote(char **buffer, char *input, int *i)
 		(*i)++;
 }
 
-static void append_env_var(char **buffer, char *input, int *i)
+static void	append_env_var(char **buffer, char *input, int *i)
 {
 	char	*var_name;
 	char	*value;
@@ -42,9 +42,9 @@ static void append_env_var(char **buffer, char *input, int *i)
 	free(var_name);
 }
 
-static void append_double_quote(char **buffer, char *input, int *i)
+static void	append_double_quote(char **buffer, char *input, int *i)
 {
-	int start;
+	int	start;
 
 	(*i)++;
 	start = *i;
@@ -53,7 +53,8 @@ static void append_double_quote(char **buffer, char *input, int *i)
 		if (input[*i] == '$')
 		{
 			if (*i > start)
-				*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+				*buffer = ft_strjoin_free(*buffer,
+						ft_substr(input, start, *i - start));
 			append_env_var(buffer, input, i);
 			start = *i;
 		}

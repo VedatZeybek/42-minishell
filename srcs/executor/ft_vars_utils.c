@@ -21,22 +21,22 @@ static char	**ft_init_env(char **envp)
 
 char	**ft_env_dup(char **envp)
 {
-    char	**dup;
-    int		len;
+	char	**dup;
+	int		len;
 	int		i;
 
 	i = 0;
 	len = ft_env_len(envp);
 	dup = malloc(sizeof(char *) * (len + 1));
-    if (!dup)
-        return NULL;
-    while (i < len)
+	if (!dup)
+		return (NULL);
+	while (i < len)
 	{
-        dup[i] = ft_strdup(envp[i]);
+		dup[i] = ft_strdup(envp[i]);
 		i++;
 	}
-    dup[len] = NULL;
-    return dup;
+	dup[len] = NULL;
+	return (dup);
 }
 
 void	ft_init_vars(t_vars *vars, char **envp)
@@ -47,10 +47,10 @@ void	ft_init_vars(t_vars *vars, char **envp)
 
 void	ft_free_vars(t_vars *vars)
 {
-	int i;
+	int	i;
 
 	if (!vars)
-		return;
+		return ;
 	if (vars->envp)
 	{
 		i = 0;
@@ -66,10 +66,7 @@ void	ft_free_vars(t_vars *vars)
 	{
 		i = 0;
 		while (vars->path[i])
-		{
-			free(vars->path[i]);
-			i++;
-		}
+			free(vars->path[i++]);
 		free(vars->path);
 		vars->path = NULL;
 	}

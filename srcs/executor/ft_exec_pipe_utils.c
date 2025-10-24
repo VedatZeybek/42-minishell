@@ -3,7 +3,7 @@
 static void	setup_child_pipes(int prev_fd[2], int curr_fd[2], t_command *cmd);
 static int	handle_redirections(t_command *cmd);
 
-void	exec_child_process(t_command *cmd, t_vars *vars, \
+void	exec_child_process(t_command *cmd, t_vars *vars,
 								int prev_fd[2], int curr_fd[2])
 {
 	int	value;

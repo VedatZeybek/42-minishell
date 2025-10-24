@@ -2,11 +2,16 @@
 
 char	*ft_strjoin3(char *s1, char *s2, char *s3)
 {
-	char *joined;
-	char *result;
+	char	*tmp;
+	char	*result;
 
-	joined = ft_strjoin_free(s1, s2);
-	result = ft_strjoin_free(joined, s3);
+	if (!s1 || !s2 || !s3)
+		return (NULL);
+	tmp = ft_strjoin(s1, s2);
+	if (!tmp)
+		return (NULL);
+	result = ft_strjoin(tmp, s3);
+	free(tmp);
 	return (result);
 }
 

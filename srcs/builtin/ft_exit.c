@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 14:22:38 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/24 23:02:30 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,8 @@ static int	is_valid_number(const char *str, long long *result)
 	num = 0;
 	if (str[i] == '+' || str[i] == '-')
 	{
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			sign = -1;
-		i++;
 	}
 	if (!str[i])
 		return (0);
@@ -95,11 +94,9 @@ static int	is_valid_number(const char *str, long long *result)
 			return (0);
 		if (num > (LLONG_MAX - (str[i] - '0')) / 10)
 			return (0);
-		num = num * 10 + (str[i] - '0');
-		i++;
+		num = num * 10 + (str[i++] - '0');
 	}
-	*result = num * sign;
-	return (1);
+	return (*result = num * sign, 1);
 }
 
 static void	print_error(const char *msg)

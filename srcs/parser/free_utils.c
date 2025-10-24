@@ -20,7 +20,6 @@ void	free_command(t_command *cmd)
 
 	if (!cmd)
 		return ;
-
 	if (cmd->argv)
 	{
 		i = 0;
@@ -36,4 +35,3 @@ void	free_command(t_command *cmd)
 		free_redirs(cmd->redirections);
 	free(cmd);
 }
-

@@ -6,12 +6,12 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 20:46:11 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 18:17:25 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/24 23:07:15 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#ifndef FT_BUILTIN_H
+# define FT_BUILTIN_H
 
 # include "minishell.h"
 

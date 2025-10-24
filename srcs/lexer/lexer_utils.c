@@ -3,7 +3,7 @@
 int	is_whitespace(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\n'
-			|| c == '\r' || c == '\v' || c == '\f');
+		|| c == '\r' || c == '\v' || c == '\f');
 }
 
 char	*ft_strjoin_free(char *s1, char *s2)

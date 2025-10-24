@@ -1,6 +1,7 @@
 #include "../../includes/parser.h"
 
-static int	add_to_redirections(t_redir **list, t_token_type type, char *filename);
+static int	add_to_redirections(t_redir **list,
+				t_token_type type, char *filename);
 static void	parse_token_chunk(t_token **tmp, t_arg **args, t_redir **redirs);
 
 t_command	*parse_command(t_token **tokens)
@@ -28,7 +29,8 @@ t_command	*parse_command(t_token **tokens)
 	return (cmd);
 }
 
-static int	add_to_redirections(t_redir **list, t_token_type type, char *filename)
+static int	add_to_redirections(t_redir **list,
+			t_token_type type, char *filename)
 {
 	t_redir	*new_node;
 	t_redir	*tmp;

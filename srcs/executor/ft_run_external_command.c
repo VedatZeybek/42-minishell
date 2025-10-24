@@ -9,7 +9,7 @@ int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
 	char	**str;
 
 	str = copy_argv_to_string_array(cmd, argv_length(cmd));
-	if (!cmd || !cmd->argv || !cmd->argv[0].value \
+	if (!cmd || !cmd->argv || !cmd->argv[0].value
 		|| cmd->argv[0].value[0] == '\0')
 	{
 		g_exit_status = 0;

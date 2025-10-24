@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 13:56:23 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/24 22:55:43 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_process_redirection(t_redir *redir)
 	}
 	else if (redir->type == TOKEN_HEREDOC)
 	{
-    	return (ft_open_heredoc(redir->filename));
+		return (ft_open_heredoc(redir->filename));
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:31:19 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 20:31:19 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/24 23:08:54 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_token
 
 t_token				*tokenize(char *input);
 t_token				*create_token(char *value, t_token_type type);
-void				token_redidrect(char *input, t_token **token, int *i);
+void				token_redirect(char *input, t_token **token, int *i);
 void				add_token(t_token **head, t_token *new_token);
 int					is_whitespace(char c);
 void				free_tokens(t_token *token);

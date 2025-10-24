@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:55:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 07:55:58 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/24 22:56:53 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 size_t	argv_length(t_command *cmd)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	if (!cmd || !cmd->argv)
-		return 0;
+		return (0);
 	while (cmd->argv[len].value != NULL)
 		len++;
 	return (len);
@@ -50,4 +50,3 @@ int	ft_check_builtin(const char *c, const char *b)
 		return (1);
 	return (0);
 }
-

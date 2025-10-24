@@ -13,6 +13,7 @@ int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
 		|| cmd->argv[0].value[0] == '\0')
 	{
 		g_exit_status = 0;
+		free_string_array(str);
 		return (0);
 	}
 	if (ft_strchr(cmd->argv[0].value, '/'))
@@ -64,6 +65,8 @@ static int	execute_from_env_path(char *cmd_name, t_vars *vars, char **str)
 	if (!cmd_path)
 	{
 		g_exit_status = 127;
+		free(cmd_path);
+		free_string_array(str);
 		write_error(NULL, cmd_name, ": command not found\n");
 		return (127);
 	}
@@ -71,6 +74,7 @@ static int	execute_from_env_path(char *cmd_name, t_vars *vars, char **str)
 	{
 		perror("minishell");
 		free(cmd_path);
+		free_string_array(str);
 		g_exit_status = 1;
 		return (1);
 	}

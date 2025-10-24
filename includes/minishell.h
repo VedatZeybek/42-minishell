@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 13:08:49 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/24 20:11:06 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ extern int	g_exit_status;
 
 typedef struct s_shell
 {
-	int	running;
+	int			running;
 }		t_shell;
 
 char	*read_line(void);

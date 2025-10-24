@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:26 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 12:10:51 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/24 21:20:41 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int ft_run_commands(t_command *cmd_list, t_vars *vars)
 {
 	t_command	*tmp;
 	int			n;
-	
+
 	tmp = cmd_list;
 	if (!tmp || !vars)
 		return 1;

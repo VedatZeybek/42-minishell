@@ -43,6 +43,9 @@ int	ft_cd(char **args)
 		return (cd_to(home));
 	}
 	if (n > 2)
-		return (perror("minishell: cd: too many arguments\n"), 1);
+	{
+		write(2, "minishell: cd: too many arguments\n", 34);
+		return (1);
+	}
 	return (cd_to(args[1]));
 }

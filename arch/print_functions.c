@@ -1,4 +1,5 @@
 #include "minishell.h"
+#include "printf.h"
 
 void print_tokens(t_token *tokens)
 {
@@ -12,7 +13,7 @@ void print_tokens(t_token *tokens)
 
 void	print_command(t_command *cmd)
 {
-	int	i;
+	int		i;
 	t_redir	*redir;
 
 	while (cmd)

@@ -24,7 +24,9 @@ static int	process_token(char *input, t_token **token, int *i)
 		return (1);
 	if (input[*i] && !is_whitespace(input[*i]))
 	{
-		printf("minishell: unexpected character '%c'\n", input[*i]);
+		write(2, "minishell: unexpected character '", 34);
+		write(2, &input[*i], 1);
+		write(2, "'\n", 2);
 		free_tokens(*token);
 		return (0);
 	}

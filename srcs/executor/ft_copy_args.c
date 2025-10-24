@@ -21,7 +21,7 @@ static	int free_result(char **result, int i)
 char	**copy_argv_to_string_array(t_command *cmd, size_t argv_len)
 {
 	char	**result;
-	size_t	i;	
+	size_t	i;
 
 	if (!cmd || !cmd->argv || argv_len == 0)
 		return NULL;

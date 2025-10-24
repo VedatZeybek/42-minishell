@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:31:22 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 20:31:23 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/24 13:23:57 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct s_command
 	struct s_command	*next;
 }						t_command;
 
+int						add_arg(t_arg **args, char *value, t_token_type type);
 void					free_command(t_command *cmd);
-t_command				*create_command(t_arg *args, t_redir *redirections);
 void					add_command(t_command **head, t_command *new_cmd);
+t_command				*create_command(t_arg *args, t_redir *redirections);
 t_command				*parse_command(t_token **tokens);
 
 #endif

@@ -15,9 +15,9 @@ static void	append_single_quote(char **buffer, char *input, int *i)
 
 static void append_env_var(char **buffer, char *input, int *i)
 {
-	char    *var_name;
-	char    *value;
-	int     start;
+	char	*var_name;
+	char	*value;
+	int		start;
 
 	if (input[++*i] == '?')
 	{

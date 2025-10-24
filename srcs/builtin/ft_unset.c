@@ -3,26 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:04:03 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 20:04:04 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/24 14:55:26 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_executor.h"
 
-int	ft_env_len(char **envp)
+static void	ft_remove_env(t_vars *vars, char *key);
+
+int	ft_unset(t_vars *vars, char **args)
 {
 	int	i;
 
-	i = 0;
-	while (envp && envp[i])
+	i = 1;
+	while (args[i])
+	{
+		ft_remove_env(vars, args[i]);
 		i++;
-	return (i);
+	}
+	return (0);
 }
 
-void	ft_remove_env(t_vars *vars, char *key)
+static void	ft_remove_env(t_vars *vars, char *key)
 {
 	int		i;
 	int		j;
@@ -45,17 +50,4 @@ void	ft_remove_env(t_vars *vars, char *key)
 	new_env[j] = NULL;
 	free(vars->envp);
 	vars->envp = new_env;
-}
-
-int	ft_unset(t_vars *vars, char **args)
-{
-	int	i;
-
-	i = 1;
-	while (args[i])
-	{
-		ft_remove_env(vars, args[i]);
-		i++;
-	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 12:31:20 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/24 13:08:49 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@
 # include "tokenizer.h"
 # include "parser.h"
 
-#define RED        "\001\033[21m\002"
+#define RED        "\001\033[0;31m\002"
 #define GREEN      "\001\033[0;32m\002"
 #define YELLOW     "\001\033[0;33m\002"
 #define BLUE       "\001\033[0;34m\002"
 #define MAGENTA    "\001\033[0;35m\002"
 #define CYAN       "\001\033[0;36m\002"
-#define LIGHT_RED  "\001\033[99m\002"
+#define LIGHT_RED  "\001\033[91m\002"
 #define LIGHT_GREEN "\001\033[92m\002"
 #define LIGHT_YELLOW "\001\033[93m\002"
 #define LIGHT_BLUE "\001\033[94m\002"

@@ -2,7 +2,7 @@
 
 static void	free_redirs(t_redir *redir)
 {
-	t_redir *tmp;
+	t_redir	*tmp;
 
 	while (redir)
 	{
@@ -16,7 +16,7 @@ static void	free_redirs(t_redir *redir)
 
 void	free_command(t_command *cmd)
 {
-	int i;
+	int	i;
 
 	if (!cmd)
 		return ;

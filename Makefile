@@ -9,6 +9,7 @@ SRC		=	srcs/builtin/ft_arg_count.c \
 			srcs/builtin/ft_export.c \
 			srcs/builtin/ft_pwd.c \
 			srcs/builtin/ft_unset.c \
+			srcs/builtin/ft_utils.c \
 			srcs/executor/ft_builtin_utils.c \
 			srcs/executor/ft_cmd_exec.c \
 			srcs/executor/ft_exec_cmds.c \
@@ -28,6 +29,7 @@ SRC		=	srcs/builtin/ft_arg_count.c \
 			srcs/lexer/token_redirect.c \
 			srcs/lexer/tokenizer.c \
 			srcs/lexer/token_word_quote.c \
+			srcs/parser/add_args.c \
 			srcs/parser/command_parser.c \
 			srcs/parser/create_and_add_command.c \
 			srcs/parser/free_utils.c \

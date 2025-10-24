@@ -67,28 +67,36 @@ static void append_double_quote(char **buffer, char *input, int *i)
 		(*i)++;
 }
 
+static void	process_word(char **buffer, char *input, int *i)
+{
+	char	temp[2];
+
+	if (input[*i] == '\'')
+		append_single_quote(buffer, input, i);
+	else if (input[*i] == '"')
+		append_double_quote(buffer, input, i);
+	else if (input[*i] == '$')
+		append_env_var(buffer, input, i);
+	else
+	{
+		temp[0] = input[*i];
+		temp[1] = '\0';
+		*buffer = ft_strjoin_free(*buffer, temp);
+		(*i)++;
+	}
+}
+
 int	handle_word(char *input, t_token **token, int *i)
 {
 	char	*buffer;
 	int		start_i;
 
-	buffer = ft_strdup("");
 	start_i = *i;
+	buffer = ft_strdup("");
 	while (input[*i] && !is_whitespace(input[*i])
 		&& input[*i] != '|' && input[*i] != '<' && input[*i] != '>')
 	{
-		if (input[*i] == '\'')
-			append_single_quote(&buffer, input, i);
-		else if (input[*i] == '"')
-			append_double_quote(&buffer, input, i);
-		else if (input[*i] == '$')
-			append_env_var(&buffer, input, i);
-		else
-		{
-			char temp[2] = {input[*i], '\0'};
-			buffer = ft_strjoin_free(buffer, temp);
-			(*i)++;
-		}
+		process_word(&buffer, input, i);
 	}
 	if (ft_strlen(buffer) > 0)
 	{

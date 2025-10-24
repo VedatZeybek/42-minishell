@@ -18,6 +18,7 @@ SRC		=	srcs/builtin/ft_arg_count.c \
 			srcs/executor/ft_heredoc.c \
 			srcs/executor/ft_run_external_command.c \
 			srcs/executor/ft_vars_utils.c \
+			srcs/executor/ft_exec_pipe_utils.c \
 			srcs/executor/ft_exec_pipe.c \
 			srcs/executor/ft_copy_args.c \
 			srcs/input/free_utils.c \

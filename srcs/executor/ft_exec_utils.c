@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:52:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 18:02:24 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/24 12:36:11 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_executor.h"
-
-static char	*ft_strjoin_custom(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	char	*res;
-
-	i = 0;
-	j = 0;
-	res = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!res)
-		return (NULL);
-	while (s1 && s1[i])
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (s2 && s2[j] && s2[j] != ' ')
-		res[i++] = s2[j++];
-	res[i] = '\0';
-	free(s1);
-	return (res);
-}
 
 char	*ft_check_path(t_vars *vars, char *cmd)
 {
@@ -50,7 +27,7 @@ char	*ft_check_path(t_vars *vars, char *cmd)
 	i = -1;
 	while (vars->path && vars->path[++i])
 	{
-		temp = ft_strjoin_custom(ft_strjoin(vars->path[i], "/"), cmd);
+		temp = ft_strjoin_free(ft_strjoin(vars->path[i], "/"), cmd);
 		if (access(temp, X_OK) == 0)
 			return (temp);
 		free(temp);

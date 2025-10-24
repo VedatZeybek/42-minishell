@@ -1,6 +1,26 @@
 #include "ft_executor.h"
 #include "get_next_line.h"
 
+static int	set_pipe_and_fork(int fd[2], pid_t *pid);
+static void	heredoc_child(int write_fd, char *limiter);
+
+int	ft_open_heredoc(char *limiter)
+{
+	int		fd[2];
+	pid_t	pid;
+	int		status;
+
+	if (set_pipe_and_fork(fd, &pid) != 0)
+		return (1);
+	if (pid == 0)
+		heredoc_child(fd[1], limiter);
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
+	waitpid(pid, &status, 0);
+	return (0);
+}
+
 static int	check_limiter(char *line, char *limiter)
 {
 	size_t	len;
@@ -52,22 +72,5 @@ static int	set_pipe_and_fork(int fd[2], pid_t *pid)
 		perror("fork");
 		return (1);
 	}
-	return (0);
-}
-
-int	ft_open_heredoc(char *limiter)
-{
-	int		fd[2];
-	pid_t	pid;
-	int		status;
-
-	if (set_pipe_and_fork(fd, &pid) != 0)
-		return (1);
-	if (pid == 0)
-		heredoc_child(fd[1], limiter);
-	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	waitpid(pid, &status, 0);
 	return (0);
 }

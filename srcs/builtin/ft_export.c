@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 20:11:54 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/24 12:19:07 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

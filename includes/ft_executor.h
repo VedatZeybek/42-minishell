@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:00:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 20:15:00 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/24 12:06:51 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ int			ft_unset(t_vars *vars, char **args);
 int			ft_open_heredoc(char *limiter);
 void		print_command(t_command *cmd);
 void		ft_free_vars(t_vars *vars);
+void		exec_child_process(t_command *cmd, t_vars *vars, \
+									int prev_fd[2], int curr_fd[2]);
 
 #endif

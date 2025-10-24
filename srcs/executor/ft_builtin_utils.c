@@ -12,22 +12,30 @@
 
 #include "../../includes/ft_executor.h"
 
-size_t argv_length(t_command *cmd)
+size_t	argv_length(t_command *cmd)
 {
+	size_t len;
+
+	len = 0;
 	if (!cmd || !cmd->argv)
 		return 0;
-
-	size_t len = 0;
 	while (cmd->argv[len].value != NULL)
 		len++;
-	return len;
+	return (len);
 }
 
-void free_string_array(char **arr)
+void	free_string_array(char **arr)
 {
-	if (!arr) return;
-	for (size_t i = 0; arr[i]; i++)
+	size_t	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
 		free(arr[i]);
+		i++;
+	}
 	free(arr);
 }
 

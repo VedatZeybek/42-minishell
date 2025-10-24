@@ -1,6 +1,25 @@
 #include "../../includes/ft_executor.h"
 #include <sys/stat.h>
 
+static int	execute_with_path(char *cmd_name, char **str, char **envp);
+static int	execute_from_env_path(char *cmd_name, t_vars *vars, char **str);
+
+int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
+{
+	char	**str;
+
+	str = copy_argv_to_string_array(cmd, argv_length(cmd));
+	if (!cmd || !cmd->argv || !cmd->argv[0].value \
+		|| cmd->argv[0].value[0] == '\0')
+	{
+		g_exit_status = 0;
+		return (0);
+	}
+	if (ft_strchr(cmd->argv[0].value, '/'))
+		return (execute_with_path(cmd->argv[0].value, str, vars->envp));
+	return (execute_from_env_path(cmd->argv[0].value, vars, str));
+}
+
 static void	write_error(char *prefix, char *cmd, char *suffix)
 {
 	if (prefix)
@@ -57,20 +76,4 @@ static int	execute_from_env_path(char *cmd_name, t_vars *vars, char **str)
 	}
 	free(cmd_path);
 	return (0);
-}
-
-int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
-{
-	char	**str;
-
-	str = copy_argv_to_string_array(cmd, argv_length(cmd));
-	if (!cmd || !cmd->argv || !cmd->argv[0].value \
-		|| cmd->argv[0].value[0] == '\0')
-	{
-		g_exit_status = 0;
-		return (0);
-	}
-	if (ft_strchr(cmd->argv[0].value, '/'))
-		return (execute_with_path(cmd->argv[0].value, str, vars->envp));
-	return (execute_from_env_path(cmd->argv[0].value, vars, str));
 }

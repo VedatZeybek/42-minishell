@@ -34,6 +34,26 @@ char	**ft_realloc_add(char **arr, char *new_str)
 	return (new_arr);
 }
 
+int	ft_is_valid_input(char *arg)
+{
+	int	i;
+
+	if (!arg || !arg[0])
+		return (0);
+	if (arg[0] == '=')
+		return (0);
+	if (!(ft_isalpha(arg[0]) || arg[0] == '_'))
+		return (0);
+	i = 1;
+	while (arg[i] && arg[i] != '=')
+	{
+		if (!(ft_isalnum(arg[i]) || arg[i] == '_'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	ft_env_len(char **envp)
 {
 	int	i;

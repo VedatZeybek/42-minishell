@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 14:20:25 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/24 18:22:09 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ int	ft_export(t_vars *vars, char **args)
 
 	if (!vars || !args)
 		return (1);
+	if (!ft_is_valid_input(args[1]))
+	{
+		write(2, "minishell: export: `", 21);
+		write(2, args[1], ft_strlen(args[1]));
+		write(2, "': not a valid identifier\n", 27);
+		return (1);
+	}
 	eq = ft_strchr(args[1], '=');
 	i = 0;
 	while (args[1][i])
@@ -43,8 +50,7 @@ int	ft_export(t_vars *vars, char **args)
 	return (0);
 }
 
-
-static int	ft_set_env_helper(t_vars *vars, char *key, char *value)
+static int	ft_update_env(t_vars *vars, char *key, char *value)
 {
 	size_t	klen;
 	size_t	elen;
@@ -77,7 +83,7 @@ static void	ft_set_env(t_vars *vars, char *key, char *value)
 
 	if (!vars || !key || !value)
 		return ;
-	ft_set_env_helper(vars, key, value);
+	ft_update_env(vars, key, value);
 	new_env = ft_strjoin3(key, "=", value);
 	if (!new_env)
 		return ;

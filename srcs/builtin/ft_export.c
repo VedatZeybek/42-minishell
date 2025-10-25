@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 23:30:16 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/25 14:23:38 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	ft_update_env(t_vars *vars, char *key, char *value)
 	while (vars->envp && vars->envp[i])
 	{
 		if (ft_strncmp(vars->envp[i], key, klen) == 0
-				&& vars->envp[i][klen] == '=')
+			&& vars->envp[i][klen] == '=')
 		{
 			tmp = ft_strjoin3(key, "=", value);
 			if (!tmp)

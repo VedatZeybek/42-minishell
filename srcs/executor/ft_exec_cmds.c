@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_cmds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:52:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 18:00:36 by vzeybek          ###   ########.fr       */
+/*   Updated: 2025/10/25 14:29:38 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	ft_exec_single(t_command *cmd, t_vars *vars)
 	{
 		str = copy_argv_to_string_array(cmd, argv_length(cmd));
 		ft_execute_builtin(cmd, vars, str);
+		free_splitted(str);
 	}
 }

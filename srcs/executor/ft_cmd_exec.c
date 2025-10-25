@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cmd_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 22:55:32 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/25 14:29:38 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,26 @@ int	ft_is_builtin(char *cmd_name)
 int	ft_call_builtin(t_command *cmd, t_vars *vars)
 {
 	char	**str;
+	int		result;
 
 	str = copy_argv_to_string_array(cmd, argv_length(cmd));
+	result = 0;
 	if (ft_check_builtin(cmd->argv[0].value, "echo"))
-		return (ft_echo(str));
+		result = ft_echo(str);
 	else if (ft_check_builtin(cmd->argv[0].value, "cd"))
-		return (ft_cd(str));
+		result = ft_cd(str);
 	else if (ft_check_builtin(cmd->argv[0].value, "pwd"))
-		return (ft_pwd(str));
+		result = ft_pwd(str);
 	else if (ft_check_builtin(cmd->argv[0].value, "env"))
-		return (ft_env(str, vars->envp));
+		result = ft_env(str, vars->envp);
 	else if (ft_check_builtin(cmd->argv[0].value, "exit"))
-		return (ft_exit_child(str));
+		result = ft_exit_child(str);
 	else if (ft_check_builtin(cmd->argv[0].value, "export"))
-		return (ft_export(vars, str));
+		result = ft_export(vars, str);
 	else if (ft_check_builtin(cmd->argv[0].value, "unset"))
-		return (ft_unset(vars, str));
+		result = ft_unset(vars, str);
 	free_splitted(str);
-	return (0);
+	return (result);
 }
 
 int	ft_run_builtin(t_command *cmd, t_vars *vars)

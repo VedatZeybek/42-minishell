@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:00:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 19:55:46 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/28 17:43:01 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ typedef struct s_vars
 	char	**envp;
 	char	**path;
 }			t_vars;
+
+typedef struct s_pipes
+{
+	int		prev[2];
+	int		curr[2];
+}	t_pipes;
 
 int			ft_run_commands(t_command *cmd_list, t_vars *vars);
 void		ft_exec_single(t_command *cmd, t_vars *vars);
@@ -46,9 +52,8 @@ size_t		argv_length(t_command *cmd);
 int			ft_export(t_vars *vars, char **args);
 int			ft_unset(t_vars *vars, char **args);
 int			ft_open_heredoc(char *limiter);
-void		print_command(t_command *cmd);
 void		ft_free_vars(t_vars *vars);
-void		exec_child_process(t_command *cmd, t_vars *vars,\
-						int prev_fd[2], int curr_fd[2]);
+void		exec_child_process(t_command *cmd, t_command *cmd_list_head,
+				t_vars *vars, t_pipes *pipes);
 
 #endif

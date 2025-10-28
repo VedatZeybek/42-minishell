@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:03 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:22:04 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:17:40 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ void	free_command(t_command *cmd)
 	if (cmd->redirections)
 		free_redirs(cmd->redirections);
 	free(cmd);
+}
+
+void free_command_list(t_command *cmd)
+{
+	t_command	*tmp;
+	t_command	*next;
+
+	tmp = cmd;
+	while (tmp)
+	{
+		next = tmp->next;
+		free_command(tmp);
+		tmp = next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:21 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 13:55:04 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/28 17:41:04 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static void	setup_child_pipes(int prev_fd[2], int curr_fd[2], t_command *cmd);
 static int	handle_redirections(t_command *cmd);
 
-void	exec_child_process(t_command *cmd, t_vars *vars,
-								int prev_fd[2], int curr_fd[2])
+void	exec_child_process(t_command *cmd, t_command *cmd_list_head,
+						t_vars *vars, t_pipes *pipes)
 {
 	int	value;
 
-	setup_child_pipes(prev_fd, curr_fd, cmd);
+	setup_child_pipes(pipes->prev, pipes->curr, cmd);
 	handle_redirections(cmd);
 	if (ft_is_builtin(cmd->argv[0].value))
 		exit(ft_run_builtin(cmd, vars));
@@ -31,7 +31,7 @@ void	exec_child_process(t_command *cmd, t_vars *vars,
 			g_exit_status = 0;
 		else
 		{
-			free_command(cmd);
+			free_command_list(cmd_list_head);
 			ft_free_vars(vars);
 			exit(value);
 		}

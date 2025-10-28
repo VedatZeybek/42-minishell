@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:26 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:22:26 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:37:59 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,22 @@ static void	arrange_pipes(t_command *cmd, int prev_fd[2], int curr_fd[2]);
 void	ft_exec_pipe(t_command *cmd_list, t_vars *vars)
 {
 	t_command	*cmd;
-	int			prev_fd[2];
-	int			curr_fd[2];
+	t_pipes		pipes;
 	pid_t		pid;
 	int			i;
 
 	cmd = cmd_list;
-	prev_fd[0] = -1;
-	prev_fd[1] = -1;
+	pipes.prev[0] = -1;
+	pipes.prev[1] = -1;
 	i = 0;
 	while (cmd)
 	{
-		pid = create_pipe_and_fork(cmd, curr_fd);
+		pid = create_pipe_and_fork(cmd, pipes.curr);
 		if (pid == -1)
 			return ;
 		if (pid == 0)
-			exec_child_process(cmd, vars, prev_fd, curr_fd);
-		arrange_pipes(cmd, prev_fd, curr_fd);
+			exec_child_process(cmd, cmd_list, vars, &pipes);
+		arrange_pipes(cmd, pipes.prev, pipes.curr);
 		cmd = cmd->next;
 		i++;
 	}

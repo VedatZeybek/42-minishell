@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:31:22 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 13:23:57 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/28 14:59:35 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_command
 int						add_arg(t_arg **args, char *value, t_token_type type);
 void					free_command(t_command *cmd);
 void					add_command(t_command **head, t_command *new_cmd);
+void					free_command_list(t_command *cmd);
 t_command				*create_command(t_arg *args, t_redir *redirections);
 t_command				*parse_command(t_token **tokens);
 

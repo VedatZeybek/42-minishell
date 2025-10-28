@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 13:56:22 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/28 16:42:29 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void	run_input(char *line, t_vars *vars)
 {
 	t_token		*tokens;
 	t_command	*command;
-	t_command	*tmp;
-	t_command	*next;
 
 	tokens = tokenize(line);
 	command = parse_command(&tokens);
@@ -28,13 +26,8 @@ static void	run_input(char *line, t_vars *vars)
 	if (command)
 	{
 		ft_run_commands(command, vars);
-		tmp = command;
-		while (tmp)
-		{
-			next = tmp->next;
-			free_command(tmp);
-			tmp = next;
-		}
+		wait(NULL);
+		free_command_list(command);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 22:50:10 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/28 13:56:22 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	run_input(char *line, t_vars *vars)
 
 	tokens = tokenize(line);
 	command = parse_command(&tokens);
+	free_tokens(tokens);
 	if (command)
 	{
 		ft_run_commands(command, vars);
@@ -35,7 +36,6 @@ static void	run_input(char *line, t_vars *vars)
 			tmp = next;
 		}
 	}
-	free_tokens(tokens);
 }
 
 int	main(int argc, char **argv, char **env)

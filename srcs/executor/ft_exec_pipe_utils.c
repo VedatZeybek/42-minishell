@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:21 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:22:21 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:55:04 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	exec_child_process(t_command *cmd, t_vars *vars,
 		if (value == 0 && cmd->next)
 			g_exit_status = 0;
 		else
+		{
+			free_command(cmd);
+			ft_free_vars(vars);
 			exit(value);
+		}
 	}
 }
 

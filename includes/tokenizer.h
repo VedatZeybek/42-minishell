@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:31:19 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 23:08:54 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 00:07:34 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ int					is_whitespace(char c);
 void				free_tokens(t_token *token);
 char				*ft_strjoin_free(char *s1, char *s2);
 int					handle_word(char *input, t_token **token, int *i);
-
+int					syntax_check(t_token *tok);
 #endif

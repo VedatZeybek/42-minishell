@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 14:21:41 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 01:30:01 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ typedef struct s_shell
 	int			running;
 }		t_shell;
 
-char	*read_line(void);
-void	free_splitted(char **str);
+char		*read_line(void);
+void		free_splitted(char **str);
+int			syntax_error(const char *near);
+int			is_redir(int type);
+const char	*token_repr(int type);
 
 #endif

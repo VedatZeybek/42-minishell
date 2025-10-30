@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:21 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 17:41:04 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 01:29:45 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ void	exec_child_process(t_command *cmd, t_command *cmd_list_head,
 	setup_child_pipes(pipes->prev, pipes->curr, cmd);
 	handle_redirections(cmd);
 	if (ft_is_builtin(cmd->argv[0].value))
-		exit(ft_run_builtin(cmd, vars));
+	{
+		value = ft_run_builtin(cmd, vars);
+		free_command_list(cmd_list_head);
+		ft_free_vars(vars);
+		exit(value);
+	}
 	else
 	{
 		value = ft_run_external_cmd(cmd, vars);

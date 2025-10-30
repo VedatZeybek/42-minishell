@@ -3,40 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:35 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:22:35 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 01:14:13 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_executor.h"
 #include "get_next_line.h"
 
-static int	set_pipe_and_fork(int fd[2], pid_t *pid);
-static void	heredoc_child(int write_fd, char *limiter);
-
-int	ft_open_heredoc(char *limiter)
-{
-	int		fd[2];
-	pid_t	pid;
-	int		status;
-
-	if (set_pipe_and_fork(fd, &pid) != 0)
-		return (1);
-	if (pid == 0)
-		heredoc_child(fd[1], limiter);
-	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	waitpid(pid, &status, 0);
-	return (0);
-}
-
 static int	check_limiter(char *line, char *limiter)
 {
 	size_t	len;
 
+	if (!line)
+		return (0);
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
@@ -46,43 +28,65 @@ static int	check_limiter(char *line, char *limiter)
 	return (0);
 }
 
-static void	heredoc_child(int write_fd, char *limiter)
+static int	handle_heredoc_error(char *limiter)
+{
+	if (!limiter || !*limiter)
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token", 2);
+		ft_putstr_fd(" `newline'\n", 2);
+		g_exit_status = 2;
+		return (1);
+	}
+	return (0);
+}
+
+static void	write_line_to_pipe(int fd, char *line)
+{
+	write(fd, line, ft_strlen(line));
+	if (ft_strlen(line) == 0 || line[ft_strlen(line) - 1] != '\n')
+		write(fd, "\n", 1);
+}
+
+static int	read_heredoc_lines(int *fd, char *limiter)
 {
 	char	*line;
 
-	close(write_fd);
 	while (1)
 	{
 		write(STDOUT_FILENO, "> ", 2);
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
-			exit(0);
+			break ;
 		if (check_limiter(line, limiter))
 		{
 			free(line);
-			exit(0);
+			break ;
 		}
-		write(write_fd, line, ft_strlen(line));
-		if (line[ft_strlen(line) - 1] != '\n')
-			write(write_fd, "\n", 1);
+		write_line_to_pipe(fd[1], line);
 		free(line);
 	}
+	return (0);
 }
 
-static int	set_pipe_and_fork(int fd[2], pid_t *pid)
+int	ft_open_heredoc(char *limiter)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	int		fd[2];
+
+	if (handle_heredoc_error(limiter))
+		return (1);
 	if (pipe(fd) == -1)
 	{
 		perror("pipe");
 		return (1);
 	}
-	*pid = fork();
-	if (*pid == -1)
+	read_heredoc_lines(fd, limiter);
+	close(fd[1]);
+	if (dup2(fd[0], STDIN_FILENO) == -1)
 	{
-		perror("fork");
+		perror("dup2");
+		close(fd[0]);
 		return (1);
 	}
+	close(fd[0]);
 	return (0);
 }

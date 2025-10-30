@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 16:42:29 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 01:33:50 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ static void	run_input(char *line, t_vars *vars)
 	t_command	*command;
 
 	tokens = tokenize(line);
+	if (syntax_check(tokens))
+	{
+		free_tokens(tokens);
+		return ;
+	}
 	command = parse_command(&tokens);
 	free_tokens(tokens);
 	if (command)
 	{
 		ft_run_commands(command, vars);
-		wait(NULL);
 		free_command_list(command);
 	}
 }
@@ -52,3 +56,9 @@ int	main(int argc, char **argv, char **env)
 	ft_free_vars(&vars);
 	return (0);
 }
+
+//tab sinyali ayarlanabilir
+//yeni path directory export edince ordaki komut çalışmıyor
+//heredoc hatalı 
+//builtins pipe ile verilince leak var
+

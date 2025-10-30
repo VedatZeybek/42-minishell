@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cmd_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:29:38 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 01:04:39 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	ft_is_builtin(char *cmd_name)
 {
+	if (!cmd_name || cmd_name[0] == '<' || cmd_name[0] == '>'
+		|| cmd_name[0] == '|')
+		return (0);
 	if (!cmd_name)
 		return (0);
 	if (ft_check_builtin(cmd_name, "echo") || ft_check_builtin(cmd_name, "cd"))

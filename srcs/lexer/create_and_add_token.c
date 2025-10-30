@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_and_add_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:33 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:21:33 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 01:11:40 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,17 @@ void	add_token(t_token **head, t_token *new_token)
 	while (current->next)
 		current = current->next;
 	current->next = new_token;
+}
+
+void	free_tokens(t_token *token)
+{
+	t_token	*tmp;
+
+	while (token)
+	{
+		tmp = token;
+		token = token->next;
+		free(tmp->value);
+		free(tmp);
+	}
 }

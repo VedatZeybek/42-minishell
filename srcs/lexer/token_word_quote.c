@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_word_quote.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:45 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:21:46 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/30 22:28:29 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	handle_word(char *input, t_token **token, int *i)
 	{
 		process_word(&buffer, input, i);
 	}
-	if (ft_strlen(buffer) > 0)
+	if (*i > start_i)
 	{
 		add_token(token, create_token(buffer, TOKEN_WORD));
 		free(buffer);

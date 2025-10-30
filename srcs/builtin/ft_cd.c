@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:01:08 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/07 19:52:02 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/30 23:14:17 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	cd_to(const char *path)
 		ft_putstr_fd((char *)path, 2);
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 2);
 		g_exit_status = 1;
 		return (1);
 	}

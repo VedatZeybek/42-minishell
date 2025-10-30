@@ -29,6 +29,7 @@ SRC		=	srcs/builtin/ft_arg_count.c \
 			srcs/lexer/token_redirect.c \
 			srcs/lexer/tokenizer.c \
 			srcs/lexer/token_word_quote.c \
+			srcs/lexer/syntax_check.c \
 			srcs/parser/add_args.c \
 			srcs/parser/command_parser.c \
 			srcs/parser/create_and_add_command.c \

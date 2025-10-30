@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 22:55:43 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 01:04:17 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ int	ft_open_input_file(char *filename, int flags)
 {
 	int	fd;
 
+	if (!filename || !*filename)
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token", 2);
+		ft_putstr_fd(" `newline'\n", 2);
+		g_exit_status = 2;
+		return (1);
+	}
 	fd = open(filename, flags, 0644);
 	if (fd == -1)
 	{
@@ -73,6 +80,13 @@ int	ft_open_output_file(char *filename, int flags)
 {
 	int	fd;
 
+	if (!filename || !*filename)
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token", 2);
+		ft_putstr_fd(" `newline'\n", 2);
+		g_exit_status = 2;
+		return (1);
+	}
 	fd = open(filename, flags, 0644);
 	if (fd == -1)
 	{

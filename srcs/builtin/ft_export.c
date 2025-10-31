@@ -6,15 +6,13 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 21:12:10 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:25:30 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 static void	ft_set_env(t_vars *vars, char *key, char *value);
-static int	ft_error_msg(char *arg);
-static int	ft_is_valid_key(char *key);
 static int	ft_update_env(t_vars *vars, char *key, char *value);
 
 int	ft_export(t_vars *vars, char **args)
@@ -23,6 +21,8 @@ int	ft_export(t_vars *vars, char **args)
 	char	*eq;
 	char	*key;
 
+	if (!args[1])
+		return(print_exports(vars));
 	if (!vars || !args || !args[1])
 		return (1);
 	i = 1;
@@ -33,12 +33,8 @@ int	ft_export(t_vars *vars, char **args)
 			key = ft_substr(args[i], 0, eq - args[i]);
 		else
 			key = ft_strdup(args[i]);
-		if (!key)
-			return (1);
-		if (ft_is_valid_key(key))
-			return (free(key), ft_error_msg(args[i]));
-		if (!eq)
-			return (free(key), 0);
+		if (export_valid_checks(key, eq, args[i]) == -1)
+			return (export_valid_checks(key, eq, args[i]));
 		ft_set_env(vars, key, eq + 1);
 		free(key);
 		i++;
@@ -46,7 +42,7 @@ int	ft_export(t_vars *vars, char **args)
 	return (0);
 }
 
-static int	ft_error_msg(char *arg)
+int	ft_error_msg(char *arg)
 {
 	write(2, "minishell: export: `", 21);
 	write(2, arg, ft_strlen(arg));
@@ -54,7 +50,7 @@ static int	ft_error_msg(char *arg)
 	return (1);
 }
 
-static int	ft_is_valid_key(char *key)
+int	ft_is_valid_key(char *key)
 {
 	int	i;
 

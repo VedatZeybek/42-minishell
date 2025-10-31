@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:30:42 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:58:25 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int		ft_cd(char **args, t_vars *vars);
 int		ft_pwd(char **args);
 int		ft_echo(char **args);
 int		ft_env(char **argv, char **envp);
-int		ft_exit(char **args);
+int		ft_exit(char **args, t_vars *vars);
 int		ft_exit_child(char **args);
 int		ft_env_len(char **envp);
 int		ft_is_valid_input(char *str);

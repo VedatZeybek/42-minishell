@@ -10,6 +10,7 @@ SRC		=	srcs/builtin/ft_arg_count.c \
 			srcs/builtin/ft_pwd.c \
 			srcs/builtin/ft_unset.c \
 			srcs/builtin/ft_utils.c \
+			srcs/builtin/ft_export_utils.c \
 			srcs/executor/ft_builtin_utils.c \
 			srcs/executor/ft_cmd_exec.c \
 			srcs/executor/ft_exec_cmds.c \

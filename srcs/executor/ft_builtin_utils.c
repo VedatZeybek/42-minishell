@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:55:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:11:34 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:11:26 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,21 @@ int	ft_check_builtin(const char *c, const char *b)
 	return (0);
 }
 
-char *ft_get_env_elem(char **envp, char *elem_name)
+const char	*ft_get_env_elem(char **envp, char *elem_name)
 {
-	int i = 0;
+	int		i;
+	size_t	name_len;
+
+	if (!envp || !elem_name)
+		return (NULL);
+	name_len = ft_strlen(elem_name);
+	i = 0;
 	while (envp[i])
 	{
-		if (ft_strncmp(envp[i], elem_name, ft_strlen(elem_name)) == 0)
-			break;
+		if (ft_strncmp(envp[i], elem_name, name_len) == 0
+			&& envp[i][name_len] == '=')
+			return (ft_strchr(envp[i], '=') + 1);
 		i++;
 	}
-	return (ft_strchr(envp[i], '=') + 1);
+	return (NULL);
 }

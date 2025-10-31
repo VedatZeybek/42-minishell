@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:04:03 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:16:09 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:08:22 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ static void	ft_remove_env(t_vars *vars, char *key)
 	size_t	len;
 	char	**new_env;
 
+	if (!vars || !vars->envp || !key)
+		return ;
 	i = 0;
 	j = 0;
 	len = ft_strlen(key);
-	new_env = malloc(sizeof(char *) * (ft_env_len(vars->envp)));
+	new_env = malloc(sizeof(char *) * (ft_env_len(vars->envp) + 1));
+	if (!new_env)
+		return ;
 	while (vars->envp[i])
 	{
 		if (!(ft_strncmp(vars->envp[i], key, len) == 0

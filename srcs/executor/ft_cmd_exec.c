@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cmd_exec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 01:04:39 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 11:59:57 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_call_builtin(t_command *cmd, t_vars *vars)
 	if (ft_check_builtin(cmd->argv[0].value, "echo"))
 		result = ft_echo(str);
 	else if (ft_check_builtin(cmd->argv[0].value, "cd"))
-		result = ft_cd(str);
+		result = ft_cd(str, vars);
 	else if (ft_check_builtin(cmd->argv[0].value, "pwd"))
 		result = ft_pwd(str);
 	else if (ft_check_builtin(cmd->argv[0].value, "env"))

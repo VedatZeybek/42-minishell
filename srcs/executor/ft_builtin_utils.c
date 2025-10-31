@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:55:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 22:56:53 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 11:58:38 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ int	ft_check_builtin(const char *c, const char *b)
 	if (tmp == 0)
 		return (1);
 	return (0);
+}
+
+char *ft_get_env_elem(char **envp, char *elem_name)
+{
+	int i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], elem_name, ft_strlen(elem_name)) == 0)
+			break;
+		i++;
+	}
+	return (ft_strchr(envp[i], '=') + 1);
 }

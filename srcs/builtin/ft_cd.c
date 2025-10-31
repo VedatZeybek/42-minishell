@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:01:08 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/30 23:14:17 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:02:15 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/ft_executor.h"
 
 static int	cd_to(const char *path)
 {
@@ -32,7 +32,7 @@ static int	cd_to(const char *path)
 	return (0);
 }
 
-int	ft_cd(char **args)
+int	ft_cd(char **args, t_vars *vars)
 {
 	int			n;
 	const char	*home;
@@ -40,7 +40,7 @@ int	ft_cd(char **args)
 	n = ft_arg_count(args);
 	if (n == 1)
 	{
-		home = getenv("HOME");
+		home = ft_get_env_elem(vars->envp, "HOME");
 		return (cd_to(home));
 	}
 	if (n > 2)

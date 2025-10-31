@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 20:46:11 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/24 23:07:15 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:00:06 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "minishell.h"
 
 int		ft_arg_count(char **args);
-int		ft_cd(char **args);
+int		ft_cd(char **args, t_vars *vars);
 int		ft_pwd(char **args);
 int		ft_echo(char **args);
 int		ft_env(char **argv, char **envp);

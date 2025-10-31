@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:00:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 17:43:01 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 11:57:29 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int			ft_open_heredoc(char *limiter);
 void		ft_free_vars(t_vars *vars);
 void		exec_child_process(t_command *cmd, t_command *cmd_list_head,
 				t_vars *vars, t_pipes *pipes);
+char		*ft_get_env_elem(char **envp, char *elem_name);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:58:27 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:19:46 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_exit(char **args, t_vars *vars)
 	exit_code = 0;
 	result = handle_exit_args(args, &exit_code, 0);
 	printf("exit\n");
+	if (result != 0)
+		return (result);
 	free_splitted(args);
 	if (vars)
 		ft_free_vars(vars);
@@ -45,6 +47,8 @@ int	ft_exit(char **args, t_vars *vars)
 		exit(2);
 	else if (result == 1)
 		exit(1);
+	if (args[1] && is_all_number(args[1]) && !args[2])
+		exit(ft_atoi(args[1]));
 	exit((unsigned char)exit_code);
 }
 

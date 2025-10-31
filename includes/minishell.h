@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:58:25 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:13:33 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ int		ft_env_len(char **envp);
 int		ft_is_valid_input(char *str);
 char	*ft_strjoin3(char *s1, char *s2, char *s3);
 char	**ft_realloc_add(char **arr, char *new_str);
+int		is_all_number(char *str);
 
 // Parser
 int						add_arg(t_arg **args, char *value, t_token_type type);

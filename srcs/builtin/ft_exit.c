@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:15:54 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:15:18 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_exit(char **args)
 		exit(2);
 	else if (result == 1)
 		exit(1);
-	exit((unsigned char)exit_code);
+	exit(g_exit_status);
 }
 
 static int	handle_exit_args(char **args, int *exit_code, int is_child)

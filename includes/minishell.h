@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:19:20 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:30:42 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int			ft_open_heredoc(char *limiter);
 void		ft_free_vars(t_vars *vars);
 void		exec_child_process(t_command *cmd, t_command *cmd_list_head,
 				t_vars *vars, t_pipes *pipes);
-char		*ft_get_env_elem(char **envp, char *elem_name);
+const char	*ft_get_env_elem(char **envp, char *elem_name);
 
 // Builtin
 int		ft_arg_count(char **args);

@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:01:08 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:13:19 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:39:21 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	cd_to(const char *path)
 {
-	if (!path)
+	if (path == NULL)
 	{
-		perror("minishell: cd: HOME not set\n");
+		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
 		return (1);
 	}
 	if (chdir(path) == -1)

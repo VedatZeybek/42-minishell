@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_external_command.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:41 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:17:09 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:16:52 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	execute_from_env_path(char *cmd_name, t_vars *vars, char **str);
 int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
 {
 	char	**str;
+	int		value;
 
 	str = copy_argv_to_string_array(cmd, argv_length(cmd));
 	if (!cmd || !cmd->argv || !cmd->argv[0].value
@@ -27,8 +28,12 @@ int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
 		free_string_array(str);
 		return (0);
 	}
-	if (ft_strchr(cmd->argv[0].value, '/'))
-		return (execute_with_path(cmd->argv[0].value, str, vars->envp));
+    if (ft_strchr(cmd->argv[0].value, '/'))
+    {
+        value = execute_with_path(cmd->argv[0].value, str, vars->envp);
+		free_string_array(str);
+        return (value);
+    }
 	return (execute_from_env_path(cmd->argv[0].value, vars, str));
 }
 

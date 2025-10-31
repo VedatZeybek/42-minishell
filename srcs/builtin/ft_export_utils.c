@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 21:18:23 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 21:25:12 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:26:15 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	export_valid_checks(char *key, char *eq, char *args)
 	return (-1);
 }
 
-int print_exports(t_vars *vars)
+int	print_exports(t_vars *vars)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (vars->envp[i])

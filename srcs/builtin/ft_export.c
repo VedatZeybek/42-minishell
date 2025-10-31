@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 21:25:30 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:26:22 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_export(t_vars *vars, char **args)
 	char	*key;
 
 	if (!args[1])
-		return(print_exports(vars));
+		return (print_exports(vars));
 	if (!vars || !args || !args[1])
 		return (1);
 	i = 1;

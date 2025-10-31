@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:15 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:22:15 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:16:20 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 static	int	free_result(char **result, int i)
 {

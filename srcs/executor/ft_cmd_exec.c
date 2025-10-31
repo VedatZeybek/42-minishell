@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 11:59:57 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:11:57 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 int	ft_is_builtin(char *cmd_name)
 {
@@ -21,11 +21,11 @@ int	ft_is_builtin(char *cmd_name)
 		return (0);
 	if (ft_check_builtin(cmd_name, "echo") || ft_check_builtin(cmd_name, "cd"))
 		return (1);
-	if (ft_check_builtin(cmd_name, "pwd")
-		|| ft_check_builtin(cmd_name, "export"))
+	if (ft_check_builtin(cmd_name, "pwd") || ft_check_builtin(cmd_name,
+			"export"))
 		return (1);
-	if (ft_check_builtin(cmd_name, "unset")
-		|| ft_check_builtin(cmd_name, "env"))
+	if (ft_check_builtin(cmd_name, "unset") || ft_check_builtin(cmd_name,
+			"env"))
 		return (1);
 	if (ft_check_builtin(cmd_name, "exit"))
 		return (1);

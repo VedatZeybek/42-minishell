@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:01:08 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:02:15 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:13:19 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 static int	cd_to(const char *path)
 {

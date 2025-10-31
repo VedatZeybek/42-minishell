@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:23:38 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:15:49 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 static void	ft_set_env(t_vars *vars, char *key, char *value);
 static int	ft_error_msg(char *arg);

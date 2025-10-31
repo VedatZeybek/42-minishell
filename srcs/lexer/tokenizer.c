@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:50 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:21:50 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:17:44 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tokenizer.h"
+#include "../../includes/minishell.h"
 
 static int	handle_operators(char *input, t_token **token, int *i)
 {

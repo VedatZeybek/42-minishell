@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:26 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 00:02:26 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:16:45 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 int	ft_run_commands(t_command *cmd_list, t_vars *vars)
 {

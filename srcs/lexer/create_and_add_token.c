@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_and_add_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:33 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 01:11:40 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:17:30 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tokenizer.h"
+#include "../../includes/minishell.h"
 
 t_token	*create_token(char *value, t_token_type type)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:21 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 01:29:45 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:16:33 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 static void	setup_child_pipes(int prev_fd[2], int curr_fd[2], t_command *cmd);
 static int	handle_redirections(t_command *cmd);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:52:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 17:43:13 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:16:41 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 char	*ft_check_path(t_vars *vars, char *cmd)
 {

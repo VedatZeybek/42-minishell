@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:43 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:21:43 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:17:38 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tokenizer.h"
+#include "../../includes/minishell.h"
 
 static void	token_redirect_in(char *input, t_token **token, int *i);
 static void	token_redirect_out(char *input, t_token **token, int *i);

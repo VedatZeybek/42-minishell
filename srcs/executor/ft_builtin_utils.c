@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:55:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 11:58:38 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:11:34 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 size_t	argv_length(t_command *cmd)
 {

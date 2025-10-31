@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:26 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/28 17:37:59 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:16:37 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
+#include "../../includes/minishell.h"
 
 static int	create_pipe_and_fork(t_command *cmd, int curr_fd[2]);
 static int	create_pipe_and_fork(t_command *cmd, int curr_fd[2]);

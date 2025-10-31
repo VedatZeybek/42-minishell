@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:58 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:21:58 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:17:52 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 static int	add_to_redirections(t_redir **list,
 				t_token_type type, char *filename);

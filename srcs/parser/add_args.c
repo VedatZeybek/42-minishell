@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:56 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:21:56 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:17:48 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../../includes/minishell.h"
 
 static int	count_args(t_arg *args);
 static void	copy_args(t_arg *new_args, t_arg *old_args, int count);

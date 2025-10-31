@@ -6,11 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:48 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:22:49 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:16:13 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_builtin.h"
+#include "../../includes/minishell.h"
 
 char	*ft_strjoin3(char *s1, char *s2, char *s3)
 {

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:35 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 01:14:13 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 12:16:49 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_executor.h"
-#include "get_next_line.h"
+#include "../../includes/minishell.h"
 
 static int	check_limiter(char *line, char *limiter)
 {

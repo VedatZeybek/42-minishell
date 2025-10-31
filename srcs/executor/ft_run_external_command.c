@@ -6,12 +6,11 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:41 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/25 14:22:42 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 12:17:09 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_executor.h"
-#include <sys/stat.h>
+#include "../../includes/minishell.h"
 
 static int	execute_with_path(char *cmd_name, char **str, char **envp);
 static int	execute_from_env_path(char *cmd_name, t_vars *vars, char **str);

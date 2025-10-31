@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:45 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:07:15 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 16:09:44 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 static void	append_single_quote(char **buffer, char *input, int *i)
 {
-	int	start;
+	int		start;
+	char	*tmp;
+	char	*newbuf;
 
 	(*i)++;
 	start = *i;
 	while (input[*i] && input[*i] != '\'')
 		(*i)++;
-	*buffer = ft_strjoin_free(*buffer, ft_substr(input, start, *i - start));
+	if (*i > start)
+	{
+		tmp = ft_substr(input, start, (*i) - start);
+		if (tmp)
+		{
+			newbuf = ft_strjoin(*buffer, tmp);
+			free(tmp);
+			free(*buffer);
+			*buffer = newbuf;
+		}
+	}
 	if (input[*i] == '\'')
 		(*i)++;
 }

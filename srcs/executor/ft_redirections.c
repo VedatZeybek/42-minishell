@@ -3,27 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirections.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:16:52 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 14:11:12 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+int	ft_write_heredoc_to_fd(char *limiter, int wfd);
+
 int	ft_handle_redirections(t_command *cmd)
 {
 	t_redir	*redir;
+	int		heredoc_pipe[2];
+	int		has_heredoc;
+	int		ret;
 
 	if (!cmd || !cmd->redirections)
 		return (0);
+	has_heredoc = 0;
 	redir = cmd->redirections;
 	while (redir)
 	{
-		if (ft_process_redirection(redir) != 0)
-			return (1);
+		if (redir->type == TOKEN_HEREDOC)
+		{
+			if (!has_heredoc)
+			{
+				if (pipe(heredoc_pipe) == -1)
+				{
+					perror("pipe");
+					return (1);
+				}
+				has_heredoc = 1;
+			}
+			ret = ft_write_heredoc_to_fd(redir->filename, heredoc_pipe[1]);
+			if (ret != 0)
+			{
+				close(heredoc_pipe[1]);
+				close(heredoc_pipe[0]);
+				return (ret);
+			}
+		}
+		else
+		{
+			ret = ft_process_redirection(redir);
+			if (ret != 0)
+			{
+				if (has_heredoc)
+				{
+					close(heredoc_pipe[1]);
+					close(heredoc_pipe[0]);
+				}
+				return (ret);
+			}
+		}
 		redir = redir->next;
+	}
+	if (has_heredoc)
+	{
+		close(heredoc_pipe[1]);
+		if (dup2(heredoc_pipe[0], STDIN_FILENO) == -1)
+		{
+			perror("dup2");
+			close(heredoc_pipe[0]);
+			return (1);
+		}
+		close(heredoc_pipe[0]);
 	}
 	return (0);
 }
@@ -45,10 +92,6 @@ int	ft_process_redirection(t_redir *redir)
 	{
 		flags = O_WRONLY | O_CREAT | O_APPEND;
 		return (ft_open_output_file(redir->filename, flags));
-	}
-	else if (redir->type == TOKEN_HEREDOC)
-	{
-		return (ft_open_heredoc(redir->filename));
 	}
 	return (0);
 }

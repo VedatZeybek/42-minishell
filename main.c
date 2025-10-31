@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 13:54:48 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 16:02:29 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,5 @@ int	main(int argc, char **argv, char **env)
 	return (0);
 }
 
-//tab sinyali ayarlanabilir
 //yeni path directory export edince ordaki komut çalışmıyor
-//heredoc hatalı 
-//builtins pipe ile verilince leak var
 

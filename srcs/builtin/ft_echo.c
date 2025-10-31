@@ -6,15 +6,15 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:04:09 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:51:36 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:12:29 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int is_n_continiuing(char *str)
+int	is_n_continiuing(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	str = ft_strchr(str, 'n');

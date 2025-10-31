@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_check.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 21:14:26 by epakdama          #+#    #+#             */
+/*   Updated: 2025/10/31 21:14:26 by epakdama         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 static int	check_redir_sequence(t_token **cur)
@@ -15,7 +27,6 @@ static int	check_redir_sequence(t_token **cur)
 	}
 	return (0);
 }
-
 
 static int	handle_expecting_cmd(t_token **cur, int *expecting_cmd)
 {

@@ -6,15 +6,15 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:48 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 17:13:09 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:11:45 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int is_all_number(char *str)
+int	is_all_number(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

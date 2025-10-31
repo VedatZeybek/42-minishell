@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:55:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:36:55 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:11:26 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	ft_check_builtin(const char *c, const char *b)
 	return (0);
 }
 
-const char *ft_get_env_elem(char **envp, char *elem_name)
+const char	*ft_get_env_elem(char **envp, char *elem_name)
 {
-	int     i;
-	size_t  name_len;
+	int		i;
+	size_t	name_len;
 
 	if (!envp || !elem_name)
 		return (NULL);

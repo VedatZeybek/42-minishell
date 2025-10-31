@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 13:54:48 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/10/31 21:14:09 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-int	g_exit_status = 0;
+int			g_exit_status = 0;
 
 static int	check_unclosed_quotes(const char *s)
 {
@@ -33,7 +33,8 @@ static int	check_unclosed_quotes(const char *s)
 	}
 	if (open)
 	{
-		ft_putstr_fd("minishell: unexpected EOF while looking for matching `", 2);
+		ft_putstr_fd("minishell: unexpected EOF while looking for matching `",
+			2);
 		ft_putchar_fd(open, 2);
 		ft_putstr_fd("'\n", 2);
 		g_exit_status = 2;
@@ -41,7 +42,6 @@ static int	check_unclosed_quotes(const char *s)
 	}
 	return (0);
 }
-
 
 static void	run_input(char *line, t_vars *vars)
 {
@@ -67,9 +67,9 @@ static void	run_input(char *line, t_vars *vars)
 
 int	main(int argc, char **argv, char **env)
 {
-	t_shell		shell;
-	t_vars		vars;
-	char		*line;
+	t_shell	shell;
+	t_vars	vars;
+	char	*line;
 
 	(void)argc;
 	(void)argv;
@@ -87,8 +87,7 @@ int	main(int argc, char **argv, char **env)
 	return (0);
 }
 
-//tab sinyali ayarlanabilir
-//yeni path directory export edince ordaki komut çalışmıyor
-//heredoc hatalı 
-//builtins pipe ile verilince leak var
-
+// tab sinyali ayarlanabilir
+// yeni path directory export edince ordaki komut çalışmıyor
+// heredoc hatalı
+// builtins pipe ile verilince leak var

@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 17:28:38 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 21:12:10 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,30 @@ static int	ft_update_env(t_vars *vars, char *key, char *value);
 
 int	ft_export(t_vars *vars, char **args)
 {
+	int		i;
 	char	*eq;
 	char	*key;
 
 	if (!vars || !args || !args[1])
 		return (1);
-	eq = ft_strchr(args[1], '=');
-	if (eq)
-		key = ft_substr(args[1], 0, eq - args[1]);
-	else
-		key = ft_strdup(args[1]);
-	if (!key)
-		return (1);
-	if (ft_is_valid_key(key))
-		return (free(key), ft_error_msg(args[1]));
-	if (!eq)
-		return (free(key), 0);
-	ft_set_env(vars, key, eq + 1);
-	free(key);
+	i = 1;
+	while (args[i])
+	{
+		eq = ft_strchr(args[i], '=');
+		if (eq)
+			key = ft_substr(args[i], 0, eq - args[i]);
+		else
+			key = ft_strdup(args[i]);
+		if (!key)
+			return (1);
+		if (ft_is_valid_key(key))
+			return (free(key), ft_error_msg(args[i]));
+		if (!eq)
+			return (free(key), 0);
+		ft_set_env(vars, key, eq + 1);
+		free(key);
+		i++;
+	}
 	return (0);
 }
 

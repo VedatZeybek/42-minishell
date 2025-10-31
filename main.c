@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:18:06 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/10/31 13:54:48 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,42 @@
 
 int	g_exit_status = 0;
 
+static int	check_unclosed_quotes(const char *s)
+{
+	int		i;
+	char	open;
+
+	if (!s)
+		return (0);
+	i = 0;
+	open = 0;
+	while (s[i])
+	{
+		if (!open && (s[i] == '\'' || s[i] == '\"'))
+			open = s[i];
+		else if (open && s[i] == open)
+			open = 0;
+		i++;
+	}
+	if (open)
+	{
+		ft_putstr_fd("minishell: unexpected EOF while looking for matching `", 2);
+		ft_putchar_fd(open, 2);
+		ft_putstr_fd("'\n", 2);
+		g_exit_status = 2;
+		return (1);
+	}
+	return (0);
+}
+
+
 static void	run_input(char *line, t_vars *vars)
 {
 	t_token		*tokens;
 	t_command	*command;
 
+	if (check_unclosed_quotes(line))
+		return ;
 	tokens = tokenize(line);
 	if (syntax_check(tokens))
 	{

@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 21:18:23 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 21:26:15 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:24:57 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	export_valid_checks(char *key, char *eq, char *args)
 	if (!key)
 		return (1);
 	if (ft_is_valid_key(key))
-		return (free(key), ft_error_msg(args));
+		return (ft_error_msg(args));
 	if (!eq)
-		return (free(key), 0);
+		return (0);
 	return (-1);
 }
 

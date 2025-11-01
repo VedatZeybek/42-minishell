@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:56:36 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 21:26:22 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/01 18:26:07 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	ft_export(t_vars *vars, char **args)
 		else
 			key = ft_strdup(args[i]);
 		if (export_valid_checks(key, eq, args[i]) == -1)
-			return (export_valid_checks(key, eq, args[i]));
-		ft_set_env(vars, key, eq + 1);
+			ft_set_env(vars, key, eq + 1);
 		free(key);
 		i++;
 	}

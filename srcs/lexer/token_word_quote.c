@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:45 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 17:46:11 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/03 23:04:32 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,82 +34,6 @@ static void	append_single_quote(char **buffer, char *input, int *i)
 		}
 	}
 	if (input[*i] == '\'')
-		(*i)++;
-}
-
-static void	append_env_var(char **buffer, char *input, int *i, t_vars *vars)
-{
-	char	*var_name;
-	char	*value;
-	int		start;
-
-	if (input[++*i] == '?')
-	{
-		value = ft_itoa(g_exit_status);
-		*buffer = ft_strjoin_free(*buffer, value);
-		free(value);
-		(*i)++;
-		return ;
-	}
-	start = *i;
-	while (input[*i] && (ft_isalnum(input[*i]) || input[*i] == '_'))
-		(*i)++;
-	if (*i == start)
-	{
-		*buffer = ft_strjoin_free(*buffer, "$");
-		return ;
-	}
-	var_name = ft_substr(input, start, *i - start);
-	if (!var_name)
-		return ;
-	value = (char *)ft_get_env_elem(vars->envp, var_name);
-	if (value && value[0] != '\0')
-		*buffer = ft_strjoin_free(*buffer, value);
-	free(var_name);
-}
-
-static void	append_double_quote(char **buffer, char *input,
-			int *i, t_vars *vars)
-{
-	int		start;
-	char	*tmp;
-	char	*newbuf;
-
-	(*i)++;
-	start = *i;
-	while (input[*i] && input[*i] != '"')
-	{
-		if (input[*i] == '$')
-		{
-			if (*i > start)
-			{
-				tmp = ft_substr(input, start, (*i) - start);
-				if (tmp)
-				{
-					newbuf = ft_strjoin(*buffer, tmp);
-					free(tmp);
-					free(*buffer);
-					*buffer = newbuf;
-				}
-			}
-			append_env_var(buffer, input, i, vars);
-			start = *i;
-			continue ;
-		}
-		(*i)++;
-	}
-	if (*i > start)
-	{
-		tmp = ft_substr(input, start, (*i) - start);
-		if (tmp)
-		{
-			newbuf = ft_strjoin(*buffer, tmp);
-			free(tmp);
-			free(*buffer);
-			*buffer = newbuf;
-		}
-	}
-	if (input[*i] == '"')
 		(*i)++;
 }
 

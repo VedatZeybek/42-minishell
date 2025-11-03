@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 17:13:35 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 23:05:54 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int						ft_open_input_file(char *filename, int flags);
 int						ft_open_output_file(char *filename, int flags);
 int						ft_is_builtin(char *cmd_name);
 void					wait_all_children(int count);
-
+int						ft_write_heredoc_to_fd(char *limiter, int wfd);
 char					**copy_argv_to_string_array(t_command *cmd,
 							size_t argv_len);
 void					free_string_array(char **arr);
@@ -188,5 +188,8 @@ char					*ft_strjoin_free(char *s1, char *s2);
 int						handle_word(char *input, t_token **token, int *i,
 							t_vars *vars);
 int						syntax_check(t_token *tok);
-
+void					append_env_var(char **buffer, char *input,
+							int *i, t_vars *vars);
+void					append_double_quote(char **buffer, char *input,
+							int *i, t_vars *vars);
 #endif

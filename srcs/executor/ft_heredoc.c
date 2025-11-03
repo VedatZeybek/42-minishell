@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:35 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 12:20:44 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 22:51:00 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,8 @@ int	ft_write_heredoc_to_fd(char *limiter, int wfd)
 	return (0);
 }
 
-int	ft_open_heredoc(char *limiter)
+static int	ft_create_heredoc_pipe(char *limiter, int *pipe_fd)
 {
-	int	fd[2];
-	int	ret;
-
 	if (!limiter || !*limiter)
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token", 2);
@@ -75,18 +72,27 @@ int	ft_open_heredoc(char *limiter)
 		g_exit_status = 2;
 		return (1);
 	}
-	if (pipe(fd) == -1)
+	if (pipe(pipe_fd) == -1)
 	{
 		perror("pipe");
 		return (1);
 	}
-	ret = ft_write_heredoc_to_fd(limiter, fd[1]);
-	close(fd[1]);
-	if (ret != 0)
+	if (ft_write_heredoc_to_fd(limiter, pipe_fd[1]) != 0)
 	{
-		close(fd[0]);
-		return (ret);
+		close(pipe_fd[1]);
+		close(pipe_fd[0]);
+		return (1);
 	}
+	close(pipe_fd[1]);
+	return (0);
+}
+
+int	ft_open_heredoc(char *limiter)
+{
+	int	fd[2];
+
+	if (ft_create_heredoc_pipe(limiter, fd) != 0)
+		return (1);
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 	{
 		perror("dup2");

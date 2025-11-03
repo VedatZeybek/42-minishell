@@ -17,6 +17,7 @@ SRC		=	srcs/builtin/ft_arg_count.c \
 			srcs/executor/ft_exec_utils.c \
 			srcs/executor/ft_executor.c \
 			srcs/executor/ft_redirections.c \
+			srcs/executor/ft_redirections_utils.c \
 			srcs/executor/ft_heredoc.c \
 			srcs/executor/ft_run_external_command.c \
 			srcs/executor/ft_vars_utils.c \
@@ -25,6 +26,8 @@ SRC		=	srcs/builtin/ft_arg_count.c \
 			srcs/executor/ft_copy_args.c \
 			srcs/input/free_utils.c \
 			srcs/input/read_line.c \
+			srcs/lexer/append_double_quote.c \
+			srcs/lexer/append_env_var.c \
 			srcs/lexer/create_and_add_token.c \
 			srcs/lexer/lexer_utils.c \
 			srcs/lexer/token_redirect.c \

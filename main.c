@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 17:47:21 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/03 18:12:05 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ int	main(int argc, char **argv, char **env)
 		free(line);
 	}
 	ft_free_vars(&vars);
-	return (0);
+	return (g_exit_status);
 }

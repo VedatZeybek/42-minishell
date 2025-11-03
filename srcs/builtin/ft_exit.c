@@ -6,14 +6,13 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 17:19:46 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:46:24 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 static int	is_valid_number(const char *str, long long *result);
-static void	print_error(const char *msg);
 static int	handle_exit_args(char **args, int *exit_code, int is_child);
 
 int	ft_exit_child(char **args)
@@ -37,19 +36,14 @@ int	ft_exit(char **args, t_vars *vars)
 
 	exit_code = 0;
 	result = handle_exit_args(args, &exit_code, 0);
-	printf("exit\n");
 	if (result != 0)
 		return (result);
-	free_splitted(args);
+	ft_putstr_fd("exit\n", 1);
 	if (vars)
 		ft_free_vars(vars);
-	if (result == -1)
-		exit(2);
-	else if (result == 1)
-		exit(1);
 	if (args[1] && is_all_number(args[1]) && !args[2])
 		exit(ft_atoi(args[1]));
-	exit((unsigned char)exit_code);
+	exit(exit_code);
 }
 
 static int	handle_exit_args(char **args, int *exit_code, int is_child)
@@ -62,14 +56,17 @@ static int	handle_exit_args(char **args, int *exit_code, int is_child)
 	if (!is_valid_number(args[1], &num))
 	{
 		if (!is_child)
-			print_error("minishell: exit: numeric argument required");
-		return (-1);
+			ft_putendl_fd("minishell: exit: numeric argument required",
+				STDERR_FILENO);
+		*exit_code = 2;
+		return (0);
 	}
 	if (args[2])
 	{
 		if (!is_child)
-			print_error("minishell: exit: too many arguments");
-		return (1);
+			ft_putendl_fd("minishell: exit: too many arguments",
+				STDERR_FILENO);
+		return (-1);
 	}
 	*exit_code = (int)num;
 	return (0);
@@ -102,10 +99,4 @@ static int	is_valid_number(const char *str, long long *result)
 		num = num * 10 + (str[i++] - '0');
 	}
 	return (*result = num * sign, 1);
-}
-
-static void	print_error(const char *msg)
-{
-	ft_putstr_fd((char *)msg, STDERR_FILENO);
-	ft_putchar_fd('\n', STDERR_FILENO);
 }

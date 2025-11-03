@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_word_quote.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:45 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 17:12:14 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:46:11 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	append_env_var(char **buffer, char *input, int *i, t_vars *vars)
 		return ;
 	}
 	start = *i;
-	while (ft_isalnum(input[*i]) || input[*i] == '_')
+	while (input[*i] && (ft_isalnum(input[*i]) || input[*i] == '_'))
 		(*i)++;
 	if (*i == start)
 	{
@@ -60,13 +60,16 @@ static void	append_env_var(char **buffer, char *input, int *i, t_vars *vars)
 		return ;
 	}
 	var_name = ft_substr(input, start, *i - start);
+	if (!var_name)
+		return ;
 	value = (char *)ft_get_env_elem(vars->envp, var_name);
 	if (value && value[0] != '\0')
 		*buffer = ft_strjoin_free(*buffer, value);
 	free(var_name);
 }
 
-static void	append_double_quote(char **buffer, char *input, int *i)
+static void	append_double_quote(char **buffer, char *input,
+			int *i, t_vars *vars)
 {
 	int		start;
 	char	*tmp;
@@ -76,6 +79,23 @@ static void	append_double_quote(char **buffer, char *input, int *i)
 	start = *i;
 	while (input[*i] && input[*i] != '"')
 	{
+		if (input[*i] == '$')
+		{
+			if (*i > start)
+			{
+				tmp = ft_substr(input, start, (*i) - start);
+				if (tmp)
+				{
+					newbuf = ft_strjoin(*buffer, tmp);
+					free(tmp);
+					free(*buffer);
+					*buffer = newbuf;
+				}
+			}
+			append_env_var(buffer, input, i, vars);
+			start = *i;
+			continue ;
+		}
 		(*i)++;
 	}
 	if (*i > start)
@@ -100,7 +120,7 @@ static void	process_word(char **buffer, char *input, int *i, t_vars *vars)
 	if (input[*i] == '\'')
 		append_single_quote(buffer, input, i);
 	else if (input[*i] == '"')
-		append_double_quote(buffer, input, i);
+		append_double_quote(buffer, input, i, vars);
 	else if (input[*i] == '$')
 		append_env_var(buffer, input, i, vars);
 	else

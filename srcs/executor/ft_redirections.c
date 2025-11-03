@@ -6,7 +6,7 @@
 /*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 14:11:12 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/03 16:44:53 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,64 @@ int	ft_write_heredoc_to_fd(char *limiter, int wfd);
 int	ft_handle_redirections(t_command *cmd)
 {
 	t_redir	*redir;
-	int		heredoc_pipe[2];
-	int		has_heredoc;
+	int		last_heredoc_rd;
+	int		pipefd[2];
 	int		ret;
 
 	if (!cmd || !cmd->redirections)
 		return (0);
-	has_heredoc = 0;
+	last_heredoc_rd = -1;
 	redir = cmd->redirections;
 	while (redir)
 	{
 		if (redir->type == TOKEN_HEREDOC)
 		{
-			if (!has_heredoc)
+			if (pipe(pipefd) == -1)
 			{
-				if (pipe(heredoc_pipe) == -1)
-				{
-					perror("pipe");
-					return (1);
-				}
-				has_heredoc = 1;
+				perror("pipe");
+				if (last_heredoc_rd != -1)
+					close(last_heredoc_rd);
+				return (1);
 			}
-			ret = ft_write_heredoc_to_fd(redir->filename, heredoc_pipe[1]);
+			ret = ft_write_heredoc_to_fd(redir->filename, pipefd[1]);
+			close(pipefd[1]);
 			if (ret != 0)
 			{
-				close(heredoc_pipe[1]);
-				close(heredoc_pipe[0]);
+				close(pipefd[0]);
+				if (last_heredoc_rd != -1)
+					close(last_heredoc_rd);
 				return (ret);
 			}
+			if (last_heredoc_rd != -1)
+				close(last_heredoc_rd);
+			last_heredoc_rd = pipefd[0];
 		}
 		else
 		{
 			ret = ft_process_redirection(redir);
 			if (ret != 0)
 			{
-				if (has_heredoc)
-				{
-					close(heredoc_pipe[1]);
-					close(heredoc_pipe[0]);
-				}
+				if (last_heredoc_rd != -1)
+					close(last_heredoc_rd);
 				return (ret);
+			}
+			if (redir->type == TOKEN_REDIRECT_IN && last_heredoc_rd != -1)
+			{
+				close(last_heredoc_rd);
+				last_heredoc_rd = -1;
 			}
 		}
 		redir = redir->next;
 	}
-	if (has_heredoc)
+	if (last_heredoc_rd != -1)
 	{
-		close(heredoc_pipe[1]);
-		if (dup2(heredoc_pipe[0], STDIN_FILENO) == -1)
+		if (dup2(last_heredoc_rd, STDIN_FILENO) == -1)
 		{
 			perror("dup2");
-			close(heredoc_pipe[0]);
+			close(last_heredoc_rd);
 			return (1);
 		}
-		close(heredoc_pipe[0]);
+		close(last_heredoc_rd);
 	}
 	return (0);
 }

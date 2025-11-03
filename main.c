@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 17:11:42 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:47:21 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,3 @@ int	main(int argc, char **argv, char **env)
 	ft_free_vars(&vars);
 	return (0);
 }
-
-// tab sinyali ayarlanabilir
-// yeni path directory export edince ordaki komut çalışmıyor
-// heredoc hatalı
-// builtins pipe ile verilince leak var

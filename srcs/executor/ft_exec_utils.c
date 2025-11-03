@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:52:00 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:16:41 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:04:09 by vedat-zeybe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,25 @@ void	wait_all_children(int count)
 {
 	pid_t	pid;
 	int		status;
+	int		last_status;
 
+	last_status = 0;
 	while (count > 0)
 	{
 		pid = wait(&status);
 		if (pid == -1)
+		{
 			perror("wait");
-		else if (WIFEXITED(status))
-			g_exit_status = WEXITSTATUS(status);
+			break ;
+		}
+		if (WIFEXITED(status))
+			last_status = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
 		{
 			if (WTERMSIG(status) != SIGPIPE)
-				g_exit_status = 128 + WTERMSIG(status);
+				last_status = 128 + WTERMSIG(status);
 		}
 		count--;
 	}
+	g_exit_status = last_status;
 }

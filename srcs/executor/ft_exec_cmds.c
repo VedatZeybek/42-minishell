@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 00:00:00 by username          #+#    #+#             */
-/*   Updated: 2025/10/31 16:58:25 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:22:12 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ft_execute_builtin(t_command *cmd, t_vars *vars, char **str)
 	if (handle_builtin_redir(cmd, saved_in, saved_out))
 		return ;
 	if (ft_strncmp(cmd->argv[0].value, "exit", 4) == 0)
-		ft_exit(str, vars);
+		ft_exit(str, vars, cmd);
 	g_exit_status = ft_run_builtin(cmd, vars);
 	dup2(saved_in, STDIN_FILENO);
 	dup2(saved_out, STDOUT_FILENO);

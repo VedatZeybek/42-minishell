@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:55:47 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 14:46:24 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:25:18 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_exit_child(char **args)
 	return ((unsigned char)exit_code);
 }
 
-int	ft_exit(char **args, t_vars *vars)
+int	ft_exit(char **args, t_vars *vars, t_command *cmd_list)
 {
 	int	exit_code;
 	int	result;
@@ -41,8 +41,11 @@ int	ft_exit(char **args, t_vars *vars)
 	ft_putstr_fd("exit\n", 1);
 	if (vars)
 		ft_free_vars(vars);
+	if (cmd_list)
+		free_command_list(cmd_list);
 	if (args[1] && is_all_number(args[1]) && !args[2])
 		exit(ft_atoi(args[1]));
+	free_splitted(args);
 	exit(exit_code);
 }
 

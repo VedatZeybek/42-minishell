@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_word_quote.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:45 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:09:44 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/03 12:20:00 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	append_env_var(char **buffer, char *input, int *i)
 		*buffer = ft_strjoin_free(*buffer, value);
 	free(var_name);
 }
+
 static void	append_double_quote(char **buffer, char *input, int *i)
 {
 	int		start;

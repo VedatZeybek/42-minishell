@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_external_command.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:41 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 16:16:52 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/03 12:20:23 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	ft_run_external_cmd(t_command *cmd, t_vars *vars)
 		free_string_array(str);
 		return (0);
 	}
-    if (ft_strchr(cmd->argv[0].value, '/'))
-    {
-        value = execute_with_path(cmd->argv[0].value, str, vars->envp);
+	if (ft_strchr(cmd->argv[0].value, '/'))
+	{
+		value = execute_with_path(cmd->argv[0].value, str, vars->envp);
 		free_string_array(str);
-        return (value);
-    }
+		return (value);
+	}
 	return (execute_from_env_path(cmd->argv[0].value, vars, str));
 }
 

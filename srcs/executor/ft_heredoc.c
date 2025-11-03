@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:35 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 14:11:17 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/03 12:20:44 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	write_line_to_fd(int fd, char *line)
 		write(fd, "\n", 1);
 }
 
-
 int	ft_write_heredoc_to_fd(char *limiter, int wfd)
 {
 	char	*line;
@@ -63,7 +62,6 @@ int	ft_write_heredoc_to_fd(char *limiter, int wfd)
 	}
 	return (0);
 }
-
 
 int	ft_open_heredoc(char *limiter)
 {

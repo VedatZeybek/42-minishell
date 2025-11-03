@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:23:04 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 23:24:29 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/03 17:11:42 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	run_input(char *line, t_vars *vars)
 
 	if (check_unclosed_quotes(line))
 		return ;
-	tokens = tokenize(line);
+	tokens = tokenize(line, vars);
 	if (syntax_check(tokens))
 	{
 		free_tokens(tokens);

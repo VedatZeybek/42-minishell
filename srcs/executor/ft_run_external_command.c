@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:22:41 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 12:20:23 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:03:07 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	execute_from_env_path(char *cmd_name, t_vars *vars, char **str)
 		g_exit_status = 127;
 		free(cmd_path);
 		free_string_array(str);
-		write_error(NULL, cmd_name, ": command not found\n");
+		write_error("minishell: ", cmd_name, ": command not found\n");
 		return (127);
 	}
 	if (execve(cmd_path, str, vars->envp) == -1)

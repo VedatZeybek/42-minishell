@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:22:57 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 15:21:46 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:13:35 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,14 +178,15 @@ t_command				*create_command(t_arg *args, t_redir *redirections);
 t_command				*parse_command(t_token **tokens);
 
 // Tokenizer
-t_token					*tokenize(char *input);
+t_token					*tokenize(char *input, t_vars *vars);
 t_token					*create_token(char *value, t_token_type type);
 void					token_redirect(char *input, t_token **token, int *i);
 void					add_token(t_token **head, t_token *new_token);
 int						is_whitespace(char c);
 void					free_tokens(t_token *token);
 char					*ft_strjoin_free(char *s1, char *s2);
-int						handle_word(char *input, t_token **token, int *i);
+int						handle_word(char *input, t_token **token, int *i,
+							t_vars *vars);
 int						syntax_check(t_token *tok);
 
 #endif

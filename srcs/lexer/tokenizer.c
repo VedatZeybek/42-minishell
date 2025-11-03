@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:50 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 12:17:44 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:11:21 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int	handle_operators(char *input, t_token **token, int *i)
 	return (0);
 }
 
-static int	process_token(char *input, t_token **token, int *i)
+static int	process_token(char *input, t_token **token, int *i, t_vars *vars)
 {
 	if (handle_operators(input, token, i))
 		return (1);
-	if (handle_word(input, token, i))
+	if (handle_word(input, token, i, vars))
 		return (1);
 	if (input[*i] && !is_whitespace(input[*i]))
 	{
@@ -45,7 +45,7 @@ static int	process_token(char *input, t_token **token, int *i)
 	return (1);
 }
 
-t_token	*tokenize(char *input)
+t_token	*tokenize(char *input, t_vars *vars)
 {
 	t_token	*token;
 	int		i;
@@ -60,7 +60,7 @@ t_token	*tokenize(char *input)
 			i++;
 		if (input[i] == '\0')
 			break ;
-		if (!process_token(input, &token, &i))
+		if (!process_token(input, &token, &i, vars))
 			return (NULL);
 	}
 	return (token);

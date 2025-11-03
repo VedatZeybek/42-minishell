@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 14:21:45 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 12:20:00 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:12:14 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	append_single_quote(char **buffer, char *input, int *i)
 		(*i)++;
 }
 
-static void	append_env_var(char **buffer, char *input, int *i)
+static void	append_env_var(char **buffer, char *input, int *i, t_vars *vars)
 {
 	char	*var_name;
 	char	*value;
@@ -60,7 +60,7 @@ static void	append_env_var(char **buffer, char *input, int *i)
 		return ;
 	}
 	var_name = ft_substr(input, start, *i - start);
-	value = getenv(var_name);
+	value = (char *)ft_get_env_elem(vars->envp, var_name);
 	if (value && value[0] != '\0')
 		*buffer = ft_strjoin_free(*buffer, value);
 	free(var_name);
@@ -93,7 +93,7 @@ static void	append_double_quote(char **buffer, char *input, int *i)
 		(*i)++;
 }
 
-static void	process_word(char **buffer, char *input, int *i)
+static void	process_word(char **buffer, char *input, int *i, t_vars *vars)
 {
 	char	temp[2];
 
@@ -102,7 +102,7 @@ static void	process_word(char **buffer, char *input, int *i)
 	else if (input[*i] == '"')
 		append_double_quote(buffer, input, i);
 	else if (input[*i] == '$')
-		append_env_var(buffer, input, i);
+		append_env_var(buffer, input, i, vars);
 	else
 	{
 		temp[0] = input[*i];
@@ -112,7 +112,7 @@ static void	process_word(char **buffer, char *input, int *i)
 	}
 }
 
-int	handle_word(char *input, t_token **token, int *i)
+int	handle_word(char *input, t_token **token, int *i, t_vars *vars)
 {
 	char	*buffer;
 	int		start_i;
@@ -122,7 +122,7 @@ int	handle_word(char *input, t_token **token, int *i)
 	while (input[*i] && !is_whitespace(input[*i])
 		&& input[*i] != '|' && input[*i] != '<' && input[*i] != '>')
 	{
-		process_word(&buffer, input, i);
+		process_word(&buffer, input, i, vars);
 	}
 	if (*i > start_i)
 	{

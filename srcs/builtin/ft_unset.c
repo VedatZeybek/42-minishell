@@ -6,7 +6,7 @@
 /*   By: epakdama <epakdama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:04:03 by epakdama          #+#    #+#             */
-/*   Updated: 2025/10/31 17:08:22 by epakdama         ###   ########.fr       */
+/*   Updated: 2025/11/04 10:51:22 by epakdama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ int	ft_unset(t_vars *vars, char **args)
 	i = 1;
 	while (args[i])
 	{
+		if (ft_strncmp(args[i], "PATH", 5) == 0)
+		{
+			if (vars->path)
+				free_splitted(vars->path);
+			vars->path = NULL;
+		}
 		ft_remove_env(vars, args[i]);
 		i++;
 	}

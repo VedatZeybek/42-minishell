@@ -69,7 +69,8 @@ tester:
 
 arch:
 	rm -rf architecture_minishell
-	git clone git@github.com:VedatZeybek/architecture_minishell.git
+	git clone https://github.com/VedatZeybek/architecture_minishell.git
+
 test1: srcs/builtin/*.c srcs/executor/*.c $(LIBS)
 	rm -rf test1
 	cc -Wall -Wextra -Werror srcs/builtin/*.c srcs/executor/*.c $(LIBS) -Iincludes -Ilibft -Ift_printf -o test1

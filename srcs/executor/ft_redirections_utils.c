@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_redirections_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:37:30 by epakdama          #+#    #+#             */
-/*   Updated: 2025/11/03 22:57:35 by vedat-zeybe      ###   ########.fr       */
+/*   Updated: 2025/11/04 10:28:43 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

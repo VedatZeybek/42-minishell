@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_double_quote.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vedat-zeybek <vedat-zeybek@student.42.f    +#+  +:+       +#+        */
+/*   By: vzeybek <vzeybek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 23:02:56 by vedat-zeybe       #+#    #+#             */
-/*   Updated: 2025/11/03 23:08:08 by vedat-zeybe      ###   ########.fr       */
+/*   Created: 2025/11/03 23:02:56 by vzeybek           #+#    #+#             */
+/*   Updated: 2025/11/04 10:28:24 by vzeybek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
